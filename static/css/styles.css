@@ -1,0 +1,642 @@
+/*Font style imports*/
+
+/*Colours to use in site*/
+/*
+blue colour - #007bff
+dark grey - #343a40
+White colour - #FAFAFA
+*/
+
+/*Importing the fonts */
+
+/* Open Sans font to be used throughout the site */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+/* Titillium web to be used for the headers throughout the site */
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,700&display=swap');
+
+/* Global styles styles*/
+
+* {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Titillium Web", sans-serif;
+}
+
+
+
+
+
+
+
+/*---------- Navbar ----------*/
+.navbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    padding: 0;
+    box-shadow: 2px 2px 10px #000000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.nav-link i {
+    font-size: 1.2em;
+    margin-right: 20px;
+}
+
+.nav-buttons {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.dropdown-menu {
+    position: absolute;
+    width: 100%;
+    border-color: rgba(255,255,255,0.1);
+    border-width: 0.4px;
+    width: 150px;
+    border-radius: 0;
+    border: 0.5px;
+}
+
+.dropdown-item {
+    text-transform: uppercase;
+    color: #FAFAFA;
+}
+
+.dropdown-item:hover {
+    background-color: #343a40;
+}
+
+.btn-primary {
+    font-size: 1.4em;
+    margin-right: 20px;
+}
+
+.dropdown-item:hover {
+    color: #007bff;
+}
+
+.navbar-container {
+    width: 85%;
+    max-width: 1200px;
+}
+
+.navbar-logo-dropdown-icon {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo a {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-logo-blue {
+    color: #007bff;
+}
+
+.navbar-logo-white {
+    color: #FAFAFA;
+    font-style: italic;
+}
+
+.navbar-dark .nav-item .nav-link {
+    text-transform: uppercase;
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 1em;
+    margin-right: 5px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.navbar-dark .nav-item .nav-link:hover {
+    transition-property: color;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.terms-privacy-navbar-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.navbar-social-link .social-link i {
+    color: #FAFAFA;
+    font-size: 2em;
+    margin: 10px 10px 10px 0;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.navbar-social-link .social-link i:hover {
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.terms-privacy-navbar a:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.terms-privacy-link {
+    color: #FAFAFA;
+}
+
+.terms-privacy-navbar-divider {
+    color: #FAFAFA;
+}
+
+/*---------- End of social icons at the side of the page in desktop views ----------*/
+
+
+
+
+
+
+
+/*----------Social link bar----------*/
+.icon-bar-desktop-views {
+    top: 40%;
+    position: fixed;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.icon-bar-desktop-views a {
+    display: none;
+    text-align: center;
+    transition-timing-function: ease-in-out;
+    padding: 10px 12px;
+    transition-duration: 0.1s;
+    color: white;
+    font-size: 25px;
+}
+
+.icon-bar-facebook {
+    background-color: #3B5998;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-facebook:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-twitter {
+    background-color: #55ACEE;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-twitter:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-linkedin {
+    background-color: #007bb5;
+    color: #FFFFFF;
+    width: 55px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+}
+
+.icon-bar-linkedin:hover {
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    width: 65px;
+}
+
+.icon-bar-facebook:hover,
+.icon-bar-twitter:hover,
+.icon-bar-linkedin:hover {
+    padding-left: 20px;
+}
+/*----------End of Social link bar----------*/
+
+
+
+
+
+
+/*----------Content in the pages from base.html----------*/
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 70px 0;
+    display: flex;
+    justify-content: center;
+}
+/*----------End of content in the pages from base.html----------*/
+
+
+
+
+
+/*---------- Login and registration form ----------*/
+/*Intro section to the forms*/
+.registration-login-intro {
+    width: 100%;
+    margin-bottom: 30px;
+    max-width: 550px;
+}
+
+.registration-login-intro-header {
+    font-size: 4em;
+    font-weight: 400;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.registration-login-intro-paragraph {
+    font-size: 1.1em;
+    line-height: 2em;
+    color: #343a40;
+}
+
+/*Forms*/
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 40px 0;
+}
+
+.registration-login-form {
+    width: 100%;
+    max-width: 450px;
+}
+
+.registration-login-form p {
+    font-size: 0.7em;
+    font-weight: 400;
+    margin-top: 30px;
+}
+
+.registration-login-form-fields label {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.registration-login-form-fields .alert {
+    font-size: 0.8em;
+}
+
+.registration-login-form-fields span {
+    font-size: 0.7em;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 0;
+}
+
+.registration-login-form-fields .form-group label { 
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.registration-login-form-fields .form-group .form-control { 
+    height: 40px;
+}
+
+.registration-login-form-fields .form-group .help-block { 
+    font-size: 0.7em;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.registration-login-form-fields .register-login-button {
+    height: 50px;
+    margin-top: 20px;
+}
+
+/*Password reset forms*/
+.password-reset-title {
+    margin-bottom: 15px;
+}
+
+.email-address-textbox {    
+    display: flex;
+    flex-direction: column;
+}
+
+.email-address-textbox input {
+    height: 40px;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0 10px;
+}
+
+/*---------- End of login and registration form content ----------*/
+
+
+
+
+
+/*---------- Footer ----------*/
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-top {
+    width: 100%;
+    background-color: #343a40;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    width: 85%;
+    max-width: 1200px;
+}
+
+.footer-top-container {
+    margin-top: 2.5em;
+}
+
+.footer-bottom-container {
+    margin-top: 1em;
+}
+
+.footer-section {
+    margin-bottom: 3em;
+}
+
+.footer-header {
+    color: #FAFAFA;
+    font-size: 2em;
+    margin-bottom: .6em;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.footer-paragraph {
+    color: #FAFAFA;
+    font-size: 1em;
+    line-height: 1.7em;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.footer-paragraph a {
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-link {
+    font-size: 1.2em;
+    line-height: 1em;
+}
+
+.footer-paragraph a:hover {
+    transition-property: color;
+    color: #FAFAFA;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    text-decoration: none;
+}
+
+.footer-paragraph span {
+    text-decoration: underline;
+}
+
+.footer-paragraph span a {
+    color: #FAFAFA;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-paragraph span a:hover {
+    transition-property: color;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+#footer-paragraph-phone,
+#footer-paragraph-email {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #007bff;
+}
+
+/*Social links at the top of the footer*/
+.footer-social {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 50px;
+    margin: 30px 0;
+}
+
+.social-links {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.social {
+    margin: 0 10px;
+}
+
+.social-links li a {
+    text-decoration: none;
+}
+
+.social-links li a i {
+    font-size: 2.7em;
+    display: flex;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    color: #007bff;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.social-links li a i:hover {
+    transition-property: color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    color: #FAFAFA;
+}
+
+/* Footer copyright and terms and privacy links at the bottom*/
+.footer-statement {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statement,
+.footer-contact-about-links-span {
+    font-size: 0.8em;
+}
+
+.statement {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact-about-links-span a {
+    color: #343a40;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+.footer-contact-about-links-span a:hover {
+    text-decoration: none;
+    color: #007bff;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+/*---------- End of Footer ----------*/
+
+
+
+
+
+
+
+
+
+/*---------- Larger screen sizes ----------*/
+/* Horizontal mobile screens */
+@media(min-width: 500px) {
+}
+    
+/*tablet screens*/
+@media(min-width: 768px) {
+    
+    /*---------- Footer sections ----------*/
+    .footer-top-areas {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .footer-section {
+        width: 30%;
+    }
+    
+    #footer-about-section {
+        width: 20%;
+    }
+    /*---------- End of Footer sections ----------*/
+    
+    
+    
+    /*----------Registration and Login Form----------*/
+    .registration-login-form {
+        border: 0.5px solid #ced4da;
+        border-radius: 3px;
+        padding: 25px;
+        width: 100%;
+        background-color: #ced4da;
+    }
+    
+    .registration-login-intro {
+        padding-right: 30px;
+    }
+    
+    .form-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        max-width: 1000px;
+        margin: 60px 0;
+    }
+    /*----------End of registration and Login Form----------*/
+}
+
+/*Large tablet and small laptop screens*/
+@media(min-width: 992px) {
+    /*----------Navbar----------*/
+    .navbar {
+        padding: 0;
+    }
+    
+    .navbar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .terms-privacy-navbar {
+        display: none;
+    }
+    
+    .btn-primary {
+        font-size: 1em;
+        margin-right: 10px;
+    }
+    
+    .nav-buttons {
+        margin: 0;
+    }
+    
+    .navbar-social-link {
+        display: none;
+    }
+    
+    .navbar-collapse {
+        justify-content: flex-end;
+    }
+    
+    /*----------Social link bar display----------*/
+    .icon-bar-desktop-views a {
+        display: block;
+    }
+    /*End of social link bar display*/
+    /*----------End of Navbar in laptop and desktop views-----------*/
+    
+}
+
+/*Larger laptop and desktop screens*/
+@media(min-width: 1224px) {
+}
