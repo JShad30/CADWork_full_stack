@@ -16,7 +16,7 @@ class PostListView(ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
-	ordering = ['-date_posted']
+	order = ['-date_posted']
 	paginate_by = 5
 
 
@@ -52,6 +52,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
 
+	"""Stop the user from being able to access another users post"""
 	def test_func(self):
 		post = self.get_object()
 		if self.request.user == post.author:
