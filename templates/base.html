@@ -35,7 +35,7 @@
 		                <a class="nav-link" href="#">Jobs</a>
 		      		</li>
 		            <li class="nav-item">
-		                <a class="nav-link" href="#">Blog</a>
+		                <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
 		            </li>
 		            <li class="nav-item">
 		                <a class="nav-link" href="#">About</a>
@@ -54,16 +54,15 @@
 	                {% if user.is_authenticated %}
 	                <!--Account link which only appears if user is logged in-->
 	                <div class="nav-item">
-	                	<a class="nav-link" href="#">Account</a>
+	                	<a class="nav-link" href="{% url 'profile' %}">Account</a>
 	                </div>
 	                <div class="nav-item">
-	                	<button class="btn btn-info" href="{% url 'logout' %}" role="button">Logout</button>
-	                </div>
-		            
+	                	<a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+	                </div>		            
 		            {% else %}
 		            <div class="nav-item nav-buttons">
-	                	<button class="btn btn-primary" href="{% url 'register' %}" role="button">Register</button>
-	                	<button class="btn btn-primary" href="{% url 'login' %}" role="button">Login</button>
+	                	<a class="btn btn-primary" href="{% url 'register' %}">Register</a>
+	                	<a class="btn btn-primary" href="{% url 'login' %}">Login</a>
 	                </div>
 		            {% endif %}
 		    	</ul>
@@ -137,7 +136,7 @@
 							<p class="footer-paragraph footer-link"><a href="#">Jobs</a></p>
 							<p class="footer-paragraph footer-link"><a href="#">Upload Job</a></p>
 							<p class="footer-paragraph footer-link"><a href="#">Bid on a Job</a></p>
-							<p class="footer-paragraph footer-link"><a href="#">Blog</a></p>
+							<p class="footer-paragraph footer-link"><a href="{% url 'blog-home' %}">Blog</a></p>
 							<p class="footer-paragraph footer-link"><a href="#">Shop</a></p>
 						</div>
 					</div>
