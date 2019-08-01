@@ -61,37 +61,14 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
 }
 
-.dropdown-menu {
-    position: absolute;
-    width: 100%;
-    border-color: rgba(255,255,255,0.1);
-    border-width: 0.4px;
-    width: 150px;
-    border-radius: 0;
-    border: 0.5px;
-}
-
-.dropdown-item {
-    text-transform: uppercase;
-    color: #FAFAFA;
-}
-
-.dropdown-item:hover {
-    background-color: #343a40;
-}
-
 .btn-primary {
     font-size: 1.4em;
     margin-right: 20px;
 }
 
-.dropdown-item:hover {
-    color: #007bff;
-}
-
 .navbar-container {
-    width: 85%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1100px;
 }
 
 .navbar-logo-dropdown-icon {
@@ -254,105 +231,28 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
 /*----------End of content in the pages from base.html----------*/
 
 
 
 
 
-/*---------- Login and registration form ----------*/
-/*Intro section to the forms*/
-/*.registration-login-intro {
+/*---------- Login and registration forms ----------*/
+.form-section {
     width: 100%;
-    margin-bottom: 30px;
     max-width: 550px;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    padding: 20px 20px;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
 }
-
-.registration-login-intro-header {
-    font-size: 4em;
-    font-weight: 400;
-    color: #007bff;
-    margin-bottom: 20px;
-}
-
-.registration-login-intro-paragraph {
-    font-size: 1.1em;
-    line-height: 2em;
-    color: #343a40;
-}*/
-
-/*Forms*/
-/*.form-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 40px 0;
-}
-
-.registration-login-form {
-    width: 100%;
-    max-width: 450px;
-}
-
-.registration-login-form p {
-    font-size: 0.7em;
-    font-weight: 400;
-    margin-top: 30px;
-}
-
-.registration-login-form-fields label {
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-.registration-login-form-fields .alert {
-    font-size: 0.8em;
-}
-
-.registration-login-form-fields span {
-    font-size: 0.7em;
-    font-weight: 400;
-    margin-top: 0px;
-    margin-bottom: 0;
-}
-
-.registration-login-form-fields .form-group label { 
-    font-size: 0.8em;
-    font-weight: 600;
-}
-
-.registration-login-form-fields .form-group .form-control { 
-    height: 40px;
-}
-
-.registration-login-form-fields .form-group .help-block { 
-    font-size: 0.7em;
-    font-weight: 400;
-    margin-top: 5px;
-}
-
-.registration-login-form-fields .register-login-button {
-    height: 50px;
-    margin-top: 20px;
-}*/
-
-/*Password reset forms*/
-/*.password-reset-title {
-    margin-bottom: 15px;
-}
-
-.email-address-textbox {    
-    display: flex;
-    flex-direction: column;
-}
-
-.email-address-textbox input {
-    height: 40px;
-    border-radius: 0.25rem;
-    border: 1px solid #ced4da;
-    padding: 0 10px;
-}*/
-
 /*---------- End of login and registration form content ----------*/
 
 
@@ -380,8 +280,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-container {
-    width: 85%;
-    max-width: 1200px;
+    width: 90%;
+    max-width: 1100px;
 }
 
 .footer-top-container {
@@ -560,30 +460,6 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*---------- End of Footer sections ----------*/
     
-    
-    
-    /*----------Registration and Login Form----------*/
-    /*.registration-login-form {
-        border: 0.5px solid #ced4da;
-        border-radius: 3px;
-        padding: 25px;
-        width: 100%;
-        background-color: #ced4da;
-    }
-    
-    .registration-login-intro {
-        padding-right: 30px;
-    }
-    
-    .form-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        width: 100%;
-        max-width: 1000px;
-        margin: 60px 0;
-    }*/
-    /*----------End of registration and Login Form----------*/
 }
 
 /*Large tablet and small laptop screens*/

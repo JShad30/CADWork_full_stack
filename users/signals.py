@@ -8,10 +8,18 @@ from .models import Profile
 """The receiver here is the create_profile function, which takes the four parameters"""
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-	if created:
-		Profile.objects.create(user=instance)
+    if created:
+        Profile.objects.create(user=instance)
 
-""" **Kwargs just takes any extra inputs"""
+""" **Kwargs takes any extra inputs"""
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
-	instance.profile.save()
+    instance.profile.save()
+
+
+
+
+
+
+
+
