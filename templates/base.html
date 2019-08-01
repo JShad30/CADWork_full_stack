@@ -32,7 +32,7 @@
 		    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 		        <ul class="navbar-nav ml-1">
 		        	<li class="nav-item">
-		                <a class="nav-link">Jobs</a>
+		                <a class="nav-link" href="#">Jobs</a>
 		      		</li>
 		            <li class="nav-item">
 		                <a class="nav-link" href="#">Blog</a>
@@ -57,12 +57,12 @@
 	                	<a class="nav-link" href="#">Account</a>
 	                </div>
 	                <div class="nav-item">
-	                	<button class="btn btn-info" href="#" role="button">Logout</button>
+	                	<button class="btn btn-info" href="{% url 'logout' %}" role="button">Logout</button>
 	                </div>
 		            
 		            {% else %}
 		            <div class="nav-item nav-buttons">
-	                	<button class="btn btn-primary" href="{% url 'registration' %}" role="button">Register</button>
+	                	<button class="btn btn-primary" href="{% url 'register' %}" role="button">Register</button>
 	                	<button class="btn btn-primary" href="{% url 'login' %}" role="button">Login</button>
 	                </div>
 		            {% endif %}
@@ -94,9 +94,9 @@
 	</div>
 
 	<div class="content">
-		<div class="content-container">
+		<div class="container">
 		    {% block content %}
-		    {% endblock %}
+		    {% endblock content %}
 	    </div>
     </div>
 

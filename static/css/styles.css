@@ -254,14 +254,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
 }
-
-.content-container {
-    width: 85%;
-    max-width: 1200px;
-    margin: 70px 0;
-    display: flex;
-    justify-content: center;
-}
 /*----------End of content in the pages from base.html----------*/
 
 
@@ -270,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*---------- Login and registration form ----------*/
 /*Intro section to the forms*/
-.registration-login-intro {
+/*.registration-login-intro {
     width: 100%;
     margin-bottom: 30px;
     max-width: 550px;
@@ -287,10 +279,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1em;
     line-height: 2em;
     color: #343a40;
-}
+}*/
 
 /*Forms*/
-.form-container {
+/*.form-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -342,10 +334,10 @@ h1, h2, h3, h4, h5, h6 {
 .registration-login-form-fields .register-login-button {
     height: 50px;
     margin-top: 20px;
-}
+}*/
 
 /*Password reset forms*/
-.password-reset-title {
+/*.password-reset-title {
     margin-bottom: 15px;
 }
 
@@ -359,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0.25rem;
     border: 1px solid #ced4da;
     padding: 0 10px;
-}
+}*/
 
 /*---------- End of login and registration form content ----------*/
 
@@ -571,7 +563,7 @@ h1, h2, h3, h4, h5, h6 {
     
     
     /*----------Registration and Login Form----------*/
-    .registration-login-form {
+    /*.registration-login-form {
         border: 0.5px solid #ced4da;
         border-radius: 3px;
         padding: 25px;
@@ -590,7 +582,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         max-width: 1000px;
         margin: 60px 0;
-    }
+    }*/
     /*----------End of registration and Login Form----------*/
 }
 
