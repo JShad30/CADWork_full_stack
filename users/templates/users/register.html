@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="container">
 	<div class="form-section">
 		<form method="POST">
 			{% csrf_token %}
@@ -16,4 +17,5 @@
 			<small class="text-muted">If you already have an account, you can <a href="{% url 'login' %}">log in</a> here. By registering to CADWork you accept our <a href="#">terms</a> and <a href="#">privacy policy</a>.</small>
 		</div>
 	</div>
+</div>
 {% endblock content %}

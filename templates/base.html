@@ -24,7 +24,7 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="navbar-container">
 			<div class="navbar-logo-dropdown-icon">
-			    <h2 class="navbar-logo"><a class="navbar-brand" href="#"><span class="navbar-logo-blue">CAD</span><span class="navbar-logo-white">Work</span></a></h2>
+			    <h2 class="navbar-logo"><a class="navbar-brand" href="{% url 'home' %}"><span class="navbar-logo-blue">CAD</span><span class="navbar-logo-white">Work</span></a></h2>
 			    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			        <span class="navbar-toggler-icon"></span>
 			    </button>
@@ -91,10 +91,8 @@
 	</div>
 
 	<div class="content">
-		<div class="container">
-		    {% block content %}
-		    {% endblock content %}
-	    </div>
+		{% block content %}
+		{% endblock content %}
     </div>
 
     <footer class="footer">
@@ -106,12 +104,12 @@
 					<div class="footer-section">
 						<h3 class="footer-header">About Us</h3>
 						<p class="footer-paragraph">CADWork is the site where you can upload or bid on jobs where CAD work is required. Get a professional design for your building project here, from inception to completion.</p>
-						<p class="footer-paragraph">For more information visit the <span class="footer-about-contact-link"><a href="#">about</a></span> page</p>
+						<p class="footer-paragraph">For more information visit the <span class="footer-about-contact-link"><a href="{% url 'about' %}">about</a></span> page</p>
 					</div>
 					<!--Select recipes by allergen requirements-->
 					<div class="footer-section">
 						<h3 class="footer-header">Contact Us</h3>
-						<p class="footer-paragraph">Contact us by leaving us a message at the <span class="footer-about-contact-link"><a href="#">contact</a></span> page, or using the following methods below:</p>
+						<p class="footer-paragraph">Contact us by leaving us a message at the <span class="footer-about-contact-link"><a href="{% url 'contact' %}">contact</a></span> page, or using the following methods below:</p>
 						<div class="footer-contact options">
 							<p class="footer-paragraph" id="footer-paragraph-phone"><a href="tel://+441234112233">+44 1234 112233</a></p>
 							<p class="footer-paragraph" id="footer-paragraph-email"><a href="mailto:info@cadwork.co.uk">info@cadwork.co.uk</a></p>
@@ -150,8 +148,8 @@
 	            	<div class="footer-contact-about">
 						<p class="footer-contact-about-links">
 							<!--Links to the contact and about pages-->
-							<span class="footer-contact-about-links-span"><a id="about-footer" class="terms-about-link" href="#">Terms </a></span><span class="footer-contact-about-links-divider">|</span>
-				            <span class="footer-contact-about-links-span"><a id="contact-footer" class="terms-about-link" href="#">Privacy</a></span>
+							<span class="footer-contact-about-links-span"><a id="about-footer" class="terms-about-link" href="{% url 'terms' %}" target="_blank">Terms </a></span><span class="footer-contact-about-links-divider">|</span>
+				            <span class="footer-contact-about-links-span"><a id="contact-footer" class="terms-about-link" href="{% url 'privacy' %}" target="_blank">Privacy</a></span>
 				        </p>
 					</div>
 	            </div>
