@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Thanks for your message</h1>
-<p>Return to <a href="{% url 'home' %}">home</a>.</p>
+<div class="container">
+    <div class="short-message">
+        <h1 class="short-message-header">Thanks for your message</h1>
+        <p class="short-message-paragraph">We will be in touch as soon as possible. Return to <a href="{% url 'home' %}">home</a> page.</p>
+    </div>
+</div>
 {% endblock content %}

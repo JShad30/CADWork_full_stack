@@ -79,6 +79,10 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+.navbar-logo {
+    margin: 0;
+}
+
 .navbar-logo a {
     font-size: 1.2em;
     font-weight: 600;
@@ -255,6 +259,20 @@ h1, h2, h3, h4, h5, h6 {
     border: 0.5px solid #ced4da;
     border-radius: 5px;
 }
+
+/*Logout message page - also used for the message received template on the contact form*/
+.short-message {
+    min-height: 90vh;
+    margin-top: 40px;
+}
+
+.short-message-header {
+    font-size: 2em;
+}
+
+.short-message-paragraph {
+    font-size: 1em;
+}
 /*---------- End of login and registration form content ----------*/
 
 
@@ -371,6 +389,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
+.home-page-image-buttons a:hover {
+    text-decoration: none;
+}
+
 /*Arrows*/
 .arrows {
     display: flex;
@@ -402,6 +424,86 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+/*----------About Page----------*/
+.about-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-slide {
+    display: block;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/architect.jpg');
+}
+
+.about-intro-container {
+    background-color: #007bff;
+    min-height: 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about-intro {
+    width: 80%;
+    max-width: 1100px;
+    padding: 20px 0;
+}
+
+.about-intro-section {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.about-intro-jobs i,
+.about-intro-shop i,
+.about-intro-blog i {
+    color: #FAFAFA;
+    font-size: 5em;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-intro-heading {
+    color: #FAFAFA;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-intro-paragraph {
+    color: #FAFAFA;
+    text-shadow: 2px 2px 10px #000000;
+}
+
+.about-overview-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-overview {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px 0;
+}
+
+.about-registration-heading {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+/*----------End of the About Page styles----------*/
+
+
+
+
 /*----------Terms and conditions and privacy policy page----------*/
 .terms-content {
     width: 100%;
@@ -423,7 +525,53 @@ h1, h2, h3, h4, h5, h6 {
 .terms-paragraph {
     margin-bottom: 10px;
 }
+
+.terms-content,
+.privacy-content {
+    margin-bottom: 50px;
+    width: 98%;
+    max-width: 1100px;
+}
 /*----------End of terms and conditions and privacy policy page----------*/
+
+
+
+
+
+/*----------Contact Form----------*/
+.contact-form-title {
+    margin-bottom: 0.5rem;
+}
+
+.contact-label {
+    margin-top: 20px;
+}
+
+.email-contact,
+.message-contact {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.message-contact {
+    height: 10rem;
+    margin-bottom: 30px;
+}
+
+.border-top {
+    border-top: 1px solid #dee2e6;
+}
+/*----------End of contact form styles----------*/
 
 
 
@@ -614,6 +762,22 @@ h1, h2, h3, h4, h5, h6 {
 /*tablet screens*/
 @media(min-width: 768px) {
     
+    /*----------About page----------*/
+    .about-intro {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1100px;
+        padding: 20px 0;
+    }
+
+    .about-intro-section {
+        width: 28%;
+    }
+    /*----------End of About page styles----------*/
+
+
+
     /*---------- Footer sections ----------*/
     .footer-top-areas {
         display: flex;
@@ -656,6 +820,8 @@ h1, h2, h3, h4, h5, h6 {
     
     .nav-buttons {
         margin: 0;
+        display: flex;
+        align-items: center;
     }
     
     .navbar-social-link {

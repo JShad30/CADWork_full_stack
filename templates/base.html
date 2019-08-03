@@ -38,7 +38,7 @@
 		                <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
 		            </li>
 		            <li class="nav-item">
-		                <a class="nav-link" href="#">About</a>
+		                <a class="nav-link" href="{% url 'about' %}">About</a>
 		            </li>
 		            <li class="nav-item">
 		                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
@@ -75,7 +75,7 @@
 		          	<div class="terms-privacy-navbar-links"> 
 		          		<span class="terms-privacy-link">&#169; 2019 CADWork</span>
 		          		<div class="terms-privacy-navbar">
-				            <a id="terms-navbar" class="terms-privacy-link" href="#">Terms</a><span class="terms-privacy-navbar-divider"> | </span><a id="privacy-navbar" class="terms-privacy-link" href="#">Privacy</a></p>
+				            <a id="terms-navbar" class="terms-privacy-link" href="{% url 'terms' %}">Terms</a><span class="terms-privacy-navbar-divider"> | </span><a id="privacy-navbar" class="terms-privacy-link" href="{% url 'privacy' %}">Privacy</a></p>
 			            </div>
 			        </div>
 		        </div>
@@ -130,9 +130,10 @@
 						<p class="footer-paragraph">Visit the site:</p>
 						<div class="footer-contact options">
 							<p class="footer-paragraph footer-link"><a href="#">Jobs</a></p>
-							<p class="footer-paragraph footer-link"><a href="#">Upload Job</a></p>
-							<p class="footer-paragraph footer-link"><a href="#">Bid on a Job</a></p>
-							<p class="footer-paragraph footer-link"><a href="{% url 'blog-home' %}">Blog</a></p>
+							<p class="footer-paragraph footer-link"><a href="#">Upload a Job</a></p>
+							<p class="footer-paragraph footer-link"><a href="#">Bid on a Job</a></p>	
+							<p class="footer-paragraph footer-link"><a href="{% url 'blog-home' %}">Blog</a></p>		
+							<p class="footer-paragraph footer-link"><a href="{% url 'contact' %}">Contact</a></p>				
 							<p class="footer-paragraph footer-link"><a href="#">Shop</a></p>
 						</div>
 					</div>
@@ -148,8 +149,8 @@
 	            	<div class="footer-contact-about">
 						<p class="footer-contact-about-links">
 							<!--Links to the contact and about pages-->
-							<span class="footer-contact-about-links-span"><a id="about-footer" class="terms-about-link" href="{% url 'terms' %}" target="_blank">Terms </a></span><span class="footer-contact-about-links-divider">|</span>
-				            <span class="footer-contact-about-links-span"><a id="contact-footer" class="terms-about-link" href="{% url 'privacy' %}" target="_blank">Privacy</a></span>
+							<span class="footer-contact-about-links-span"><a id="about-footer" class="terms-about-link" href="{% url 'terms' %}">Terms </a></span><span class="footer-contact-about-links-divider">|</span>
+				            <span class="footer-contact-about-links-span"><a id="contact-footer" class="terms-about-link" href="{% url 'privacy' %}">Privacy</a></span>
 				        </p>
 					</div>
 	            </div>

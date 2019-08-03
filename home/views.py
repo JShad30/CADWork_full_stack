@@ -19,7 +19,17 @@ def privacy(request):
 
 def contact(request):
     if request.method == 'POST':
+        contact_email = request.POST['email']
         message = request.POST['message']
 
-        send_mail('Contact Form', message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], fail_silently=FALSE)
+        send_mail('CADWork message from ' + contact_email, 
+            message, 
+            settings.EMAIL_HOST_USER, 
+            [settings.EMAIL_HOST_USER], 
+            fail_silently=False
+        )
+        return redirect('message_received')
     return render(request, 'home/contact.html')
+
+def message_received(request):
+    return render(request, 'home/message_received.html')
