@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-  	<article class="media content-section">
-    		<div class="media-body">
-      		  <div class="article-metadata">
-        			  <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-        			  <small class="text-muted">{{ object.date_posted|date:"dS F, Y" }}</small>
-                {% if object.author == user %}
-                    <div class="mt-3 mb-3">
-                        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-                    </div>
-                {% endif %}
-      		  </div>
-      		  <h2 class="article-title">{{ object.title }}</h2>
-      		  <p class="article-content">{{ object.content }}</p>
-    		</div>
+<div class="blog-detail-container">
+  	<article class="blog-article-content">
+	  	<h2 class="article-title">{{ object.title }}</h2>
+		<p class="ml-1">Blog uploaded by <a href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a> on {{ object.date_posted|date:"dS F, Y" }}</p>
+	  	<img class="blog-image" src="{{ post.blog_image.url }}">
+    	<div class="main-blog-content">
+      		<div class="article-metadata">
+				{% if object.author == user %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+						<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+					</div>
+				{% endif %}
+      		</div>
+			<p class="article-intro">{{ object.intro }}</p>
+      		<p class="article-content">{{ object.content }}</p>
+    	</div>
+		<a class="btn btn-primary blog-link" href="{% url 'blog-home' %}">Return to Blogs</a>
   	</article>
 </div>
 {% endblock content %}

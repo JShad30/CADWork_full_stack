@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
+<div class="blog-home-container">
     {% for post in posts %}
-    	<article class="media content-section">
+    	<article class="blog-article">
+            <img class="article-image mr-3" src="{{ post.blog_image.url }}" height="80" width="80">
       		<div class="media-body">
         		<div class="article-metadata">
           			<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
           			<small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
         		</div>
-        		<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        		<p class="article-content">{{ post.content }}</p>
+        		<h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+        		<p class="article-card-intro">{{ post.intro }}</p>
       		</div>
     	</article>
     {% endfor %}
