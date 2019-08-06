@@ -18,12 +18,12 @@ class Post(models.Model):
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 
-	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
+		def save(self, *args, **kwargs):
+			super().save(*args, **kwargs)
 
-		blog_image = Image.open(self.blog_image)
+			blog_image = Image.open(self.image.path)
 
-		if blog_image.width > 1200 or blog_image.height > 700:
-			output_size = (1200, 700)
-			blog_image.resize(output_size)
-			blog_image.save(self.blog_image.path)
+			if blog_image.width > 1200 or blog_image.height > 700:
+				output_size = (1200, 700)
+				blog_image.resize(output_size)
+				blog_image.save(self.image.path)

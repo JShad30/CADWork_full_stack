@@ -1,62 +1,92 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="image-container">
-	<div class="slider">
-		<div class="slide" id="architect">
-			<div class="slide-content">
-				<div class="slide-content-text">
-					<h1 class="slide-content-title">CAD Professional?</h1>
-					<p class="slide-content-paragraph">If you are a construction CAD professional looking for freelance work, CADWork allows you to find and bid for jobs.</p>
-					<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register Now</a></button>
-					<div class="arrows">
-						<div class="arrow arrow-left"></div>
-						<div class="arrow arrow-right"></div>
+<div class="index-container">
+
+	<section class="image-container">
+		<div class="slider">
+			<div class="slide" id="architect">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">CAD Professional?</h1>
+						<p class="slide-content-paragraph">If you are a construction CAD professional looking for freelance work, CADWork allows you to find and bid for jobs.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register Now</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left"></div>
+							<div class="arrow arrow-right"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="slide" id="plan">
-			<div class="slide-content">
-				<div class="slide-content-text">
-					<h1 class="slide-content-title">Need a CAD Professional?</h1>
-					<p class="slide-content-paragraph">Whether you require a planning application or construction drawings, find professionals ready to help at a price set by you.</p>
-					<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
-					<div class="arrows">
-						<div class="arrow arrow-left"></div>
-						<div class="arrow arrow-right"></div>
+			<div class="slide" id="plan">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Need a CAD Professional?</h1>
+						<p class="slide-content-paragraph">Whether you require a planning application or construction drawings, find professionals ready to help at a price set by you.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left"></div>
+							<div class="arrow arrow-right"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="slide" id="interior">
-			<div class="slide-content">
-				<div class="slide-content-text">
-					<h1 class="slide-content-title">Creative designs</h1>
-					<p class="slide-content-paragraph">Do you need to create photo realistic drawings or views for a client? Find a professional on CADWork.</p>
-					<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
-					<div class="arrows">
-						<div class="arrow arrow-left"></div>
-						<div class="arrow arrow-right"></div>
-					</div>
-				</div>						
+			<div class="slide" id="interior">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Creative designs</h1>
+						<p class="slide-content-paragraph">Do you need to create photo realistic drawings or views for a client? Find a professional on CADWork.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left"></div>
+							<div class="arrow arrow-right"></div>
+						</div>
+					</div>						
+				</div>
+			</div>
+			<div class="slide" id="extension">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Your Project</h1>
+						<p class="slide-content-paragraph">See your construction project through to completion with your CAD professional.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left"></div>
+							<div class="arrow arrow-right"></div>
+						</div>
+					</div>						
+				</div>
 			</div>
 		</div>
-		<div class="slide" id="extension">
-			<div class="slide-content">
-				<div class="slide-content-text">
-					<h1 class="slide-content-title">Your Project</h1>
-					<p class="slide-content-paragraph">See your construction project through to completion with your CAD professional.</p>
-					<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
-					<div class="arrows">
-						<div class="arrow arrow-left"></div>
-						<div class="arrow arrow-right"></div>
-					</div>
-				</div>						
+	</section>
+
+	<section class="home-page-jobs-section"></section>
+
+	<section class="home-page-blog-section">
+		<div class="home-page-blog-section-container">
+			<div class="home-page-blog-intro">
+				<h2 class="home-page-section-heading">CADWork Blog</h2>
+				<p class="home-page-section-paragraph">Welcome to our blog. Find information from members regarding all things about the industry. See the most recent blogs here, and click to see more.</p>
 			</div>
+			<div class="blog-card-container">
+			{% for post in posts %}
+				<article class="blog-article blog-article-home-page">
+					<img class="article-image" src="{{ post.blog_image.url }}" height="80" width="80">
+					<div class="media-body">
+						<div class="article-metadata">
+							<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+							<small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+						</div>
+						<h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+						<p class="article-card-intro">{{ post.intro }}</p>
+					</div>
+				</article>
+			{% endfor %}
+			</div>
+			<a href="{% url 'blog-home' %}" class="btn btn-primary">See more...</a>
 		</div>
-	</div>
-</section>
-<section class="home-page-jobs-section"></section>
-<section class="home-page-blog-section"></section>
-<section class="home-page-shop-section"></section>
+	</section>
+
+	<section class="home-page-shop-section"></section>
+
+</div>
 {% endblock %}

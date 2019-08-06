@@ -62,10 +62,6 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
 }
 
-.nav-buttons a {
-    margin-right: 10px;
-}
-
 .navbar-container {
     width: 90%;
     max-width: 1100px;
@@ -298,6 +294,10 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*----------Home page----------*/
+.index-container {
+    width: 100%;
+}
+
 .image-container {
     margin: 0;
     padding: 0;
@@ -419,6 +419,47 @@ h1, h2, h3, h4, h5, h6 {
     border-color: transparent #FAFAFA transparent;
     left: 0;
 }
+
+/* Home page jobs section */
+
+/* Home page blog section */
+.home-page-blog-section {
+    padding: 10px;
+    background-color: #007bff;
+}
+
+.home-page-blog-section-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-page-blog-intro {
+    margin: 20px 10px;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.home-page-section-heading {
+    color: #FAFAFA;
+    font-size: 2.3em;
+    text-shadow: 5px 5px 10px #000000;
+    margin-bottom: 20px;
+}
+
+.home-page-section-paragraph {
+    color: #FAFAFA;
+    font-size: 1.2em;
+    text-shadow: 5px 5px 10px #000000;
+}
+
+.blog-article-home-page {
+    background-color: #FAFAFA;
+    box-shadow: 2px 2px 20px #000000;
+}
+/* Home page shop section */
+
 /*----------End of Home page styles ----------*/
 
 
@@ -581,7 +622,6 @@ h1, h2, h3, h4, h5, h6 {
 /*Blog home page and blog user page*/
 .user-blogs-container {
     width: 100%;
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -589,18 +629,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-home-container {
     margin-top: 70px;
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-card-container {
+    margin-top: 20px;
+    width: 95%;
     max-width: 1100px;
     display: flex;
     flex-wrap: wrap;
-}
-
-.user-blog-header {
-    width: 90%;
-    max-width: 1100px;
-    margin-top: 20px;
-    font-weight: 600;
-    color: #007bff;
 }
 
 .blog-article {
@@ -628,17 +667,38 @@ h1, h2, h3, h4, h5, h6 {
 .article-card-intro {
     margin: 5px 0;
     font-size: 1em;
+    font-weight: 600;
+}
+
+.paginate-buttons {
+    margin: 20px 0;
+    width: 90%;
+    max-width: 1100px;
+}
+
+/*User post specific*/
+.user-blog-header {
+    width: 95%;
+    max-width: 1100px;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.user-post-title {
+    font-size: 2.3em;
+    margin: 20px 0;
 }
 
 /*Blog details page*/
 .blog-detail-container {
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .blog-article-content {
-    margin-top: 70px;
     width: 90%;
     max-width: 1100px;
     display: flex;
@@ -660,8 +720,12 @@ h1, h2, h3, h4, h5, h6 {
 .blog-image {
     margin: 10px 0;
     width: 100%;
-    max-width: 900px;
     height: auto;
+    max-height: 600px;
+}
+
+.main-blog-content {
+    margin: 30px 0;
 }
 
 .post-date {
@@ -926,11 +990,6 @@ h1, h2, h3, h4, h5, h6 {
     
     .terms-privacy-navbar {
         display: none;
-    }
-    
-    .btn-primary {
-        font-size: 0.9em;
-        margin-right: 10px;
     }
     
     .nav-buttons {
