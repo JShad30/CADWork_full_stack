@@ -9,19 +9,10 @@ from blog.models import Post
 
 # Create your views here.
 def home(request):
-    blog_context = {
-		'posts': Post.objects.all()
+    context = {
+		'posts': Post.objects.all()[:3]
 	}
-    return render(request, 'home/index.html', blog_context)
-
-
-
-class HomePostView(ListView):
-	model = Post
-	template_name = 'home/index.html'
-	context_object_name = 'posts'
-	order = ['-date_posted']
-	paginate_by = 3
+    return render(request, 'home/index.html', context)
 
 
 

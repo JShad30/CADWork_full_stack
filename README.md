@@ -71,10 +71,10 @@ jQuery (https://jquery.com/) has been used in the navbar to control the dropdown
 The site has been built using the Python based Django framework (https://www.djangoproject.com/) and is run from the 'manage.py' file which is stored in the outer folder. Within the main folder you can see the list of apps that have been created to deal with the different functionality of the site. These are:
 
 * Home App - This deals with the home page, about page and the contact form.
+* Jobs App - Deals with the uploading of a job for a job owner, the bidding on a job, accepting bids and the messages and payment between the parties.
 * Users App - This deals with the sign up, login and reset password functionality.
 * Blog App - This deals with the create, edit, delete and the viewing of the blogs
 * Products App - This deals with the viewing, cart and checkout functionality of the products/ shop.
-* Jobs App - Deals with the uploading of a job for a job owner, the bidding on a job, accepting bids and the messages and payment between the parties.
 * cadwork is the main app file. 
 
 The 'jinja template engine' (http://jinja.pocoo.org/) has been used within the html template pages already described.
@@ -99,6 +99,9 @@ Accounts have been created and I have created jobs, bid on jobs to ensure that a
 
 ## Further Considerations
 
+### Blog
+
+I would add a comments section to the blog, allowing members to add their thoughts. The users would need to be logged in to access this functionality. Using the same methods as with the navbar and using is_authenticated. If the user is authenticated then a button would be placed at the bottom of the blog. To press this would bring up a textbox, which would be contained within a form. When this was submitted the message would appear at the bottom of the blog.
 
 ## Deployment
 
