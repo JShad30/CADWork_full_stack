@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="user-blog-header">
+        <h1 class="user-post-title">You are viewing the profile page for {{ object.username }}.</h1>
+    </div>
+    <section class="profile-page-box" id="profile-profile-box">
+        <div class="profile-page-box-container">
+            <div class="profile-top-section">
+                <img class="account-image" src="{{ user.image.url }}">
+                <div class="profile-details">
+                    <h2 class="account-heading">{{ user.profile.username }}</h2>
+                    <p class="account-email">{{ user.profile.email }}</p>
+                </div>
+            </div>
+            <div class="user-profile-overview">
+                <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}

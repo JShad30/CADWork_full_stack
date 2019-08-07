@@ -439,6 +439,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px 10px;
     width: 90%;
     max-width: 1100px;
+    text-align: center;
 }
 
 .home-page-section-heading {
@@ -632,7 +633,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px 0;
     padding: 10px;
     box-shadow: 5px 5px 10px #ced4da;
-    max-width: 48%;
+    max-width: 100%;
 }
 
 .profile-top-section {
@@ -1019,6 +1020,10 @@ h1, h2, h3, h4, h5, h6 {
     /*----------Blog pages----------*/
     .blog-article {
         width: 47%;
+    }
+
+    .profile-page-box {
+        max-width: 48%;
     }
     /*----------End of blog page styles----------*/
 
