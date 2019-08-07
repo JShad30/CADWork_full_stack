@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from blog.models import Post
+from .models import Profile
 from django.contrib.auth.decorators import login_required
 
 def register(request):
@@ -18,11 +21,11 @@ def register(request):
 
 
 @login_required
-def profile(request):
+def update_profile(request):
 	"""Creating instances of our forms"""
 	if request.method == 'POST':
-		u_form = UserUpdateForm(request.POST, instance = request.user)
-		p_form = ProfileUpdateForm(request.POST, request.FILES, instance = request.user.profile)
+		u_form = UserUpdateForm(request.POST, instance=request.user)
+		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
 		"""Check to see if the two parts of the form are valid. If so, then save"""
 		if u_form.is_valid() and p_form.is_valid():
@@ -42,5 +45,14 @@ def profile(request):
 	}
 
 	"""Ensure that context dictionary is included in these parameters"""
-	return render(request, 'users/profile.html', context)
+	return render(request, 'users/update_profile.html', context)
 
+
+@login_required
+def profile(request):
+	context = {
+		'users': Profile,
+		'posts': Post.objects.all()[:3]
+	}	
+
+	return render(request, 'users/profile.html', context)

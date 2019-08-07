@@ -1,36 +1,67 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-    <div class="form-section">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
+    <div class="profile-page-container">
+        
+        <div class="user-blog-header">
+            <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname}}.</h1>
+        </div>
+
+        <section class="profile-page-box" id="profile-profile-box">
+            <div class="profile-page-box-container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="profile-top-section">
+                    <img class="account-image" src="{{ user.profile.image.url }}">
+                    <div class="profile-details">
+                        <h2 class="account-heading">{{ user.username }}</h2>
+                        <p class="account-email">{{ user.email }}</p>
+                    </div>
                 </div>
-            {% endfor %}
-        {% endif %}
-      	<div class="media">
-        	<img class="account-image" src="{{ user.profile.image.url }}">
-        	<div class="media-body">
-          		<h2 class="account-heading">{{ user.username }}</h2>
-          		<p class="text-secondary">{{ user.email }}</p>
-        	</div>
-      	</div>
-      	<form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Update Profile</button>
-            </div>      
-        </form>
-    </div>
-    <div class="profile-page-blog">
-        <a class="btn btn-primary btn-block" href="{% url 'post-create' %}">New Post</a>
+                <div class="user-profile-overview">
+                    <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
+                </div>
+                <a class="btn btn-primary btn-block profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
+            </div>
+        </section>
+
+        <section class="profile-page-box" id="profile-job-upload-box">
+            <div class="profile-page-box-container">
+            </div>
+        </section>
+
+        <section class="profile-page-box" id="profile-job-bid-box">
+            <div class="profile-page-box-container">
+            </div>
+        </section>
+
+        <section class="profile-page-box" id="profile-blog-box">
+            <div class="profile-page-box-container">
+                <div class="profile-blog-intro">
+                    <h2 class="account-heading">Your Blogs</h2>
+                    <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
+                </div>
+                {% for post in posts %}
+                    <article class="profile-blog-article">
+                        <img class="article-image" src="{{ post.blog_image.url }}" height="80" width="80">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                                <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                            </div>
+                            <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                            <p class="article-card-intro">{{ post.intro }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+                <a class="btn btn-primary btn-block" href="{% url 'post-create' %}">Create New Blog</a>
+            </div>
+        </section>
     </div>
 </div>
 {% endblock content %}

@@ -618,6 +618,66 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+/*----------Profile Page----------*/
+.profile-page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.profile-page-box {
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 5px 5px 10px #ced4da;
+    max-width: 48%;
+}
+
+.profile-top-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.account-heading {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.account-email {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.profile-page-button {
+    margin-top: 20px;
+}
+
+.profile-blog-intro {
+    margin: 10px 0;
+}
+
+.profile-blog-article {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.profile-blog-article img {
+    height: 100%;
+    padding: 10px;
+    width: 35%;
+}
+/*----------End of profile page styles----------*/
+
+
+
+
+
 /*----------Blog Pages----------*/
 /*Blog home page and blog user page*/
 .user-blogs-container {
