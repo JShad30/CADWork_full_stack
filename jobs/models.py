@@ -5,12 +5,11 @@ from django.urls import reverse
 from PIL import Image
 
 class Job(models.Model):
-	job_name = models.CharField(max_length=100)
+	job_name = models.CharField(max_length=100, default='Default Project Name')
+	job_overview = models.CharField(max_length=250, default='Default Project Overview')
 	job_description = models.TextField()
-	job_address_line_one = models.CharField(max_length=50)
-	job_address_town = models.CharField(max_length=30)
-	job_address_county = models.CharField(max_length=25)
-	job_address_postcode = models.CharField(max_length=10)
+	job_location_town = models.CharField(max_length=30)
+	job_location_county = models.CharField(max_length=25)
 	job_image = models.ImageField(default='job-default.jpg', upload_to='job_images')
 	date_posted = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
