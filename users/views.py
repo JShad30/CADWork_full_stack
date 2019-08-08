@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from blog.models import Post
+from jobs.models import Job
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 
@@ -56,7 +57,8 @@ def update_profile(request):
 def profile(request):
 	context = {
 		'users': Profile,
-		'posts': Post.objects.all()[:3]
+		'posts': Post.objects.all()[:3],
+		'jobs': Job.objects.all()
 	}	
 
 	return render(request, 'users/profile.html', context)
