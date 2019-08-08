@@ -14,22 +14,10 @@ def home(request):
 
 class JobListView(ListView):
 	model = Job
-	template_name = 'blog/home.html'
-	context_object_name = 'posts'
+	template_name = 'jobs/home.html'
+	context_object_name = 'jobs'
 	order = ['-date_posted']
 	paginate_by = 9
-
-
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	model = Job
-	success_url = '/profile'
-
-	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.author:
-			return True
-		else:
-			return False
 
 
 class JobDetailView(DetailView):
@@ -38,7 +26,7 @@ class JobDetailView(DetailView):
 
 class JobCreateView(LoginRequiredMixin, CreateView):
 	model = Job
-	fields = ['title', 'intro', 'content', 'blog_image']
+	fields = ['job_name', 'job_description', 'job_address_line_one', 'job_address_town', 'job_address_county', 'job_address_postcode', 'job_image']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user

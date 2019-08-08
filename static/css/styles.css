@@ -225,7 +225,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-
 /*----------Content in the pages from base.html----------*/
 .content {
     width: 100%;
@@ -679,8 +678,8 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-/*----------Blog Pages----------*/
-/*Blog home page and blog user page*/
+/*----------Blog Pages and Job Pages----------*/
+/*Blog and Job home page and blog user page*/
 .user-blogs-container {
     width: 100%;
     display: flex;
@@ -688,14 +687,16 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-.blog-home-container {
+.blog-home-container,
+.jobs-home-container {
     margin-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.blog-card-container {
+.blog-card-container,
+.jobs-card-container {
     margin-top: 20px;
     width: 95%;
     max-width: 1100px;
@@ -703,14 +704,16 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
 }
 
-.blog-article {
+.blog-article,
+.job-upload {
     margin: 10px;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     width: 100%;
 }
 
-.blog-article img {
+.blog-article img,
+.job-upload img {
     width: 100%;
     height: auto;
 }
@@ -752,7 +755,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Blog details page*/
-.blog-detail-container {
+.blog-detail-container,
+.job-detail-container {
     width: 100%;
     max-width: 1100px;
     margin-top: 70px;
@@ -1018,7 +1022,8 @@ h1, h2, h3, h4, h5, h6 {
 
 
     /*----------Blog pages----------*/
-    .blog-article {
+    .blog-article,
+    .job-upload {
         width: 47%;
     }
 

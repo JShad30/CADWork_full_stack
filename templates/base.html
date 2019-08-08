@@ -32,7 +32,7 @@
 		    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 		        <ul class="navbar-nav ml-1">
 		        	<li class="nav-item">
-		                <a class="nav-link" href="#">Jobs</a>
+		                <a class="nav-link" href="{% url 'jobs-home' %}">Jobs</a>
 		      		</li>
 		            <li class="nav-item">
 		                <a class="nav-link" href="{% url 'blog-home' %}">Blog</a>
@@ -129,9 +129,9 @@
 						<h3 class="footer-header">Useful Links</h3>
 						<p class="footer-paragraph">Visit the site:</p>
 						<div class="footer-contact options">
-							<p class="footer-paragraph footer-link"><a href="#">Jobs</a></p>
-							<p class="footer-paragraph footer-link"><a href="#">Upload a Job</a></p>
-							<p class="footer-paragraph footer-link"><a href="#">Bid on a Job</a></p>	
+							<p class="footer-paragraph footer-link"><a href="{% url 'jobs-home' %}">Jobs</a></p>
+							<p class="footer-paragraph footer-link"><a href="{% url 'login' %}">Upload a Job</a></p>
+							<p class="footer-paragraph footer-link"><a href="{% url 'login' %}">Bid on a Job</a></p>	
 							<p class="footer-paragraph footer-link"><a href="{% url 'blog-home' %}">Blog</a></p>		
 							<p class="footer-paragraph footer-link"><a href="{% url 'contact' %}">Contact</a></p>				
 							<p class="footer-paragraph footer-link"><a href="#">Shop</a></p>
