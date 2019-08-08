@@ -774,7 +774,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 50px;
 }
 
-.article-title {
+.article-title,
+.job-page-title {
     font-size: 3em;
     color: #000000;
     margin-top: 20px;
@@ -814,6 +815,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Other blog links in the aside of the posts detail page */
 /*----------End of styles for the blog Pages----------*/
+
+
+
+
+/*----------Job pages specific styles----------*/
+.job-location {
+    font-size: 0.4em;
+}
+/*---------- End of Job pages styles----------*/
 
 
 
