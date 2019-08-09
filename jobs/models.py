@@ -29,3 +29,15 @@ class Job(models.Model):
 				output_size = (1200, 700)
 				job_image.resize(output_size)
 				job_image.save(self.image.path)
+
+			job_image.close()
+
+
+
+class JobBid(models.Model):
+	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2)
+	job_name = models.ForeignKey(Job, on_delete=models.CASCADE)
+	author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.job_name

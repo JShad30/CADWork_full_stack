@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Job
+from .models import Job, JobBid
 
 def home(request):
 	context = {
@@ -56,6 +56,18 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		
 	def test_func(self):
 		job = self.get_object()
+		if self.request.user == job.author:
+			return True
+		else:
+			return False
+
+
+class JobBidView(LoginRequiredMixin, CreateView):
+	model = JobBid
+	success_url = '/profile'
+
+	def test_func(self):
+		job.self.get_object()
 		if self.request.user == job.author:
 			return True
 		else:
