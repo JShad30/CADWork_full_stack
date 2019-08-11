@@ -36,8 +36,14 @@ class Job(models.Model):
 
 class JobBid(models.Model):
 	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2)
-	job_name = models.ForeignKey(Job, on_delete=models.CASCADE)
+	job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return self.job_name
+		return self.job_bid_amount
+
+	def get_absolute_url(self):
+		return reverse('jobs-home')
+
+		def save(self, *args, **kwargs):
+			super().save(*args, **kwargs)

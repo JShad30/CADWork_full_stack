@@ -4,28 +4,28 @@
 
 	<section class="image-container">
 		<div class="slider">
-			<div class="slide" id="architect">
+			<div class="slide" id="plan">
 				<div class="slide-content">
 					<div class="slide-content-text">
-						<h1 class="slide-content-title">CAD Professional?</h1>
-						<p class="slide-content-paragraph">If you are a construction CAD professional looking for freelance work, CADWork allows you to find and bid for jobs.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register Now</a></button>
+						<h1 class="slide-content-title">Welcome to CADWork!</h1>
+						<p class="slide-content-paragraph">If you require a planning application, construction drawings, for your project, whether you are a private individual or business.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register</a></button>
 						<div class="arrows">
-							<div class="arrow arrow-left"></div>
-							<div class="arrow arrow-right"></div>
+							<div class="arrow arrow-left" id="arrow-left-plan"></div>
+							<div class="arrow arrow-right" id="arrow-right-plan"></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="slide" id="plan">
+			<div class="slide" id="architect">
 				<div class="slide-content">
 					<div class="slide-content-text">
-						<h1 class="slide-content-title">Need a CAD Professional?</h1>
-						<p class="slide-content-paragraph">Whether you require a planning application or construction drawings, find professionals ready to help at a price set by you.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<h1 class="slide-content-title">Are you a CAD Professional?</h1>
+						<p class="slide-content-paragraph">If you are a construction CAD professional looking for freelance work, CADWork allows you to find and bid for jobs.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'jobs-home' %}">View Jobs</a></button>
 						<div class="arrows">
-							<div class="arrow arrow-left"></div>
-							<div class="arrow arrow-right"></div>
+							<div class="arrow arrow-left" id="arrow-left-architect"></div>
+							<div class="arrow arrow-right" id="arrow-right-architect"></div>
 						</div>
 					</div>
 				</div>
@@ -34,11 +34,11 @@
 				<div class="slide-content">
 					<div class="slide-content-text">
 						<h1 class="slide-content-title">Creative designs</h1>
-						<p class="slide-content-paragraph">Do you need to create photo realistic drawings or views for a client? Find a professional on CADWork.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<p class="slide-content-paragraph">Do you need to create photo realistic drawings or views for a client for presentation? Find an architect or CAD developer here.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'job-create' %}">Upload Project</a></button>
 						<div class="arrows">
-							<div class="arrow arrow-left"></div>
-							<div class="arrow arrow-right"></div>
+							<div class="arrow arrow-left" id="arrow-left-interior"></div>
+							<div class="arrow arrow-right" id="arrow-right-interior"></div>
 						</div>
 					</div>						
 				</div>
@@ -46,12 +46,12 @@
 			<div class="slide" id="extension">
 				<div class="slide-content">
 					<div class="slide-content-text">
-						<h1 class="slide-content-title">Your Project</h1>
-						<p class="slide-content-paragraph">See your construction project through to completion with your CAD professional.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="#">Register</a></button>
+						<h1 class="slide-content-title">Get Information</h1>
+						<p class="slide-content-paragraph">Get the latest news and information about CAD products and small level construction industry news here.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'blog-home' %}">See the Blog</a></button>
 						<div class="arrows">
-							<div class="arrow arrow-left"></div>
-							<div class="arrow arrow-right"></div>
+							<div class="arrow arrow-left" id="arrow-left-extension"></div>
+							<div class="arrow arrow-right" id="arrow-right-extension"></div>
 						</div>
 					</div>						
 				</div>

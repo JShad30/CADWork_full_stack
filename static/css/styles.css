@@ -339,6 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 .slide-content {
     height: 100%;
     width: 100%;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -386,6 +387,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.6em;
     padding: 20px 0;
     font-weight: 600;
+    text-shadow: 5px 5px 10px #000000;
 }
 
 .home-page-image-buttons a:hover {
@@ -704,16 +706,15 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
 }
 
-.blog-article,
-.job-upload {
+.blog-article {
     margin: 10px;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     width: 100%;
+    box-shadow: 5px 5px 10px #ced4da;
 }
 
-.blog-article img,
-.job-upload img {
+.blog-article img {
     width: 100%;
     height: auto;
 }
@@ -723,14 +724,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blog-home-title {
-    font-size: 2em;
+    font-size: 1.8em;
     margin: 10px 0;
-    font-weight: 600;
-}
-
-.article-card-intro {
-    margin: 5px 0;
-    font-size: 1em;
     font-weight: 600;
 }
 
@@ -776,7 +771,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-title,
 .job-page-title {
-    font-size: 3em;
+    font-size: 2em;
     color: #000000;
     margin-top: 20px;
 }
@@ -821,7 +816,61 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------Job pages specific styles----------*/
 .job-location {
-    font-size: 0.4em;
+    font-size: 0.5em;
+}
+
+.job-upload {
+    margin: 10px;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.job-home-title {
+    color: #007bff;
+    font-size: 2.3em;
+}
+
+.article-card-intro {
+    margin: 5px 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.article-card-intro-top {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.article-card-intro-top img {
+    width: 100%;
+}
+
+.article-card-intro-description {
+    padding: 0 10px;
+    margin: 5px 0 15px 0;
+}
+
+.article-card-intro-paragraph {
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.article-card-intro-author {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.article-card-intro-date {
+    font-size: 0.9em;
+}
+
+.article-card-intro-paragraph {
+    font-size: 0.9em;
 }
 /*---------- End of Job pages styles----------*/
 

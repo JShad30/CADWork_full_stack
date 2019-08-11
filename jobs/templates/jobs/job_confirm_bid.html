@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
 	<div class="content-section">
 		<form method="POST">
-
 			{% csrf_token %}
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Type your bid</legend>
-				<h2>Are you sure you want to delete the post {{ object.title }}?</h2>
+				{{ form|crispy }}
 			</fieldset>
 			<div class="form-group">
-				<button class="btn btn-danger" type="submit">Yes, delete</button>
-				<a class="btn btn-primary" href="{% url 'post-detail' object.id %}">Cancel</a>
+				<button class="btn btn-primary btn-block" type="submit">Confirm Bid</button>
+				<a class="btn btn-primary" href="{% url 'jobs-home' %}">Cancel</a>
 			</div>			
 		</form>
 	</div>

@@ -22,6 +22,7 @@ class JobListView(ListView):
 
 class JobDetailView(DetailView):
 	model = Job
+	context = {'bids': JobBid.objects.all()}
 
 
 class JobCreateView(LoginRequiredMixin, CreateView):
@@ -64,11 +65,9 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class JobBidView(LoginRequiredMixin, CreateView):
 	model = JobBid
-	success_url = '/profile'
+	fields = ['job_bid_amount']
+	template_name = 'jobs/job_confirm_bid.html'
 
-	def test_func(self):
-		job.self.get_object()
-		if self.request.user == job.author:
-			return True
-		else:
-			return False
+	def form_valid(self, form):
+		form.instance.author = self.request.user
+		return super().form_valid(form)

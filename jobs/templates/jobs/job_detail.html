@@ -3,9 +3,9 @@
 <div class="blog-detail-container">
 
   	<article class="blog-article-content">
-	  	<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}, {{ object.job_location_county }}</span></h2>
+	  	<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}</span></h2>
         <p class="ml-1">This job was created on {{ object.date_posted|date:"dS F, Y" }}</p>
-        <p class="job-overview-paragraph">{{ object.job_overview }}</p>
+		<p class="article-intro">{{ object.job_overview }}</p>
         <div class="article-metadata">
 			{% if user.is_authenticated %}
 				{% if object.author == user %}
@@ -19,21 +19,29 @@
 					</div>
 				{% endif %}
 			{% else %}
-				<p>Log in to make a bid on this project.</p>
+				<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-bid' object.id %}">Log in to bid</a>
+					</div>
 			{% endif %}
       	</div>
 	  	<img class="blog-image" src="{{ job.job_image.url }}">
     	<div class="main-blog-content">
-			<p class="article-intro">{{ object.job_description }}</p>
+			<p class="job-overview-paragraph">{{ object.job_description }}</p>
             <div class="job-address">
             </div>
     	</div>
 		<a class="btn btn-primary blog-link" href="{% url 'jobs-home' %}">Return to Jobs</a>
   	</article>
 
-    {% if object.author != user %}
+    {% if object.author == user %}
+		<section class="job-bids">
+			{% for bid in bids %}
+				<p>{{ bid.job_bid_amount }}</p>
+			{% endfor %}
+		</section>
+	{% else%}
         <section class="job-owner-info">
-            
+            <!--Job owner profile to go here-->
         </section>
     {% endif %}
 	

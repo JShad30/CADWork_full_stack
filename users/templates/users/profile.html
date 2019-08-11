@@ -4,7 +4,7 @@
     <div class="profile-page-container">
         
         <div class="user-blog-header">
-            <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname}}.</h1>
+            <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname }}.</h1>
         </div>
 
         <section class="profile-page-box" id="profile-profile-box">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="user-profile-overview">
-                    <small>Member since: {{ user.member_since }}</small>
+                    <small>Member since: {{ user.member_since|date:"dS F, Y" }}</small>
                     <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
                 </div>
                 <a class="btn btn-primary btn-block profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
@@ -34,7 +34,7 @@
         <section class="profile-page-box" id="profile-job-upload-box">
             <div class="profile-page-box-container">
                 <div class="profile-blog-intro">
-                    <h2 class="account-heading">Your uploaded Jobs</h2>
+                    <h2 class="account-heading">Jobs you have Uploaded</h2>
                     <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
                     {% for job in jobs %}
                         <article class="profile-blog-article">
@@ -56,9 +56,42 @@
         <section class="profile-page-box" id="profile-job-bid-box">
             <div class="profile-page-box-container">
                 <div class="profile-blog-intro">
-                    <h2 class="account-heading">Your bids</h2>
-                    <p class="account-paragraph">See below a list of the jobs that you have bid on that are currently active.</p>
+                    <h2 class="account-heading">Your Bids</h2>
+                    <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
+                    {% for bid in bids %}
+                        <article class="profile-blog-article">
+                            <img class="article-image" src="{{ job.job_image.url }}" height="80" width="80">
+                            <div class="media-body">
+                                <div class="article-metadata">
+                                    <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                </div>
+                                <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                <p class="article-card-intro">{{ job.job_overview }}</p>
+                            </div>
+                        </article>
+                    {% endfor %}
                     <a class="btn btn-primary btn-block" href="{% url 'jobs-home' %}">Search for jobs</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="profile-page-box" id="profile-job-bid-box">
+            <div class="profile-page-box-container">
+                <div class="profile-blog-intro">
+                    <h2 class="account-heading">Live Jobs</h2>
+                    <p class="account-paragraph">See below the jobs you currently have active.</p>
+                    {% for active_job in active_jobs %}
+                        <article class="profile-blog-article">
+                            <img class="article-image" src="{{ job.job_image.url }}" height="80" width="80">
+                            <div class="media-body">
+                                <div class="article-metadata">
+                                    <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                </div>
+                                <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                <p class="article-card-intro">{{ job.job_overview }}</p>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
             </div>
         </section>

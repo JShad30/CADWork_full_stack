@@ -1,6 +1,12 @@
 var sliderImages = document.querySelectorAll('.slide'),
-    arrowLeft = document.querySelector('.arrow-left'),
-    arrowRight = document.querySelector('.arrow-right'),
+    arrowLeftArchitect = document.querySelector('#arrow-left-architect'),
+    arrowRightArchitect = document.querySelector('#arrow-right-architect'),
+    arrowLeftPlan = document.querySelector('#arrow-left-plan'),
+    arrowRightPlan = document.querySelector('#arrow-right-plan'),
+    arrowLeftInterior = document.querySelector('#arrow-left-interior'),
+    arrowRightInterior = document.querySelector('#arrow-right-interior'),
+    arrowLeftExtension = document.querySelector('#arrow-left-extension'),
+    arrowRightExtension = document.querySelector('#arrow-right-extension'),
     current = 0;
 
 // Clear all the images
@@ -30,16 +36,64 @@ function slideRight() {
     current++;
 }
 
+// Arrow clicks for architect slide
 // Left arrow click
-arrowLeft.addEventListener('click', function() {
+arrowLeftArchitect.addEventListener('click', function() {
     if(current === 0) {
         current = sliderImages.length;  
     } 
     slideLeft();
 });
-
 // Right arrow click
-arrowRight.addEventListener('click', function() {
+arrowRightArchitect.addEventListener('click', function() {
+    if(current === sliderImages.length - 1) {
+        current = -1;  
+    }
+    slideRight();
+});
+
+// Arrow clicks for plan slide
+// Left arrow click
+arrowLeftPlan.addEventListener('click', function() {
+    if(current === 0) {
+        current = sliderImages.length;  
+    } 
+    slideLeft();
+});
+// Right arrow click
+arrowRightPlan.addEventListener('click', function() {
+    if(current === sliderImages.length - 1) {
+        current = -1;  
+    }
+    slideRight();
+});
+
+// Arrow clicks for interior slide
+// Left arrow click
+arrowLeftInterior.addEventListener('click', function() {
+    if(current === 0) {
+        current = sliderImages.length;  
+    } 
+    slideLeft();
+});
+// Right arrow click
+arrowRightInterior.addEventListener('click', function() {
+    if(current === sliderImages.length - 1) {
+        current = -1;  
+    }
+    slideRight();
+});
+
+// Arrow clicks for extension slide
+// Left arrow click
+arrowLeftExtension.addEventListener('click', function() {
+    if(current === 0) {
+        current = sliderImages.length;  
+    } 
+    slideLeft();
+});
+// Right arrow click
+arrowRightExtension.addEventListener('click', function() {
     if(current === sliderImages.length - 1) {
         current = -1;  
     }
