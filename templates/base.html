@@ -47,7 +47,10 @@
 		                <a class="nav-link" href="{% url 'shop-home' %}">Shop</a>
 		            </li>
 		            <li class="nav-item">
-		                <a class="nav-link mr-2" href="#"><i class="fa fa-shopping-cart"></i></a>
+		                <a class="nav-link mr-2" href="{% url 'cart-home' %}">
+							<i class="fa fa-shopping-cart"></i>
+							<p>{{ product_count }}</p>
+						</a>
 		            </li>
 		            <!--Buttons that link to pages allowing the user to sign up or login to their membership area-->
 		            

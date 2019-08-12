@@ -691,7 +691,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-home-container,
 .jobs-home-container,
-.shop-home-container {
+.shop-home-container,
+.cart-home-container {
     margin-top: 70px;
     display: flex;
     flex-direction: column;
@@ -700,7 +701,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-card-container,
 .jobs-card-container,
-.shop-card-container {
+.shop-card-container,
+.cart-card-container {
     margin-top: 20px;
     width: 95%;
     max-width: 1100px;
