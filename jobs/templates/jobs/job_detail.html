@@ -3,7 +3,7 @@
 <div class="blog-detail-container">
 
   	<article class="blog-article-content">
-	  	<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}</span></h2>
+	  	<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}, {{ object.job_location_county }}</span></h2>
         <p class="ml-1">This job was created on {{ object.date_posted|date:"dS F, Y" }}</p>
 		<p class="article-intro">{{ object.job_overview }}</p>
         <div class="article-metadata">

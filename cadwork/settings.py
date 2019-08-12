@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'shop.apps.ShopConfig',
     'home.apps.HomeConfig',
     'jobs.apps.JobsConfig',
     'blog.apps.BlogConfig',
@@ -131,7 +132,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_REDIRECT_URL = 'profile'
 
 LOGIN_URL = 'login'
 

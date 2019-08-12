@@ -871,7 +871,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-card-intro-paragraph {
     font-size: 0.9em;
+    font-weight: 600;
 }
+
 /*---------- End of Job pages styles----------*/
 
 
@@ -1058,6 +1060,16 @@ h1, h2, h3, h4, h5, h6 {
 /*---------- Larger screen sizes ----------*/
 /* Horizontal mobile screens */
 @media(min-width: 500px) {
+
+    .article-card-intro-top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .article-card-intro-top img {
+        width: 40%;
+        padding: 10px 0;
+    }
 
 }
     

@@ -8,7 +8,7 @@ class Post(models.Model):
 	title = models.CharField(max_length=100)
 	intro = models.CharField(max_length=250)
 	content = models.TextField()
-	blog_image = models.ImageField(default='blog-default.jpg', upload_to='blog_images')
+	image = models.ImageField(default='blog-default.jpg', upload_to='blog_images')
 	date_posted = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 
