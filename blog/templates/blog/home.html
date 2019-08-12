@@ -4,7 +4,7 @@
     <div class="blog-card-container">
         {% for post in posts %}
             <article class="blog-article">
-                <img class="article-image" src="{{ post.blog_image.url }}">
+                <img class="article-image" src="{{ post.image.url }}">
                 <div class="media-body">
                     <div class="article-metadata">
                         <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>

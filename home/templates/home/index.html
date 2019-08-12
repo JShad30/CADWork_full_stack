@@ -70,7 +70,7 @@
 			<div class="blog-card-container">
 			{% for post in posts %}
 				<article class="blog-article blog-article-home-page">
-					<img class="article-image" src="{{ post.blog_image.url }}" height="80" width="80">
+					<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
 					<div class="media-body">
 						<div class="article-metadata">
 							<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
