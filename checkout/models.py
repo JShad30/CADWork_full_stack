@@ -3,18 +3,14 @@ from shop.models import Product
 
 # Create your models here.
 class Order(models.Model):
-    customer_firstname = models.CharField(max_length=25, blank=False)
-    customer_lastname = models.CharField(max_length=25, blank=False)
-    customer_phone_number = models.CharField(max_length=15, blank=False)
+    customer_name = models.CharField(max_length=25, blank=False)
     customer_address_line_one = models.CharField(max_length=40, blank=False)
     customer_address_town = models.CharField(max_length=40, blank=False)
     customer_address_county = models.CharField(max_length=40, blank=True)
-    customer_country = models.CharField(max_length=30, blank=False)
     customer_address_post_code = models.CharField(max_length=10, blank=True)
-    date = models.DateField()
 
     def __str__(self):
-        return 'Customer: {0}, name {0} {1}, on {2}'.format(self.id, self.customer_firstname, self.customer_lastname, self.date)
+        return 'Customer: {0}, name {1}, on {2}'.format(self.id, self.customer_name, self.date)
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)

@@ -38,7 +38,7 @@
                     <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
                     {% for job in jobs %}
                         <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.job_image.url }}" height="80" width="80">
+                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
                             <div class="media-body">
                                 <div class="article-metadata">
                                     <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
@@ -60,7 +60,7 @@
                     <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
                     {% for bid in bids %}
                         <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.job_image.url }}" height="80" width="80">
+                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
                             <div class="media-body">
                                 <div class="article-metadata">
                                     <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
@@ -82,7 +82,7 @@
                     <p class="account-paragraph">See below the jobs you currently have active.</p>
                     {% for active_job in active_jobs %}
                         <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.job_image.url }}" height="80" width="80">
+                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
                             <div class="media-body">
                                 <div class="article-metadata">
                                     <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
@@ -104,7 +104,7 @@
                 </div>
                 {% for post in posts %}
                     <article class="profile-blog-article">
-                        <img class="article-image" src="{{ post.blog_image.url }}" height="80" width="80">
+                        <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
                         <div class="media-body">
                             <div class="article-metadata">
                                 <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>

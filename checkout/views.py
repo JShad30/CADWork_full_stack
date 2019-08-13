@@ -11,13 +11,13 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
-def checkout(request):
+def home(request):
     if request.method == 'POST':
-        order_form = OrderForm(request.POST)
-        payment_form = MakePaymentForm(request.POST)
+        o_form = OrderForm(request.POST)
+        p_form = MakePaymentForm(request.POST)
 
-        if order_form.is_valid() and payment_form.is_valid():
-            order = order_form.save(commit=False)
+        if o_form.is_valid() and p_form.is_valid():
+            order = o_form.save(commit=False)
             order.date = timezone.now()
             order.save()
 
@@ -55,9 +55,9 @@ def checkout(request):
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
 
     else:
-        payment_form = MakePaymentForm()
-        order_form = OrderForm()
+        p_form = MakePaymentForm()
+        o_form = OrderForm()
 
-    return render(request, 'checkout/home.html', {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, 'checkout/home.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})
 
 

@@ -6,9 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Job, JobBid
 
 def home(request):
-	context = {
-		'jobs': Job.objects.all()
-	}
+	context = {'jobs': Job.objects.all()}
 	return render(request, 'jobs/home.html', context)
 
 
@@ -22,12 +20,11 @@ class JobListView(ListView):
 
 class JobDetailView(DetailView):
 	model = Job
-	context = {'bids': JobBid.objects.all()}
 
 
 class JobCreateView(LoginRequiredMixin, CreateView):
 	model = Job
-	fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'job_image']
+	fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
 
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -36,7 +33,7 @@ class JobCreateView(LoginRequiredMixin, CreateView):
 
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Job
-	fields = ['job_name', 'job_image']
+	fields = ['job_name', 'image']
 		
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -71,3 +68,8 @@ class JobBidView(LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.author = self.request.user
 		return super().form_valid(form)
+
+
+class JobBidDisplay(LoginRequiredMixin, ListView):
+	model = JobBid
+	context = {'bids': JobBid.objects.all()}
