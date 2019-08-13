@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block index_page_js %}
+	<script src="{% static 'js/frontimage.js' %}" type="text/javascript"></script>
+{% endblock index_page_js %}
+
 {% block content %}
 <div class="index-container">
-
 	<section class="image-container">
 		<div class="slider">
 			<div class="slide" id="plan">

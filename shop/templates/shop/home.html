@@ -9,7 +9,7 @@
                     <img class="product" src="{{ product.image.url }}" height="250" width="300"></div>
                     <h3>{{ product.product_name }}</h3>
                     <p class="product-description">{{ product.product_description }}</p>
-                    <p>{{ product.price }}</p>
+                    <p><i class="glyphicon glyphicon-gbp"></i>{{ product.product_price }}</p>
                     <form method="POST" action="{% url 'add_to_cart' product.id %}">
                         {% csrf_token %}
                         <div class="input-group">
