@@ -36,10 +36,10 @@
     {% if object.author == user %}
 		<section class="job-bids">
 			{% for bid in bids %}
-				<p>{{ bid.job_bid_amount }}</p>
+				<p>{{ bid.}}</p><p>{{ bid.job_bid_amount }}</p>
 			{% endfor %}
 		</section>
-	{% else%}
+	{% else %}
         <section class="job-owner-info">
             <!--Job owner profile to go here-->
         </section>

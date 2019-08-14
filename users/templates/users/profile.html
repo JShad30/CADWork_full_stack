@@ -1,123 +1,123 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
     <div class="profile-page-container">
         
         <div class="user-blog-header">
             <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname }}.</h1>
         </div>
 
-        <section class="profile-page-box" id="profile-profile-box">
-            <div class="profile-page-box-container">
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
+        <div class="profile-job-blog">
+            <div class="profile-blog-column">
+                <section class="profile-page-box" id="profile-profile-box">
+                    <div class="profile-page-box-container">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="profile-top-section">
+                            <img class="account-image" src="{{ user.profile.image.url }}">
+                            <div class="profile-details">
+                                <h2 class="account-heading">{{ user.username }}</h2>
+                                <p class="account-email">{{ user.email }}</p>
+                            </div>
                         </div>
-                    {% endfor %}
-                {% endif %}
-                <div class="profile-top-section">
-                    <img class="account-image" src="{{ user.profile.image.url }}">
-                    <div class="profile-details">
-                        <h2 class="account-heading">{{ user.username }}</h2>
-                        <p class="account-email">{{ user.email }}</p>
+                        <div class="user-profile-overview">
+                            <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
+                        </div>
+                        <a class="btn btn-primary profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
                     </div>
-                </div>
-                <div class="user-profile-overview">
-                    <small>Member since: {{ user.member_since|date:"dS F, Y" }}</small>
-                    <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
-                </div>
-                <a class="btn btn-primary btn-block profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
-            </div>
-        </section>
-
-        <section class="profile-page-box" id="profile-job-upload-box">
-            <div class="profile-page-box-container">
-                <div class="profile-blog-intro">
-                    <h2 class="account-heading">Jobs you have Uploaded</h2>
-                    <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
-                    {% for job in jobs %}
-                        <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                            <div class="media-body">
-                                <div class="article-metadata">
-                                    <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
-                                </div>
-                                <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                <p class="article-card-intro">{{ job.job_overview }}</p>
-                            </div>
-                        </article>
-                    {% endfor %}
-                    <a class="btn btn-primary btn-block" href="{% url 'job-create' %}">Upload New Job</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="profile-page-box" id="profile-job-bid-box">
-            <div class="profile-page-box-container">
-                <div class="profile-blog-intro">
-                    <h2 class="account-heading">Your Bids</h2>
-                    <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
-                    {% for bid in bids %}
-                        <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                            <div class="media-body">
-                                <div class="article-metadata">
-                                    <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
-                                </div>
-                                <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                <p class="article-card-intro">{{ job.job_overview }}</p>
-                            </div>
-                        </article>
-                    {% endfor %}
-                    <a class="btn btn-primary btn-block" href="{% url 'jobs-home' %}">Search for jobs</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="profile-page-box" id="profile-job-bid-box">
-            <div class="profile-page-box-container">
-                <div class="profile-blog-intro">
-                    <h2 class="account-heading">Live Jobs</h2>
-                    <p class="account-paragraph">See below the jobs you currently have active.</p>
-                    {% for active_job in active_jobs %}
-                        <article class="profile-blog-article">
-                            <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                            <div class="media-body">
-                                <div class="article-metadata">
-                                    <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
-                                </div>
-                                <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                <p class="article-card-intro">{{ job.job_overview }}</p>
-                            </div>
-                        </article>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
-        <section class="profile-page-box" id="profile-blog-box">
-            <div class="profile-page-box-container">
-                <div class="profile-blog-intro">
-                    <h2 class="account-heading">Your Blogs</h2>
-                    <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
-                </div>
-                {% for post in posts %}
-                    <article class="profile-blog-article">
-                        <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                        <div class="media-body">
-                            <div class="article-metadata">
-                                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                                <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
-                            </div>
-                            <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                            <p class="article-card-intro">{{ post.intro }}</p>
+                </section>
+                <section class="profile-page-box" id="profile-blog-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Your Blogs</h2>
+                            <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
                         </div>
-                    </article>
-                {% endfor %}
-                <a class="btn btn-primary btn-block" href="{% url 'post-create' %}">Create New Blog</a>
+                        {% for post in posts %}
+                            <article class="profile-blog-article">
+                                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                <div class="media-body">
+                                    <div class="article-metadata">
+                                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                                        <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                    </div>
+                                    <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                    <p class="article-card-intro">{{ post.intro }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                        <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
+                    </div>
+                </section>
             </div>
-        </section>
+
+            <div class="profile-job-column">
+                <section class="profile-page-box" id="profile-job-upload-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Jobs you have Uploaded</h2>
+                            <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
+                            {% for job in jobs %}
+                                <article class="profile-blog-article">
+                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                    <div class="media-body">
+                                        <div class="article-metadata">
+                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                        <p class="article-card-intro">{{ job.job_overview }}</p>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                            <a class="btn btn-primary" href="{% url 'job-create' %}">Upload New Job</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="profile-page-box" id="profile-job-bid-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Your Bids</h2>
+                            <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
+                            {% for bid in bids %}
+                                <article class="profile-blog-article">
+                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                    <div class="media-body">
+                                        <div class="article-metadata">
+                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                        <p class="article-card-intro">{{ job.job_overview }}</p>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                            <a class="btn btn-primary" href="{% url 'jobs-home' %}">Search for jobs</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="profile-page-box" id="profile-job-bid-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Live Jobs</h2>
+                            <p class="account-paragraph">See below the jobs you currently have active.</p>
+                            {% for active_job in active_jobs %}
+                                <article class="profile-blog-article">
+                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                    <div class="media-body">
+                                        <div class="article-metadata">
+                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                        <p class="article-card-intro">{{ job.job_overview }}</p>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div> 
+        </div>    
     </div>
-</div>
 {% endblock content %}

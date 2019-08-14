@@ -67,7 +67,9 @@ def profile(request):
 """Public profile view is used for other users to be able to see information about another user. Login is not required to be able to view this page."""
 def public_profile(request, username):
 	context = {
-		'users': Profile
+		'users': Profile,
+		'posts': Post.objects.all()[:3],
+		'jobs': Job.objects.all()
 	}
 
 	return render(request, 'users/public_profile.html', context)

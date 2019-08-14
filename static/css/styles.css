@@ -252,11 +252,11 @@ h1, h2, h3, h4, h5, h6 {
 .form-section {
     width: 100%;
     max-width: 550px;
-    margin-top: 100px;
-    margin-bottom: 150px;
+    margin: 20px 0 150px 0;
     padding: 20px 20px;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
+    box-shadow: 5px 5px 10px #ced4da;
 }
 
 /*Logout message page - also used for the message received template on the contact form*/
@@ -625,11 +625,27 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*----------Profile Page----------*/
-.profile-page-container {
+.user-blog-header {
+    font-size: 1.2em;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0 0 0;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.profile-job-blog {
     width: 100%;
+}
+
+.profile-page-container {
+    margin-top: 70px;
+    width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: 20px;
+    max-width: 1100px;
 }
 
 .profile-page-box {
@@ -639,6 +655,9 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px;
     box-shadow: 5px 5px 10px #ced4da;
     max-width: 100%;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }
 
 .profile-top-section {
@@ -652,7 +671,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .account-email {
-    font-size: 1.2em;
+    font-size: 0.8em;
     font-weight: 600;
 }
 
@@ -666,7 +685,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .profile-blog-article {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
@@ -675,8 +694,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .profile-blog-article img {
     height: 100%;
-    padding: 10px;
-    width: 35%;
+    width: 100%;
 }
 /*----------End of profile page styles----------*/
 
@@ -745,7 +763,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*User post specific*/
 .user-blog-header {
-    width: 95%;
+    width: 100%;
     max-width: 1100px;
     margin-top: 20px;
     font-weight: 600;
@@ -753,8 +771,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .user-post-title {
-    font-size: 2.3em;
-    margin: 20px 0;
+    font-size: 2em;
+    margin: 10px 0;
 }
 
 /*Blog details page*/
@@ -1063,8 +1081,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-
-
 /*---------- Larger screen sizes ----------*/
 /* Horizontal mobile screens */
 @media(min-width: 500px) {
@@ -1079,6 +1095,19 @@ h1, h2, h3, h4, h5, h6 {
         padding: 10px 0;
     }
 
+    /*----------Profile page----------*/
+    .profile-page-box {
+        padding: 20px;
+    }
+
+    .profile-blog-article {
+        flex-direction: row;
+    }
+    
+    .profile-blog-article img {
+        width: 35%;
+    }
+    /*----------End of Profile page styles----------*/
 }
     
 /*tablet screens*/
@@ -1100,14 +1129,49 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+    /*----------Profile page----------*/
+    .user-blog-header {
+        margin-bottom: 20px;
+    }
+
+    .profile-job-blog {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profile-blog-column {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .profile-job-column {
+        display: flex;
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .profile-blog-article {
+        flex-direction: column;
+    }
+
+    .profile-blog-article img {
+        width: 100%;
+    }
+
+    /*Update Profile*/
+    .form-section {
+        margin-top: 100px;
+    }
+    /*----------End of Profile page styles----------*/
+
+
+
     /*----------Blog pages----------*/
     .blog-article,
     .job-upload {
         width: 47%;
-    }
-
-    .profile-page-box {
-        max-width: 48%;
     }
     /*----------End of blog page styles----------*/
 

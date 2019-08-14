@@ -1,22 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <div class="user-blog-header">
-        <h1 class="user-post-title">You are viewing the profile page for {{ object.username }}.</h1>
-    </div>
-    <section class="profile-page-box" id="profile-profile-box">
-        <div class="profile-page-box-container">
-            <div class="profile-top-section">
-                <img class="account-image" src="{{ user.image.url }}">
-                <div class="profile-details">
-                    <h2 class="account-heading">{{ user.profile.username }}</h2>
-                    <p class="account-email">{{ user.profile.email }}</p>
-                </div>
+    <div class="profile-page-container">
+
+        <div class="user-blog-header">
+            <h1 class="user-post-title">This is the profile for {{ object.user.profile.firstname }} {{ object.user.profile.lastname }} ({{ object.user.username }})</h1>
+        </div>
+
+        <div class="profile-job-blog">
+            <div class="profile-blog-column">
+                <section class="profile-page-box" id="profile-profile-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-top-section">
+                            <img class="account-image" src="{{ object.profile.image.url }}">
+                        </div>
+                        <div class="user-profile-overview">
+                            <p class="account-paragraph">{{ object.profile.profile_intro }}</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="user-profile-overview">
-                <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
+            <div class="profile-blog-column">
+                <section class="profile-page-box" id="profile-blog-box">
+                    <div class="profile-page-box-container">
+                        <div class="profile-blog-intro">
+                            <h2 class="account-heading">Blogs by {{ username }}</h2>
+                               <p class="account-paragraph">These are the three most recently uploaded blogs by {{ username }}</p>
+                        </div>
+                        {% for post in posts %}
+                            <article class="profile-blog-article">
+                                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                <div class="media-body">
+                                    <div class="article-metadata">
+                                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                                        <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                    </div>
+                                    <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                    <p class="article-card-intro">{{ post.intro }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                        <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
-</div>
+    </div>
 {% endblock content %}
