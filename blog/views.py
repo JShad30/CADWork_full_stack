@@ -5,13 +5,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 
+"""Function view for the home page of the blog. The context """
 def home(request):
 	context = {
 		'posts': Post.objects.all()
 	}
 	return render(request, 'blog/home.html', context)
 
-
+"""Using class based views for the rest of the blog pages"""
 class PostListView(ListView):
 	model = Post
 	template_name = 'blog/home.html'
@@ -33,6 +34,12 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
 	model = Post
+
+	"""Get the context data to be able to display other blogs from within the detail view"""
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['posts'] = Post.objects.all()[:3]
+		return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

@@ -38,7 +38,7 @@ def home(request):
                     amount = int(total * 100),
                     currency = 'GBP',
                     description = request.user.email,
-                    card = payment_form.cleaned_data['stripe_id'],
+                    card = p_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
                 messages.error(request, 'Your card has been declined')
@@ -51,7 +51,7 @@ def home(request):
                 messages.error(request, 'We were unable to accept your payment')
 
         else:
-            print(payment_form.errors)
+            print(p_form.errors)
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
 
     else:

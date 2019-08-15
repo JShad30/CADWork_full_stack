@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect, reverse
 def home(request):
     return render(request, 'cart/home.html')
     
+
+
 def add_to_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
@@ -14,6 +16,8 @@ def add_to_cart(request, id):
         cart[id] = cart.get(id, quantity)
     request.session['cart'] = cart
     return redirect(reverse('cart-home'))
+
+
 
 def adjust_cart(request, id):
     quantity = int(request.POST.get('quantity'))

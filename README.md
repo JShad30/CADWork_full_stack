@@ -36,6 +36,8 @@ The blog section is created to allow users to understand more about the industry
 
 A user can go to the shop/products page of the website if they are starting out in the industry and find a selection of related products. If a user wishes to buy a product they can click on the 'add to basket button'. This adds the products to the cart. The user does not need to be logged in or have an account to be able to purchase the products. 
 
+The items in the shop can only be added by superusers of the site through the admin panel, as CADWork is not a site for users to seel their own products.
+
 ## Features
 
 Features are functionality that has been added to different areas of the site.

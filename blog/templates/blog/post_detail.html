@@ -3,7 +3,7 @@
 <div class="blog-detail-container">
 
   	<article class="blog-article-content">
-	  	<h2 class="article-title">{{ object.title }}</h2>
+	  	<h1 class="article-title">{{ object.title }}</h1>
 		<p class="ml-1">Blog uploaded by <a href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a> on {{ object.date_posted|date:"dS F, Y" }}</p>
 	  	<img class="blog-image" src="{{ post.image.url }}">
     	<div class="main-blog-content">
@@ -25,20 +25,29 @@
 		<a class="btn btn-primary blog-link" href="{% url 'blog-home' %}">Return to Blogs</a>
   	</article>
 
-	<aside class="blog-details-other">
-		{% for post in posts %}
-            <article class="blog-article">
-                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                        <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
-                    </div>
-                    <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                    <p class="article-card-intro">{{ post.intro }}</p>
-                </div>
-            </article>
-        {% endfor %}
+	<aside class="blog-aside">
+        <div class="blog-aside-blogs">
+			<div class="blog-aside-intro-text">
+				<h2 class="blog-aside-intro-text-heading">More from the blog</h2>
+				<p class="blog-aside-intro-text-paragraph">Most recently uploaded blogs</p>
+			</div>
+			<div class="blog-card-container">
+				{% for post in posts %}
+					<article class="blog-article blog-article-home-page">
+						<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+						<div class="media-body">
+							<div class="article-metadata">
+								<a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+								<small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+							</div>
+							<h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+							<p class="article-card-intro">{{ post.intro }}</p>
+						</div>
+					</article>
+				{% endfor %}
+			</div>
+			<a href="{% url 'blog-home' %}" class="btn btn-primary">See more...</a>
+		</div>
 	</aside>
 	
 </div>

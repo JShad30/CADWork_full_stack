@@ -655,9 +655,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px;
     box-shadow: 5px 5px 10px #ced4da;
     max-width: 100%;
-    box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
 }
 
 .profile-top-section {
@@ -713,8 +710,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-home-container,
 .jobs-home-container,
-.shop-home-container,
 .cart-home-container {
+    width: 90%;
+    max-width: 1100px;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
@@ -723,11 +721,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-card-container,
 .jobs-card-container,
-.shop-card-container,
 .cart-card-container {
     margin-top: 20px;
-    width: 95%;
-    max-width: 1100px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -752,12 +747,13 @@ h1, h2, h3, h4, h5, h6 {
 .blog-home-title {
     font-size: 1.8em;
     margin: 10px 0;
-    font-weight: 600;
+    font-weight: 400;
+    color: #007bff;
 }
 
 .paginate-buttons {
-    margin: 20px 0;
-    width: 90%;
+    margin: 20px 0 40px 20px;
+    width: 100%;
     max-width: 1100px;
 }
 
@@ -797,8 +793,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-title,
 .job-page-title {
-    font-size: 2em;
-    color: #000000;
+    font-size: 2.5em;
+    color: #007bff;
     margin-top: 20px;
 }
 
@@ -830,11 +826,18 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 150px;
 }
 
-.blog-details-other {
+/* Other blog links in the aside of the posts detail page */
+.blog-aside {
+    width: 90%;
+    max-width: 750px;
     display: flex;
     flex-direction: column;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px #ced4da;
 }
-/* Other blog links in the aside of the posts detail page */
 /*----------End of styles for the blog Pages----------*/
 
 
@@ -901,6 +904,92 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*---------- End of Job pages styles----------*/
+
+
+
+
+
+/*----------Shop pages styles. This is also used in the checkout page----------*/
+.shop-home-container {
+    margin-top: 70px;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.shop-page-header {
+    font-size: 1.2em;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.shop-page-title {
+    color: #007bff;
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+.products-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.product {
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 10px #ced4da;
+    width: 100%;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.product-header {
+    color: #007bff;
+    font-size: 2em;
+}
+
+.product-price {
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.product-currency {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.product-input {
+    margin-right: 10px;
+}
+
+/*Checkout page styles*/
+.cart-total-row {
+    padding: 20px;
+    box-shadow: 5px 5px 10px #ced4da;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
+
+.cart-total-row-paragraph {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.currency-total {
+    font-size: 1.4em;
+    color: #007bff;
+}
+/*----------End of shop pages styles----------*/
 
 
 
@@ -1108,6 +1197,33 @@ h1, h2, h3, h4, h5, h6 {
         width: 35%;
     }
     /*----------End of Profile page styles----------*/
+
+    /*----------Blog home page----------*/
+    .blog-article {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .blog-article img {
+        width: 35%;
+    }
+    /*----------End of Blog home page styles----------*/
+
+    /*----------Shop styles----------*/
+    .product {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .product-image {
+        width: 35%;
+    }
+
+    .product-text {
+        width: 60%;
+    }
+    /*----------End of shop views----------*/
 }
     
 /*tablet screens*/
@@ -1173,7 +1289,38 @@ h1, h2, h3, h4, h5, h6 {
     .job-upload {
         width: 47%;
     }
+
+    .blog-article {
+        flex-direction: column;
+    }
+
+    .article-title,
+    .job-page-title {
+        font-size: 3em;
+    }
+
+    .blog-article img {
+        width: 100%;
+    }
     /*----------End of blog page styles----------*/
+
+
+
+    
+    /*----------Shop styles----------*/
+    .product {
+        flex-direction: column;
+        width: 48%;
+    }
+
+    .product-image {
+        width: 100%;
+    }
+
+    .product-text {
+        width: 100%;
+    }
+    /*----------End of shop views----------*/
 
 
 
@@ -1239,7 +1386,31 @@ h1, h2, h3, h4, h5, h6 {
     .blog-article {
         width: 31%;
     }
+
+    /* Blog details page */
+    .blog-detail-container { 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 90%;
+        max-width: 1100px;
+    }
+
+    .blog-article-content {
+        width: 65%;
+    }
+
+    .blog-aside {
+        width: 30%;
+        height: 100%;
+    }
     /*----------End of blog pages----------*/
+
+    /*----------Shop styles----------*/
+    .product {
+        width: 31%;
+    }
+    /*----------End of shop views----------*/
     
 }
 
