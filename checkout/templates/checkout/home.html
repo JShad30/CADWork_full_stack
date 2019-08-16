@@ -13,22 +13,30 @@
 {% endblock head_js %}
 
 {% block content %}
-<div class="container">
-	<div class="form-section">
-        <div class="row">
-            <p class="payment-form-total">Total <span class="payment-form-total-price">£{{ total }}</span></p>
-        </div>
+<div class="shop-home-container">
+
+    <div class="shop-page-header">
+        <h1 class="shop-page-title">Your Shopping Cart</h1>
+        <p class="payment-form-total">Total <span class="payment-form-total-price">£{{ total }}</span></p>
+    </div>
+
+	<div class="payment-form-section">
         <form role="form"method="post", id="payment-form", action="{% url 'shop-home' %}">
-            {% csrf_token %}
-            <legend>Payment Details</legend>
+        {% csrf_token %}
             <div id="credit-card-errors">
                 <div class="alert-message block-message-error" id="stripe-error-message"></div>
             </div>
-            <fieldset class="form-group">
-                {{ o_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <input class="btn btn-primary btn-block" id="submit-payment-button" type="submit" value="Submit Payment Details">
+            <div class="payment-form-groups">
+                <fieldset class="form-group" id="o-form">
+                    <legend class="payment-form-legend">Personal Details</legend>
+                    {{ o_form|crispy }}
+                </fieldset>
+                <fieldset class="form-group" id="p-form">
+                    <legend class="payment-form-legend">Payment Details</legend>
+                    {{ p_form|crispy }}
+                </fieldset>          
+            </div>
+            <input class="btn btn-primary" id="submit-payment-button" type="submit" value="Submit Payment Details">
         </form>
     </div>
 </div>

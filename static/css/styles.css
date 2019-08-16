@@ -727,6 +727,10 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
 }
 
+.blog-card-container {
+    margin-bottom: 20px;
+}
+
 .blog-article {
     margin: 10px;
     border: 0.5px solid #ced4da;
@@ -788,7 +792,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 50px;
 }
 
 .article-title,
@@ -826,19 +829,49 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 150px;
 }
 
-/* Other blog links in the aside of the posts detail page */
+/*Other blogs listed at the bottom of the blogs detail page*/
+.blog-aside-intro-text {
+    border-bottom: 0.5px solid #ced4da;
+} 
+
+.blog-aside-intro-text-heading {
+    color: #007bff;
+}
+
+.blog-details-other {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+}
+
+.blog-details-other img {
+    width: 30%;
+}
+
+.blog-details-other-title {
+    font-size: 1.1em;
+}
+
 .blog-aside {
     width: 90%;
+    max-width: 500px;
     max-width: 750px;
     display: flex;
     flex-direction: column;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 50px;
     box-sizing: border-box;
     box-shadow: 5px 5px 10px #ced4da;
 }
-/*----------End of styles for the blog Pages----------*/
+
+.blog-details-post-author {
+    font-size: 0.7em;
+}
+/*----------End of blogs styles----------*/
 
 
 
@@ -914,6 +947,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 70px;
     width: 90%;
     max-width: 1100px;
+    margin-bottom: 50px;
+    min-height: 90vh;
 }
 
 .shop-page-header {
@@ -933,7 +968,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .products-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
 }
@@ -955,6 +990,7 @@ h1, h2, h3, h4, h5, h6 {
 .product-header {
     color: #007bff;
     font-size: 2em;
+    margin-top: 10px;
 }
 
 .product-price {
@@ -971,7 +1007,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 10px;
 }
 
-/*Checkout page styles*/
+/*Cart page styles*/
 .cart-total-row {
     padding: 20px;
     box-shadow: 5px 5px 10px #ced4da;
@@ -988,6 +1024,27 @@ h1, h2, h3, h4, h5, h6 {
 .currency-total {
     font-size: 1.4em;
     color: #007bff;
+}
+
+/*Checkout form page styles*/
+.payment-form-section {
+    width: 100%;
+    margin: 20px 0 50px 0;
+    padding: 20px 20px;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.payment-form-legend {
+    color: #007bff;
+    font-size: 1.6em;
+}
+
+#o-form,
+#p-form {
+    border-bottom: 0.5px solid #ced4da;
+    padding-bottom: 10px;
 }
 /*----------End of shop pages styles----------*/
 
@@ -1223,6 +1280,32 @@ h1, h2, h3, h4, h5, h6 {
     .product-text {
         width: 60%;
     }
+
+    /*Checkout form page styles*/
+    #form-section-payment {
+        width: 100%;
+    }
+
+    .payment-form-groups {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #o-form,
+    #p-form {
+        border-bottom: 0;
+        width: 100%;
+    }
+
+    #o-form {
+        border-right: 0.5px solid #ced4da;
+        padding-right: 20px;
+    }
+
+    #p-form {
+        padding-left: 20px;
+    }
     /*----------End of shop views----------*/
 }
     
@@ -1296,11 +1379,25 @@ h1, h2, h3, h4, h5, h6 {
 
     .article-title,
     .job-page-title {
-        font-size: 3em;
+        font-size: 2.5em;
     }
 
     .blog-article img {
         width: 100%;
+    }
+
+    /* Other blog links in the aside of the posts detail page */
+    .blog-aside {
+        width: 90%;
+        max-width: 750px;
+        display: flex;
+        flex-direction: column;
+        border: 0.5px solid #ced4da;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 50px;
+        box-sizing: border-box;
+        box-shadow: 5px 5px 10px #ced4da;
     }
     /*----------End of blog page styles----------*/
 
@@ -1394,15 +1491,22 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: space-between;
         width: 90%;
         max-width: 1100px;
+        align-items: flex-start;
     }
 
     .blog-article-content {
-        width: 65%;
+        width: 68%;
+        margin-bottom: 50px;
     }
 
     .blog-aside {
         width: 30%;
-        height: 100%;
+        margin-bottom: 50px;
+        margin-top: 130px;
+    }
+
+    .blog-aside-intro-text-heading {
+        font-size: 1.8em;
     }
     /*----------End of blog pages----------*/
 

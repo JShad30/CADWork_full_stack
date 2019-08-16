@@ -53,11 +53,14 @@ def home(request):
         else:
             print(p_form.errors)
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
-
+    
     else:
         p_form = MakePaymentForm()
         o_form = OrderForm()
 
     return render(request, 'checkout/home.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    
+
+
 
 
