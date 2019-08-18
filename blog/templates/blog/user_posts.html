@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<!--Ths page is very similar to the blog home page, but only shows blogs from one user-->
+
+<!--Container for the blog home content-->
 <div class="user-blogs-container">
+
+    <!--Container for the blog article cards-->
     <section class="blog-home-container">
+
+        <!--The following heading will only display on the blog pages showing a single users posts. Includes count of the users posts-->
         <div class="user-blog-header">
             <h1 class="user-post-title">{{ view.kwargs.username }} currently has {{ page_obj.paginator.count }} posts.</h1>
         </div>
+
+        <!--For loop to display the following code for each of the blog cards same as the blog home page. Includes a container to separate the blog cards from the heading above-->
         <div class="blog-card-container">
             {% for post in posts %}
                 <article class="blog-article">
@@ -22,13 +31,17 @@
         </div>
     </section>
 
+    <!--If statement to display page numbers if the number of blogs exceeds six-->
     {% if is_paginated %}
         <div class="paginate-buttons ml-3">
+
+            <!--Display first and previous button if page exists-->
             {% if page_obj.has_previous %}
                 <a class="btn btn-primary" href="?page=1">First</a>
                 <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
             {% endif %}
 
+            <!--Page numbers with links to the relative pages-->
             {% for num in page_obj.paginator.page_range %}
                 {% if page_obj.number == num %}
                     <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
@@ -37,6 +50,7 @@
                 {% endif %}
             {% endfor %}
 
+            <!--Display next and last button if page exists-->
             {% if page_obj.has_next %}
                 <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
                 <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
