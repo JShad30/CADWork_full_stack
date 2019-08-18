@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import home, about, terms, privacy, contact, message_received
 
+"""Url patterns for the home app. Imported into the main urls file."""
 urlpatterns = [
     path('', home, name='home'),
     path('home/', home, name='home'),
