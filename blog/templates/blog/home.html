@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!--Container for the blog content-->
 <div class="blog-home-container">
 
+    <!--Container for the blog article cards-->
     <div class="blog-card-container">
+
+        <!--For loop to display the following code for each of the blog cards-->
         {% for post in posts %}
             <article class="blog-article">
                 <img class="article-image" src="{{ post.image.url }}">
@@ -19,13 +24,17 @@
         {% endfor %}
     </div>
 
+    <!--If statement to display page numbers if the number of blogs exceeds six-->
     {% if is_paginated %}
         <div class="paginate-buttons ml-3">
+
+            <!--Display first and previous button if page exists-->
             {% if page_obj.has_previous %}
                 <a class="btn btn-primary" href="?page=1">First</a>
                 <a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
             {% endif %}
 
+            <!--Page numbers with links to the relative pages-->
             {% for num in page_obj.paginator.page_range %}
                 {% if page_obj.number == num %}
                     <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
@@ -34,6 +43,7 @@
                 {% endif %}
             {% endfor %}
 
+            <!--Display next and last button if page exists-->
             {% if page_obj.has_next %}
                 <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
                 <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
