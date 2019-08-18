@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!--Content container-->
 <div class="about-container">
-    <section class="image-container">
+
+    <!--Top section of the page to contain an image-->
+    <header class="image-container">
         <div class="slider">
             <div class="about-slide">
                 <div class="slide-content">
+                <!--Tect within image-->
                     <div class="slide-content-text">
                         <h1 class="slide-content-title">About <span class="about-header">CADWork</span></h1>
                         <p class="slide-content-paragraph">CADWork is a new web app created to help individuals, or building firms find professionals to complete their planning applications or project design work. There are a number of aspects to the app, so take a look below and see everything we do!</p>
@@ -12,7 +17,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </header>
+
+    <!--Site overview with blue background and snippets about different aspects of the site-->
     <section class="about-intro-container">
         <div class="about-intro">
             <div class="about-intro-section about-intro-jobs">
@@ -32,6 +39,8 @@
             </div>
         </div>
     </section>
+
+    <!--Section containing a few paragraphs about the advantages of restering an account with the site. -->
     <section class="about-overview-container">
         <div class="about-overview">
             <div class="about-registration">
@@ -43,5 +52,6 @@
             </div>
         </div>
     </section>
+
 </div>
 {% endblock %}

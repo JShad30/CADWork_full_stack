@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+<!--Container for the page content-->
 <div class="container">
+
+    <!--Form section used on all pages with a form to control width-->
 	<div class="form-section">
+
+        <!--Form to take information to be sent to the site owner-->
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
 				<legend class="contact-form-title border-bottom mb-10">Contact Us</legend>
+
+                <!--Crispy form used to style the form in a professional manor-->
 				{{ form|crispy }}
                 <div class="contact-email-form">
                     <label class="contact-label">Email*</label>

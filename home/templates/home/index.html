@@ -2,20 +2,27 @@
 
 {% load static from staticfiles %}
 
+<!--Javascript to be added to the head only if user is on the sites homepage-->
 {% block index_page_js %}
 	<script src="{% static 'js/frontimage.js' %}" type="text/javascript"></script>
 {% endblock index_page_js %}
 
 {% block content %}
+
+<!--Content container-->
 <div class="index-container">
-	<section class="image-container">
+
+	<!--Top section of the site with the scrolling image. There are four different scrolling header sections-->
+	<header class="image-container">
 		<div class="slider">
 			<div class="slide" id="plan">
 				<div class="slide-content">
+					<!--Text to be used in the scrolling images-->
 					<div class="slide-content-text">
 						<h1 class="slide-content-title">Welcome to CADWork!</h1>
 						<p class="slide-content-paragraph">If you require a planning application, construction drawings, for your project, whether you are a private individual or business.</p>
 						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register</a></button>
+						<!--Arrows to allow the user to scroll through the headers. Scroll controlled in the 'frontimage.js' file-->
 						<div class="arrows">
 							<div class="arrow arrow-left" id="arrow-left-plan"></div>
 							<div class="arrow arrow-right" id="arrow-right-plan"></div>
@@ -63,10 +70,12 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</header>
 
+	<!--Introduction to the jobs section of the site with a quick overview, and links to the most recently uploaded jobs-->
 	<section class="home-page-jobs-section"></section>
 
+	<!--Introduction to the blog section of the site-->
 	<section class="home-page-blog-section">
 		<div class="home-page-blog-section-container">
 			<div class="home-page-blog-intro">
@@ -75,6 +84,7 @@
 				<p class="home-page-section-paragraph">Welcome to our blog. Find information from members regarding all things about the industry. See the most recent blogs here, and click to see more.</p>
 			</div>
 			<div class="blog-card-container">
+			<!--For loop to use this code for the three most recently uploaded blogs to the site-->
 			{% for post in posts %}
 				<article class="blog-article blog-article-home-page">
 					<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
@@ -93,6 +103,7 @@
 		</div>
 	</section>
 
+	<!--Introduction and link to the shop-->
 	<section class="home-page-shop-section"></section>
 
 </div>
