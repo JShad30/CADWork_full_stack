@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404
 from shop.models import Product
 
+"""Function to make sure that the products in the cart are maintained even when rendering other pages"""
 def cart_contents(request):
-    """Make sure that the products in the cart are maintained even when rendering other pages"""
     cart = request.session.get('cart', {})
     cart_items = []
     total = 0
