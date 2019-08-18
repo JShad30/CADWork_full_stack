@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
+    <!--Container for the page content-->
     <div class="profile-page-container">
         
+        <!--Header section of the page-->
         <div class="user-blog-header">
             <h1 class="user-post-title">Profile Page for {{ user.profile.firstname }} {{ user.profile.lastname }}.</h1>
         </div>
 
+        <!--If statement to check for messages-->
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -16,6 +20,8 @@
 
         <div class="profile-job-blog">
             <div class="profile-blog-column">
+
+                <!--Profile pverview section-->
                 <section class="profile-page-box" id="profile-profile-box">
                     <div class="profile-page-box-container">
                         <div class="profile-top-section">
@@ -28,15 +34,19 @@
                         <div class="user-profile-overview">
                             <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
                         </div>
+                        <!--Button to link to a page where the user can update their profile-->
                         <a class="btn btn-primary profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
                     </div>
                 </section>
+
+                <!--Display the users most recent blogs if there are any-->
                 <section class="profile-page-box" id="profile-blog-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
                             <h2 class="account-heading">Your Blogs</h2>
                             <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
                         </div>
+                        <!--For loop to use following code for all of the blogs-->
                         {% for post in posts %}
                             <article class="profile-blog-article">
                                 <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
@@ -50,17 +60,21 @@
                                 </div>
                             </article>
                         {% endfor %}
+                        <!--Create blog page accessed if the following button os clicked-->
                         <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
                     </div>
                 </section>
             </div>
 
             <div class="profile-job-column">
+
+                <!--Job section-->
                 <section class="profile-page-box" id="profile-job-upload-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
                             <h2 class="account-heading">Jobs you have Uploaded</h2>
                             <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
+                            <!--For loop to use following code for any jobs the user has uploaded-->
                             {% for job in jobs %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
@@ -77,11 +91,14 @@
                         </div>
                     </div>
                 </section>
+
+                <!--List of the bids the user has made-->
                 <section class="profile-page-box" id="profile-job-bid-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
                             <h2 class="account-heading">Your Bids</h2>
                             <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
+                            <!--For loop to display the jobs the user has bid on-->
                             {% for bid in bids %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
@@ -98,11 +115,14 @@
                         </div>
                     </div>
                 </section>
+
+                <!--The following section is to display any jobs that are live, i.e. The creator has chosen a winning bid and the job has officially begun-->
                 <section class="profile-page-box" id="profile-job-bid-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
                             <h2 class="account-heading">Live Jobs</h2>
                             <p class="account-paragraph">See below the jobs you currently have active.</p>
+                            <!--For loop to use the following code to display active jobs-->
                             {% for active_job in active_jobs %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ job.image.url }}" height="80" width="80">

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!--Content container-->
 <div class="container">
+
+	<!--Short message to let the user know they have been successfully logged out-->
 	<div class="short-message">
 		<h2 class="short-message-header">You have been logged out. Thanks for using CADWork. </h2>
 		<p class="short-message-paragraph"><a href="{% url 'login' %}">Log in again</a></p>
