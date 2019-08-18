@@ -3,6 +3,8 @@ from django.utils import timezone
 from PIL import Image
 
 # Create your models here.
+"""Creating the Product model for the database"""
+#The information will be added by the user in the form
 class Product(models.Model):
     product_name = models.CharField(max_length=250, default="")
     product_description = models.TextField()
@@ -13,6 +15,7 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.product_name}'
 
+    #Saving the image for the product. To save space the following logic will cut the size of the image when saved.
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
