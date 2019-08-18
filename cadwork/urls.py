@@ -25,7 +25,7 @@ from shop import views as shop_views
 from cart import views as cart_views
 from checkout import views as checkout_views
 
-"""These are the urls moved throughout the project. Some are brought in from the apps, i.e. the blog, shop, cart and jobs urls. The individual extensions within these files are handled within 'urls.py' files within the individual apps."""
+"""These are the urls moved throughout the project. Some are brought in from the apps, i.e. the blog, shop, cart, checkout and jobs urls. The individual extensions within these files are handled within 'urls.py' files within the individual apps."""
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
