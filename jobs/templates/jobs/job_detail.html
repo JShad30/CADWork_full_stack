@@ -1,29 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!--Container for the content-->
 <div class="blog-detail-container">
 
+	<!--Job article content-->
   	<article class="blog-article-content">
 	  	<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}, {{ object.job_location_county }}</span></h2>
         <p class="ml-1">This job was created on {{ object.date_posted|date:"dS F, Y" }}</p>
 		<p class="article-intro">{{ object.job_overview }}</p>
         <div class="article-metadata">
+			<!--Check the user is authenticated-->
 			{% if user.is_authenticated %}
+				<!--If user is authenticated check whether the author is creator of the job-->
 				{% if object.author == user %}
 					<div class="mt-3 mb-3">
 						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-update' object.id %}">Update</a>
 						<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'job-delete' object.id %}">Delete</a>
 					</div>
+				<!--If user is authenticated but not the creator of the job-->
 				{% else %}
 					<div class="mt-3 mb-3">
 						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-bid' object.id %}">Bid on this job</a>
 					</div>
 				{% endif %}
+			<!--If the user is not authenticated the following will be displayed-->
 			{% else %}
 				<div class="mt-3 mb-3">
 						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-bid' object.id %}">Log in to bid</a>
 					</div>
 			{% endif %}
       	</div>
+		<!--Large image that the user placed in the blog. If the user didn't select an image, the job-default.jpg will be displayed-->
 	  	<img class="blog-image" src="{{ job.image.url }}">
     	<div class="main-blog-content">
 			<p class="job-overview-paragraph">{{ object.job_description }}</p>
@@ -33,17 +41,23 @@
 		<a class="btn btn-primary blog-link" href="{% url 'jobs-home' %}">Return to Jobs</a>
   	</article>
 
-    {% if object.author == user %}
-		<section class="job-bids">
-			{% for bid in bids %}
-				<p>{{ bid.}}</p><p>{{ bid.job_bid_amount }}</p>
-			{% endfor %}
-		</section>
-	{% else %}
-        <section class="job-owner-info">
-            <!--Job owner profile to go here-->
-        </section>
-    {% endif %}
+	<!--Check whether the user is authenticated-->
+	{% if user.is_authenticated %}
+		<!--If user is authenticated check whether the user created the current job-->
+		{% if object.author == user %}
+			<section class="job-bids">
+				<!--Run for loop to display the jobs-->
+				{% for bid in bids %}
+					<p>{{ bid }}</p><p>{{ bid.job_bid_amount }}</p>
+				{% endfor %}
+			</section>
+		<!--If current user is not the creator of the job show link to creators public profile page-->
+		{% else %}
+			<section class="job-owner-info">
+				<!--Job owner profile to go here-->
+			</section>
+		{% endif %}
+	{% endif %}
 	
 </div>
 {% endblock content %}

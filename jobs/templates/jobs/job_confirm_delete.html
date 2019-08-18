@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!--Container for the content-->
 <div class="container">
+	<!--Content section to confirm the bid-->
 	<div class="content-section">
+
+		<!--Form to delete the job-->
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
@@ -13,6 +18,8 @@
 				<a class="btn btn-primary" href="{% url 'job-detail' object.id %}">Cancel</a>
 			</div>			
 		</form>
+
 	</div>
 </div>
+
 {% endblock content %}
