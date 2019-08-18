@@ -26,6 +26,7 @@
 <!--This html page will have the navbar and footer that will be used on every one of the pages-->
 <body>
 	
+	<!--Navbar - general styling uses bootstrap-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="navbar-container">
 			<div class="navbar-logo-dropdown-icon">
@@ -34,6 +35,7 @@
 			        <span class="navbar-toggler-icon"></span>
 			    </button>
 		    </div>
+			<!--Navbar items to add-->
 		    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 		        <ul class="navbar-nav ml-1">
 		        	<li class="nav-item">
@@ -54,6 +56,7 @@
 		            <li class="nav-item">
 		                <a class="nav-link mr-2" href="{% url 'cart-home' %}"><i class="fa fa-shopping-cart"></i></a>
 		            </li>
+					<!--If statement to check whether there are any products in the shop cart. If there are more than 0 products, then that number will be displayed-->
 					{% if product_count > 0 %}
 						<li class="nav-item ml-0">
 							<a class="nav-link mr-2" href="{% url 'cart-home' %}">{{ product_count }}</a>
