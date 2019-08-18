@@ -10,12 +10,15 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
+"""Home view for the checkout"""
 @login_required()
 def home(request):
+    #Two different forms created for the user information and payment form
     if request.method == 'POST':
         o_form = OrderForm(request.POST)
         p_form = MakePaymentForm(request.POST)
 
+        #Check that both formas are valid
         if o_form.is_valid() and p_form.is_valid():
             order = o_form.save(commit=False)
             order.date = timezone.now()
@@ -43,6 +46,7 @@ def home(request):
             except stripe.error.CardError:
                 messages.error(request, 'Your card has been declined')
 
+            #If statement to determine which message to print
             if customer.paid:
                 messages.error(request, 'Your payment has been successfully processed')
                 request.session['cart'] = {}
@@ -50,6 +54,7 @@ def home(request):
             else:
                 messages.error(request, 'We were unable to accept your payment')
 
+        #Message to print of forms are not valid
         else:
             print(p_form.errors)
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
