@@ -1,3 +1,6 @@
+//This javascript file controls the slider for the introductions and images on the home page
+
+//Creating the variables
 var sliderImages = document.querySelectorAll('.slide'),
     arrowLeftArchitect = document.querySelector('#arrow-left-architect'),
     arrowRightArchitect = document.querySelector('#arrow-right-architect'),
