@@ -25,6 +25,7 @@ from shop import views as shop_views
 from cart import views as cart_views
 from checkout import views as checkout_views
 
+"""These are the urls moved throughout the project. Some are brought in from the apps, i.e. the blog, shop, cart and jobs urls. The individual extensions within these files are handled within 'urls.py' files within the individual apps."""
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
@@ -43,7 +44,6 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = 'users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name = 'users/password_reset_complete.html'), name='password_reset_complete'),
     path('', include('home.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#Static media url added according to Django documentation
