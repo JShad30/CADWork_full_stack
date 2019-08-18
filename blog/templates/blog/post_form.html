@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+<!--Container for the form content-->
 <div class="container">
 	<div class="form-section">
+
+		<!--Form for the user to create the blog-->
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
 				<legend class="border-bottom mb-4">Blog Post</legend>
+				<!--Crispy form allows me to render the form based on the model created in the 'models.py' file-->
 				{{ form|crispy }}
 			</fieldset>
 			<div class="form-group">
