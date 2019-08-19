@@ -58,6 +58,32 @@
 			</section>
 		{% endif %}
 	{% endif %}
+
+	<!--The aside in a jobs detail page will have an overall description about the user who posted it with a link to the public profile page-->
+	<aside class="blog-aside">
+        <div class="blog-aside-blogs">
+			<div class="blog-aside-intro-text">
+				<h2 class="blog-aside-intro-text-heading">About the job owner</h2>
+				<p class="blog-aside-intro-text-paragraph">Most recently uploaded blogs</p>
+			</div>
+			<div class="blog-card-container">
+			<!--For loop to use the following code of reach of the blogs in the list-->
+			{% for post in posts %}
+				<article class="blog-details-other">
+					<img class="article-image" src="{{ user.profile.image.url }}" height="80" width="80">
+					<div class="media-body">
+						<div class="blog-details-post-text">
+							<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+							<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+						</div>
+						<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+					</div>
+				</article>
+			{% endfor %}
+			</div>
+			<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
+		</div>
+	</aside>
 	
 </div>
 {% endblock content %}

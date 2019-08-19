@@ -8,7 +8,9 @@ from .models import Job, JobBid
 """Rendering the views for the jobs pages. As with the blogs section most will be created with classes"""
 #Rendering the jobs home page. Takes context as an argument and displays all the blogs.
 def home(request):
-	context = {'jobs': Job.objects.all()}
+	context = {
+		'jobs': Job.objects.all()
+	}
 	return render(request, 'jobs/home.html', context)
 
 
@@ -26,12 +28,6 @@ class JobListView(ListView):
 #Render the job details page
 class JobDetailView(DetailView):
 	model = Job
-
-	#Get profile of the user who uploaded the job to display at the side of the page
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['user'] = User.objects.all()[:3]
-		return context
 
 
 

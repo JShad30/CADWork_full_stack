@@ -23,16 +23,16 @@ class Job(models.Model):
 	def get_absolute_url(self):
 		return reverse('job-detail', kwargs={'pk': self.pk})
 
-		#Save function to resize the image to save space.
-		def save(self, *args, **kwargs):
-			super().save(*args, **kwargs)
+	#Save function to resize the image to save space.
+	def save(self, *args, **kwargs):
+		super().save(*args, **kwargs)
 
-			job_image = Image.open(self.image.path)
+		job_image = Image.open(self.image.path)
 
-			if job_image.width > 1200 or job_image.height > 700:
-				output_size = (1200, 700)
-				job_image.resize(output_size)
-				job_image.save(self.image.path)
+		if job_image.width > 1200 or job_image.height > 700:
+			output_size = (1200, 700)
+			job_image.resize(output_size)
+			job_image.save(self.image.path)
 
 
 #Job bid model to be used when a user fills in a bid on the job form
