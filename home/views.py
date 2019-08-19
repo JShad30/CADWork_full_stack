@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.generic import ListView
 from blog.models import Post
+from jobs.models import Job
 
 # Create your views here.
 
@@ -13,7 +14,8 @@ from blog.models import Post
 #Home page rendered here. The context is imported into the render containing posts and jobs, limiting the amount of the blogs and jobs.
 def home(request):
     context = {
-		'posts': Post.objects.all()[:3]
+		'posts': Post.objects.all()[:5],
+		'jobs': Job.objects.all()[:3]
 	}
     return render(request, 'home/index.html', context)
 

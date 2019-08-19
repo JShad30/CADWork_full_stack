@@ -243,6 +243,9 @@ h1, h2, h3, h4, h5, h6 {
 .image-container {
     display: flex;
     justify-content: center;
+}
+
+.container {
     margin-top: 70px;
 }
 /*----------End of content in the pages from base.html----------*/
@@ -302,13 +305,15 @@ h1, h2, h3, h4, h5, h6 {
 /*----------Home page----------*/
 .index-container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.image-container {
+.image-header-container {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 75vh;
     position: relative;
 }
 
@@ -319,7 +324,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .slide {
     display: block;
-    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -344,16 +348,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .slide-content {
-    height: 100%;
+    min-height: 93vh;
     width: 100%;
-    min-height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.65);
-    margin-bottom: 6em;
 }
 
 .slide-content-text {
@@ -428,47 +430,121 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
 }
 
-/* Home page jobs section */
-
-/* Home page blog section */
-.home-page-blog-section {
-    padding: 10px;
-    background-color: #007bff;
-}
-
-.home-page-blog-section-container {
+/*Home page overall content*/
+.index-header-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.home-page-blog-intro {
-    margin: 20px 10px;
+.index-content-container {
     width: 90%;
     max-width: 1100px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Home page blog section */
+.home-page-jobs-section {
+    width: 100%;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #ced4da;
+    margin-bottom: 50px;
+}
+
+.index-blog-aside {
+    width: 90%;
+    max-width: 500px;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.home-page-job-section-container {
+    margin: 20px 0;
+}
+
+.index-blog-aside {
+    width: 100%;
+}
+
+.home-page-job-intro {
+
 }
 
 .home-page-section-heading {
-    color: #FAFAFA;
-    font-size: 2.7em;
-    text-shadow: 5px 5px 10px #000000;
-    margin-bottom: 20px;
+
 }
 
 .home-page-section-paragraph {
-    color: #FAFAFA;
-    font-size: 1.2em;
-    text-shadow: 5px 5px 10px #000000;
+
 }
 
-.blog-article-home-page {
-    background-color: #FAFAFA;
-    box-shadow: 5px 5px 20px #000000;
-}
-/* Home page shop section */
+.job-card-container {
 
+}
+
+.recent-post-heading {
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 1.6em;
+}
+
+.end-home-page-blog-text {
+    margin-top: 20px;
+    padding: 20px 0 0 0;
+    border-top: 0.5px solid #ced4da;
+}
+
+.end-home-page-blog-text-heading {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Home page jobs section */
+
+.home-page-job-section-container {
+
+}
+
+.home-page-job-intro {
+
+}
+
+/*Home page shop*/
+.home-page-shop-section {
+    width: 90%;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #ced4da;
+    margin-bottom: 50px;
+}
+
+.home-page-shop-container {
+    padding: 10px;
+}
+
+.home-page-shop-text {
+    padding: 10px;
+}
+
+.home-page-shop-text-header {
+    color: #007bff;
+}
+
+.home-page-shop-text-paragraph {
+
+}
 /*----------End of Home page styles ----------*/
 
 
@@ -483,7 +559,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-slide {
     display: block;
-    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -492,6 +567,7 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url('../images/architect.jpg');
 }
 
+/*Overview of site sections*/
 .about-intro-container {
     background-color: #007bff;
     min-height: 300px; 
@@ -732,10 +808,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-card-container {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .blog-article {
-    margin: 10px;
+    margin: 10px 0 20px 0;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     width: 100%;
@@ -940,6 +1018,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*---------- End of Job pages styles----------*/
+
+
+
+
+
+/*----------Delete a blog or a job post pages----------*/
+.delete-content-section {
+    min-height: 90vh;
+    margin-top: 40px;
+}
+
+.delete-post-job-header {
+    font-size: 2em;
+}
+/*----------End of the styles for the delete a post or job pages----------*/
 
 
 
@@ -1258,6 +1351,8 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*----------End of Profile page styles----------*/
 
+
+
     /*----------Blog home page----------*/
     .blog-article {
         display: flex;
@@ -1267,7 +1362,13 @@ h1, h2, h3, h4, h5, h6 {
     .blog-article img {
         width: 35%;
     }
+
+    .blog-aside{
+        max-width: 500px;
+    }
     /*----------End of Blog home page styles----------*/
+
+
 
     /*----------Shop styles----------*/
     .product {
@@ -1314,6 +1415,14 @@ h1, h2, h3, h4, h5, h6 {
     
 /*tablet screens*/
 @media(min-width: 768px) {
+
+    /*----------Home page----------*/
+    .slide-content {
+        min-height: 70vh;
+    }
+    /*----------End of home page styles----------*/
+
+
     
     /*----------About page----------*/
     .about-intro {
@@ -1392,8 +1501,8 @@ h1, h2, h3, h4, h5, h6 {
     /* Other blog links in the aside of the posts detail page */
     .blog-aside {
         width: 90%;
-        max-width: 750px;
         display: flex;
+        justify-content: flex-start;
         flex-direction: column;
         border: 0.5px solid #ced4da;
         border-radius: 5px;
@@ -1498,12 +1607,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .blog-article-content {
-        width: 68%;
+        width: 67%;
         margin-bottom: 50px;
     }
 
     .blog-aside {
-        width: 30%;
+        width: 29%;
         margin-bottom: 50px;
         margin-top: 130px;
     }

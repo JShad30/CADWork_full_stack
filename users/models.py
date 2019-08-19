@@ -5,13 +5,7 @@ from PIL import Image
 
 """This class is used for the users profile and contains all the information required for the users account"""
 class Profile(models.Model):
-    #Check when=ther username or user
-    #
-    #
-    #
-    #
-    #
-    username = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=30, default='First Name')
     lastname = models.CharField(max_length=30, default='Last Name')
     profile_intro = models.TextField(default='Default intro. Change this to tell other users a little more about yourself')
@@ -20,7 +14,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    #Resize the image as it's saved so it doesn't tke too much space. If no image given then the 'user-default.jpg' image will be used for that user.
+    #Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

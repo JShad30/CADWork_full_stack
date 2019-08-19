@@ -9,7 +9,8 @@
 	  	<img class="blog-image" src="{{ object.image.url }}">
     	<div class="main-blog-content">
 			<p class="article-intro">{{ object.intro }}</p>
-      		<p class="article-content">{{ object.content }}</p>
+			<!--'linebreaksbr' will divide the plain text inputted by the user into separate files in the content on this page-->
+      		<p class="article-content">{{ object.content|linebreaksbr }}</p>
 			<div class="article-metadata">
 				<!--If statement to display different buttons depending on which user is logged in-->
 				<!--If user on the page is the user who created the blog, the following buttons will be displayed allowing the user to update or delete the post-->

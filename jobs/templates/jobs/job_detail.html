@@ -34,11 +34,11 @@
 		<!--Large image that the user placed in the blog. If the user didn't select an image, the job-default.jpg will be displayed-->
 	  	<img class="blog-image" src="{{ job.image.url }}">
     	<div class="main-blog-content">
-			<p class="job-overview-paragraph">{{ object.job_description }}</p>
+			<!--'linebreaksbr' will divide the plain text inputted by the user into separate files in the content on this page-->
+			<p class="job-overview-paragraph">{{ object.job_description|linebreaksbr }}</p>
             <div class="job-address">
             </div>
     	</div>
-		<a class="btn btn-primary blog-link" href="{% url 'jobs-home' %}">Return to Jobs</a>
   	</article>
 
 	<!--Check whether the user is authenticated-->

@@ -65,7 +65,8 @@ def profile(request):
 	return render(request, 'users/profile.html', context)
 
 
-#Public profile view is used for other users to be able to see information about another user. Login is not required to be able to view this page
+#Public profile view is used for other users to be able to see information about another user.
+@login_required
 def public_profile(request, username):
 	context = {
 		'users': Profile,
