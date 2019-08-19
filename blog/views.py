@@ -48,7 +48,7 @@ class PostDetailView(DetailView):
 		context = super().get_context_data(**kwargs)
 		context['posts'] = Post.objects.all()[:3]
 		return context
-
+		
 
 
 #Post create class to be used in the form within the 'post_form.html'.

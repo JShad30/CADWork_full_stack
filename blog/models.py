@@ -21,14 +21,14 @@ class Post(models.Model):
 	def get_absolute_url(self):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 
-		"""The following save function resizes the images saved by the user to ensure the images do not take up more space than is needed"""
-		def save(self, *args, **kwargs):
-			super().save(*args, **kwargs)
+	#The following save function resizes the images saved by the user to ensure the images do not take up more space than is needed
+	def save(self, *args, **kwargs):
+		super().save(*args, **kwargs)
 
-			blog_image = Image.open(self.image.path)
+		blog_image = Image.open(self.image.path)
 
-			"""Check to see whether the image is larger than the standard size, if so, resize"""
-			if blog_image.width > 1200 or blog_image.height > 700:
-				output_size = (1200, 700)
-				blog_image.resize(output_size)
-				blog_image.save(self.image.path)
+		#Check to see whether the image is larger than the standard size, if so, resize
+		if blog_image.height > 700 or blog_image.width > 1200:
+			output_size = (1200, 700)
+			blog_image.thumbnail(output_size)
+			blog_image.save(self.image.path)
