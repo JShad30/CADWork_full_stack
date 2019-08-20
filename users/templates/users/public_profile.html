@@ -3,7 +3,7 @@
     <div class="profile-page-container">
 
         <div class="user-blog-header">
-            <h1 class="user-post-title">This is the profile for {{ object.user.profile.firstname }} {{ object.user.profile.lastname }} ({{ object.user.username }})</h1>
+            <h1 class="user-post-title">This is the profile for {{ user.profile.firstname }} {{ user.profile.lastname }} ({{ user.username }})</h1>
         </div>
 
         <div class="profile-job-blog">
@@ -11,10 +11,10 @@
                 <section class="profile-page-box" id="profile-profile-box">
                     <div class="profile-page-box-container">
                         <div class="profile-top-section">
-                            <img class="account-image" src="{{ object.profile.image.url }}">
+                            <img class="account-image" src="{{ user.profile.image.url }}">
                         </div>
                         <div class="user-profile-overview">
-                            <p class="account-paragraph">{{ object.profile.profile_intro }}</p>
+                            <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
                         </div>
                     </div>
                 </section>
@@ -23,21 +23,23 @@
                 <section class="profile-page-box" id="profile-blog-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
-                            <h2 class="account-heading">Blogs by {{ username }}</h2>
-                               <p class="account-paragraph">These are the three most recently uploaded blogs by {{ username }}</p>
+                            <h2 class="account-heading">Blogs by {{ user.username }}</h2>
+                               <p class="account-paragraph">These are the three most recently uploaded blogs by {{ user.username }}</p>
                         </div>
                         {% for post in posts %}
-                            <article class="profile-blog-article">
-                                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                                <div class="media-body">
-                                    <div class="article-metadata">
-                                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                                        <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                            {% if post.author == user%}
+                                <article class="profile-blog-article">
+                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                    <div class="media-body">
+                                        <div class="article-metadata">
+                                            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                                            <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                        <p class="article-card-intro">{{ post.intro }}</p>
                                     </div>
-                                    <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                                    <p class="article-card-intro">{{ post.intro }}</p>
-                                </div>
-                            </article>
+                                </article>
+                            {% endif %}
                         {% endfor %}
                         <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
                     </div>

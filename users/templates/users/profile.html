@@ -46,36 +46,42 @@
                             <h2 class="account-heading">Your Blogs</h2>
                             <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
                         </div>
+                        
                         <!--For loop to use following code for all of the blogs-->
-                        {% for post in posts %}
-                            <article class="profile-blog-article">
-                                <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                                <div class="media-body">
-                                    <div class="article-metadata">
-                                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                                        <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                        {% for post.author in posts %}
+                            <!--If statement to check whether the current user is the cretor of posts-->
+                            {% if post.author == user %}
+                                <article class="profile-blog-article">
+                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                    <div class="media-body">
+                                        <div class="article-metadata">
+                                            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                                            <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                        <p class="article-card-intro">{{ post.intro }}</p>
                                     </div>
-                                    <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                                    <p class="article-card-intro">{{ post.intro }}</p>
-                                </div>
-                            </article>
-                        {% endfor %}
-                        <!--Create blog page accessed if the following button os clicked-->
-                        <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
+                                </article>  
+                            {% endif %}      
+                        {% endfor %} 
+                        <!--Create blog page accessed if the following button is clicked-->
+                        <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>    
                     </div>
                 </section>
             </div>
 
             <div class="profile-job-column">
-
                 <!--Job section-->
                 <section class="profile-page-box" id="profile-job-upload-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
                             <h2 class="account-heading">Jobs you have Uploaded</h2>
-                            <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids.</p>
-                            <!--For loop to use following code for any jobs the user has uploaded-->
-                            {% for job in jobs %}
+                            <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids from other users.</p>
+                        </div>
+
+                        <!--For loop to use following code for any jobs the user has uploaded-->
+                        {% for job in jobs %}
+                            {% if job.author == user %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
                                     <div class="media-body">
@@ -86,9 +92,9 @@
                                         <p class="article-card-intro">{{ job.job_overview }}</p>
                                     </div>
                                 </article>
-                            {% endfor %}
-                            <a class="btn btn-primary" href="{% url 'job-create' %}">Upload New Job</a>
-                        </div>
+                            {% endif %}
+                        {% endfor %}                          
+                        <a class="btn btn-primary" href="{% url 'job-create' %}">Upload New Job</a>
                     </div>
                 </section>
 
@@ -96,20 +102,22 @@
                 <section class="profile-page-box" id="profile-job-bid-box">
                     <div class="profile-page-box-container">
                         <div class="profile-blog-intro">
-                            <h2 class="account-heading">Your Bids</h2>
+                            <h2 class="account-heading">Current active bids</h2>
                             <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
                             <!--For loop to display the jobs the user has bid on-->
                             {% for bid in bids %}
+                                {% if bid.author == user %}
                                 <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                    <img class="article-image" src="{{ bid.job.image.url }}" height="80" width="80">
                                     <div class="media-body">
                                         <div class="article-metadata">
-                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                            <small class="text-muted">{{ bid.job.date_posted|date:"dS F, Y" }}</small>
                                         </div>
-                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                        <p class="article-card-intro">{{ job.job_overview }}</p>
+                                        <h2 class="blog-home-title"><a href="#">{{ bid.job.job_name }}</a></h2>
+                                        <p class="article-card-intro">{{ bid.job.job_overview }}</p>
                                     </div>
                                 </article>
+                                {% endif %}
                             {% endfor %}
                             <a class="btn btn-primary" href="{% url 'jobs-home' %}">Search for jobs</a>
                         </div>

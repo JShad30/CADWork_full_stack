@@ -29,6 +29,11 @@ class JobListView(ListView):
 class JobDetailView(DetailView):
 	model = Job
 
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['bids'] = JobBid.objects.filter().order_by('-job_bid_amount')
+		return context
+
 
 
 #Rendering the job create form. Fields uses the fields created in the 'models.py' file

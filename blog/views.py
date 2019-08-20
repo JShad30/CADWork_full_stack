@@ -46,7 +46,7 @@ class PostDetailView(DetailView):
 	#Get the context data to be able to display other blogs from within the detail view for the aside in 'post_detail.html'.
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['posts'] = Post.objects.all()[:3]
+		context['posts'] = Post.objects.all()[:5]
 		return context
 		
 
