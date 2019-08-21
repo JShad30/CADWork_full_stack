@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
 
-"""Creating the classes for the jobs"""
+
+
 #The job model will take information when the user fills in the form.
 class Job(models.Model):
 	job_name = models.CharField(max_length=100, default='Default Project Name')
@@ -15,7 +16,7 @@ class Job(models.Model):
 	#If the user does not save an image, 'job-default.jpg' will be used
 	image = models.ImageField(default='job-default.jpg', upload_to='job_images')
 	date_posted = models.DateTimeField(default=timezone.now)
-	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	author = models.ForeignKey(User, related_name='jobs', null=False, default=1, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.job_name
@@ -35,13 +36,15 @@ class Job(models.Model):
 			job_image.save(self.image.path)
 
 
+
+"""Creating the classes for the jobs"""
 #Job bid model to be used when a user fills in a bid on the job form
 class JobBid(models.Model):
-	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2)
-	job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True)
-	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='bids')
+	author = models.ForeignKey(User, related_name='bids', null=False, default=1, on_delete=models.CASCADE)
+	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2, default=1)
 
-	def __str__(self):
+	def __int__(self):
 		return self.job_bid_amount
 
 	def get_absolute_url(self):
@@ -49,3 +52,14 @@ class JobBid(models.Model):
 
 		def save(self, *args, **kwargs):
 			super().save(*args, **kwargs)
+
+
+
+
+
+
+
+#New class to create link between job and bid
+#class JobBid(models.Model):
+	#job = models.ForeignKey(Job, on_delete=models.CASCADE)
+	#bid = models.ForeignKey(Bid, on_delete=models.CASCADE)

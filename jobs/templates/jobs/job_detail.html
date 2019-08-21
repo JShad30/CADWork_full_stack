@@ -43,47 +43,63 @@
 
 	<!--Check whether the user is authenticated-->
 	{% if user.is_authenticated %}
-		<!--If user is authenticated check whether the user created the current job-->
+
+		<!--If user is authenticated check whether the user created the current bid-->
 		{% if object.author == user %}
-			<section class="job-bids">
-				<!--Run for loop to display the jobs-->
-				{% for bid in bids %}
-					<p>{{ bid }}</p><p>{{ bid.job_bid_amount }}</p>
-				{% endfor %}
-			</section>
+
+			<aside class="job-bids-aside">
+				<!--If statement to check number of bids-->
+				<div class="job-bids-text">
+					<h3 class="job-bids-text-header">Current Bids</h3>
+					<p class="job-bids-text-paragraph">These are the bids you have currently received for you job. Press the accept button against a bid you are happy with to begin the job.</h3>
+				</div>
+					<table class="bid-table">
+						<thead class="bid-table-head">
+							<tr class="bid-table-head-row">
+								<th class="bid-table-header">Bid User</th>
+								<th class="bid-table-header">Bid Amount</th>
+								<th class="bid-table-header">Accept Bid</th>
+							</tr>
+						</thead>
+						<!--For loop to display the jobs bids-->
+						<tbody class="bid-table-body">
+							{% for bid in job.bids.all %}
+							<tr class="bid-table-row">
+								<td class="bid-table-row-value"><a href="{% url 'public_profile' user.profile.id %}">{{ bid.author }}</td>
+								<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
+								<td class="bid-table-row-value bid-table-row-value-button">
+									<button class="btn btn-primary btn-sm bid-accept-button">Accept</button>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>	
+					<p class="alert alert-primary">You do not currently have any bids on this job</p>	
+			</aside>
+
 		<!--If current user is not the creator of the job show link to creators public profile page-->
 		{% else %}
-			<section class="job-owner-info">
-				<!--Job owner profile to go here-->
-			</section>
-		{% endif %}
-	{% endif %}
-
-	<!--The aside in a jobs detail page will have an overall description about the user who posted it with a link to the public profile page-->
-	<aside class="blog-aside">
-        <div class="blog-aside-blogs">
-			<div class="blog-aside-intro-text">
-				<h2 class="blog-aside-intro-text-heading">About the job owner</h2>
-				<p class="blog-aside-intro-text-paragraph">Most recently uploaded blogs</p>
-			</div>
-			<div class="blog-card-container">
-			<!--For loop to use the following code of reach of the blogs in the list-->
-			{% for post in posts %}
-				<article class="blog-details-other">
-					<img class="article-image" src="{{ user.profile.image.url }}" height="80" width="80">
-					<div class="media-body">
-						<div class="blog-details-post-text">
-							<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-							<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+		
+			<!--The aside in a jobs detail page will have an overall description about the user who posted it with a link to the public profile page-->
+			<aside class="job-owner-info-aside">
+				<div class="profile-aside">
+					<div class="profile-top-section">
+						<img class="account-image" src="{{ job.author.profile.image.url }}">
+						<div class="profile-details">
+							<h2 class="account-heading">{{ job.author.username }}</h2>
+							<p class="account-email">Email job owner for more information: 
+							<a href="mailto:{{ job.author.email }}">{{ job.author.email }}</a></p>
 						</div>
-						<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
 					</div>
-				</article>
-			{% endfor %}
-			</div>
-			<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
-		</div>
-	</aside>
+					<div class="job-owner-info-overview">
+						<p class="account-email">{{ job.author.profile.profile_intro }}</p>
+						<a href="{% url 'public_profile' job.author.profile.id %}" class="btn btn-primary btn-sm">See users full profile</a>
+					</div>
+			</aside>
+
+		{% endif %}
+
+	{% endif %}
 	
 </div>
 {% endblock content %}
