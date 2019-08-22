@@ -65,16 +65,18 @@
 						<tbody class="bid-table-body">
 							{% for bid in job.bids.all %}
 							<tr class="bid-table-row">
-								<td class="bid-table-row-value"><a href="{% url 'public_profile' user.profile.id %}">{{ bid.author }}</td>
+								<td class="bid-table-row-value"><a href="{% url 'public_profile' bid.author.profile.id %}">{{ bid.author }}</td>
 								<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
 								<td class="bid-table-row-value bid-table-row-value-button">
 									<button class="btn btn-primary btn-sm bid-accept-button">Accept</button>
 								</td>
 							</tr>
+							{% empty %}
+							<p class="alert alert-primary">You do not currently have any bids on this job</p>	
 							{% endfor %}
 						</tbody>
 					</table>	
-					<p class="alert alert-primary">You do not currently have any bids on this job</p>	
+					
 			</aside>
 
 		<!--If current user is not the creator of the job show link to creators public profile page-->

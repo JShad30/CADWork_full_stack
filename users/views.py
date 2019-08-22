@@ -60,7 +60,7 @@ def profile(request):
 		'users': Profile,
 		'posts': Post.objects.all(),
 		'jobs': Job.objects.all(),
-		'bids': JobBid.objects.all()
+		'bids': JobBid.objects.filter()
 	}	
 
 	return render(request, 'users/profile.html', context)
@@ -68,9 +68,9 @@ def profile(request):
 
 #Public profile view is used for other users to be able to see information about another user.
 @login_required
-def public_profile(request, username):
+def public_profile(request, profile_id):
 	context = {
-		'users': Profile,
+		'profile': Profile.objects.get(id=profile_id),
 		'posts': Post.objects.all(),
 		'jobs': Job.objects.all()
 	}

@@ -48,7 +48,7 @@
                         </div>
                         
                         <!--For loop to use following code for all of the blogs-->
-                        {% for post.author in posts %}
+                        {% for post in posts %}
                             <!--If statement to check whether the current user is the cretor of posts-->
                             {% if post.author == user %}
                                 <article class="profile-blog-article">
