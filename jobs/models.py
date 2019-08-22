@@ -37,11 +37,10 @@ class Job(models.Model):
 
 
 
-
 #Job bid model to be used when a user fills in a bid on the job form
 class JobBid(models.Model):
-	job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='bids')
-	author = models.ForeignKey(User, null=False, default=1, on_delete=models.CASCADE)
+	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='bids')
+	author = models.ForeignKey(User, related_name='bids', null=False, default=1, on_delete=models.CASCADE)
 	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2, default=1)
 
 	def __int__(self):
@@ -56,8 +55,12 @@ class JobBid(models.Model):
 
 
 #Job Active class to be activated when job creator presses the 'Accept' button on a bid
-class JobActive(models.Model):
-	file_upload = models.FileField()
+class JobActiveUpload(models.Model):
+	file_name = models.CharField(max_length=100)
+	uploaded_file = models.FileField(upload_to='active_job_files')
+
+	def __str__(self):
+		return self.file_name
 
 
 

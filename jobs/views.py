@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Job, JobBid
-from .forms import BidForm
+from .forms import JobBidForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.urls import reverse
+from django.core.files.storage import FileSystemStorage
 
 """Rendering the views for the jobs pages. As with the blogs section most will be created with classes"""
 #Rendering the jobs home page. Takes context as an argument and displays all the blogs.
@@ -94,16 +95,39 @@ class JobCreateView(LoginRequiredMixin, CreateView):
 		return super().form_valid(form)
 
 
+#Function view to show the bids and assign a bid to that job
+def job_bid_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        try:
+            if (request.user.is_superuser or request.job.author is not None):
+                bids = JobBid.objects.all()
+                job = get_object_or_404(Job, pk=pk)
+                if request.method == "POST":
+                    form = JobBidForm(request.POST)
+                    if form.is_valid():
+                        bid = form.save(commit=False)
+                        bid.author = request.user
+                        bid.job = job
+                        bid.save()
+                        return redirect('job-detail', pk=job.pk)
+                else:
+                    form = JobBidForm()
 
+        except User.DoesNotExist:
+            return HttpResponseForbidden()
+
+    return render(request, 'jobs/job_confirm_bid.html', {'form': form, 'bids': bids, 'job': job})
 #Rendering the bid form, allowing the user to type a bid amount and assigning it to the specific job
-class BidCreateView(LoginRequiredMixin, CreateView):
-	model = JobBid
-	fields = ['job', 'job_bid_amount']
-	template_name = 'jobs/job_confirm_bid.html'
+#class BidCreateView(LoginRequiredMixin, CreateView):
+	#model = JobBid
+	#fields = ['job', 'job_bid_amount']
+	#template_name = 'jobs/job_confirm_bid.html'
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+	#def form_valid(self, form):
+		#form.instance.author = self.request.user
+		#return super().form_valid(form)
 
 
 
@@ -152,3 +176,19 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	#def form_valid(self, form):
 		#form.instance.author = self.request.user
 		#return super().form_valid(form)
+
+
+
+def job_active_view(request, pk):
+	return render(request, 'jobs/job_active.html')
+
+def job_upload_view(request):
+	context = {}
+	if request.method == 'POST':
+		uploaded_file = request.FILES['job_uploads']
+		job_file = FileSystemStorage()
+		job_file_name = job_file.save(uploaded_file.name, uploaded_file)
+		url = job_file.url(job_file_name)
+		context['url'] = job_file.url(job_file_name)
+	return render(request, 'jobs/job_upload.html', context)
+
