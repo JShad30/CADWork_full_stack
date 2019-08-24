@@ -1,0 +1,13 @@
+{% extends 'jobs/job_active.html' %}
+{% load crispy_forms_tags %}
+
+{% block upload_content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4">Upload Files</legend>
+        <!--Crispy form to give the form a professional appearance-->
+        {{ form|crispy }}
+        <input type='file' name='job_uploads'>
+        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+    </form>
+{% endblock upload_content %}

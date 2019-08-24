@@ -46,6 +46,7 @@ urlpatterns = [
     path('', include('home.urls')),
 ]
 
+# add static media settings to urlpatterns while in debug mode
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1017,6 +1017,79 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
 }
 
+/*Jobs details page*/
+.job-bids-aside,
+.job-owner-info-aside {
+    width: 90%;
+    max-width: 500px;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px 10px 0 10px ;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+/*Aside section for the job creators profile*/
+.job-bids-aside, .job-owner-info-aside {
+    max-width: 500px;
+}
+
+.profile-aside {
+
+}
+
+.profile-top-section {
+
+}
+
+.job-bids-text-header {
+    color: #007bff;
+}
+
+.job-bids-text-paragraph {
+    font-size: 0.8em;
+}
+
+.bid-table {
+    margin: 20px 0;
+}
+
+.bid-table-head-row {
+    margin-bottom: 20px;
+    border-bottom: 0.8px solid #ced4da;
+}
+
+.bid-table-head {
+    font-size: 0.9em;
+}
+
+.bid-table-header {
+    margin-bottom: 20px;
+}
+
+.bid-table-row-value {
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid #ced4da;
+
+}
+
+.bid-table-row-value-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.job-owner-info-overview {
+    margin: 10px 0;
+}
+
+
 /*---------- End of Job pages styles----------*/
 
 
@@ -1621,6 +1694,15 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.8em;
     }
     /*----------End of blog pages----------*/
+
+    /*----------Job details page----------*/
+    .job-owner-info-aside,
+    .job-bids-aside {
+        width: 29%;
+        margin-bottom: 50px;
+        margin-top: 130px;
+    }
+    /*----------End of Job details page styles----------*/
 
     /*----------Shop styles----------*/
     .product {

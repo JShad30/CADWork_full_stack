@@ -65,9 +65,7 @@
 							<tr class="bid-table-row">
 								<td class="bid-table-row-value"><a href="{% url 'public_profile' bid.author.profile.id %}">{{ bid.author }}</td>
 								<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
-								<td class="bid-table-row-value bid-table-row-value-button">
-									<button class="btn btn-primary btn-sm bid-accept-button">Accept</button>
-								</td>
+								<td class="bid-table-row-value bid-table-row-value-button"><a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-bid-accept' object.id %}">Accept</a></td>
 							</tr>
 							{% empty %}
 							<p class="alert alert-primary">You do not currently have any bids on this job</p>	
@@ -95,6 +93,7 @@
 						<p class="account-email">{{ job.author.profile.profile_intro }}</p>
 						<a href="{% url 'public_profile' job.author.profile.id %}" class="btn btn-primary btn-sm">See users full profile</a>
 					</div>
+				</div>
 			</aside>
 
 		{% endif %}
