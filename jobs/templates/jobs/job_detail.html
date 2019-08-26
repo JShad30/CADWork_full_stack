@@ -51,28 +51,27 @@
 					<h3 class="job-bids-text-header">Current Bids</h3>
 					<p class="job-bids-text-paragraph">These are the bids you have currently received for you job. Press the accept button against a bid you are happy with to begin the job.</h3>
 				</div>
-					<table class="bid-table">
-						<thead class="bid-table-head">
-							<tr class="bid-table-head-row">
-								<th class="bid-table-header">Bid User</th>
-								<th class="bid-table-header">Bid Amount</th>
-								<th class="bid-table-header">Accept Bid</th>
-							</tr>
-						</thead>
-						<!--For loop to display the jobs bids-->
-						<tbody class="bid-table-body">
-							{% for bid in job.bids.all %}
-							<tr class="bid-table-row">
-								<td class="bid-table-row-value"><a href="{% url 'public_profile' bid.author.profile.id %}">{{ bid.author }}</td>
-								<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
-								<td class="bid-table-row-value bid-table-row-value-button"><a class="btn btn-primary btn-sm mt-1 mb-1" href="">Accept</a></td>
-							</tr>
-							{% empty %}
-							<p class="alert alert-primary">You do not currently have any bids on this job</p>	
-							{% endfor %}
-						</tbody>
-					</table>	
-					
+				<table class="bid-table">
+					<thead class="bid-table-head">
+						<tr class="bid-table-head-row">
+							<th class="bid-table-header">Bid User</th>
+							<th class="bid-table-header">Bid Amount</th>
+							<th class="bid-table-header">Accept Bid</th>
+						</tr>
+					</thead>
+					<!--For loop to display the jobs bids-->
+					<tbody class="bid-table-body">
+						{% for bid in job.bids.all %}
+						<tr class="bid-table-row">
+							<td class="bid-table-row-value"><a href="{% url 'public_profile' bid.author.profile.id %}">{{ bid.author }}</td>
+							<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
+							<td class="bid-table-row-value bid-table-row-value-button"><a class="btn btn-primary btn-sm mt-1 mb-1" href="">Accept</a></td>
+						</tr>
+						{% empty %}
+						<p class="alert alert-primary">You do not currently have any bids on this job</p>	
+						{% endfor %}
+					</tbody>
+				</table>						
 			</aside>
 
 		<!--If current user is not the creator of the job show link to creators public profile page-->
@@ -109,12 +108,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for file in job.files.all %}
+					{% for uploaded_file in job.uploaded_files.all %}
 					<tr class="job-uploaded-file-table-row">
-						<th class="job-uploaded-file-table-header">{{ file.file_name }}</th>
-						<th class="job-uploaded-file-table-header">{{ file.author }}</th>
+						<th class="job-uploaded-file-table-header">{{ uploaded_file.file_name }}</th>
+						<th class="job-uploaded-file-table-header">{{ uploaded_file.author }}</th>
 						<th class="job-uploaded-file-table-header">
-							<a class="btn btn-sm btn-primary" href="{{ file.uploaded_file }}">Download File</a>
+							<a class="btn btn-sm btn-primary" href="{{ uploaded_file.uploaded_file }}">Download File</a>
 						</th>
 					</tr>
 					{% endfor %}
