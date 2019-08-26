@@ -1,13 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Job, JobBid#, JobBidAccept
-from .forms import JobBidForm
+from .models import Job, JobBid, JobFileUpload
+from .forms import JobBidForm, JobFileUploadForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
+
 
 
 """Rendering the views for the jobs pages. As with the blogs section most will be created with classes"""
@@ -37,8 +39,42 @@ class JobDetailView(DetailView):
 	#Get the context data to be able to display other blogs from within the detail view for the aside in 'post_detail.html'.
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['job.bids'] = JobBid.objects.all()
+		context['job.files'] = JobFileUpload.objects.all()
 		return context
+
+
+
+#Enable users to be able to upload files to a job
+class FileUploadView(CreateView):
+	odel = JobFileUpload
+	form_class = JobFileUploadForm
+	success_url = reverse_lazy('job-detail')
+	template_name = 'jobs/job_upload.html'
+
+#Function view to show the bids and assign a bid to that job
+#def job_upload_view(request, pk):
+    #if not request.user.is_authenticated:
+        #return redirect('login')
+    #else:
+        #try:
+            #if (request.user.is_authenticated):
+                #files = JobFileUpload.objects.all()
+                #job = get_object_or_404(Job, pk=pk)
+                #if request.method == "POST":
+                   #form = JobFileUploadForm(request.POST)
+                    #if form.is_valid():
+                        #file = form.save(commit=False)
+                        #file.author = request.user
+                        #file.job = job
+                        #file.save()
+                        #return redirect('job-detail', pk=job.pk)
+                #else:
+                    #form = JobFileUploadForm()
+
+        #except User.DoesNotExist:
+            #return HttpResponseForbidden()
+
+    #return render(request, 'jobs/job_upload.html', {'form': form, 'files': files, 'job': job})
 
 
 
@@ -128,26 +164,3 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			#return True
 		#else:
 			#return False
-
-
-def job_accept_view(request, pk):
-	return render(request, 'jobs/job_accept_bid.html')
-
-
-
-#Function to create the 
-def job_active_view(request, pk):
-	return render(request, 'jobs/job_active.html')
-
-
-
-def job_upload_view(request):
-	context = {}
-	if request.method == 'POST':
-		uploaded_file = request.FILES['job_uploads']
-		job_file = FileSystemStorage()
-		job_file_name = job_file.save(uploaded_file.name, uploaded_file)
-		url = job_file.url(job_file_name)
-		context['url'] = job_file.url(job_file_name)
-	return render(request, 'jobs/job_upload.html', context)
-

@@ -54,22 +54,12 @@ class JobBid(models.Model):
 
 
 
-#Form for the accept button for the bids on the jobs pages
-#class JobBidAccept(models.Model):
-	#job = models.ForeignKey(Job, null=False, on_delete=models.CASCADE, related_name='job')
-	#job_owner = models.ForeignKey(Job, null=False, on_delete=models.CASCADE, related_name='job_author')
-	#jobbid_owner = models.ForeignKey(JobBid, null=False, on_delete=models.CASCADE, related_name='jobbid_author')
-	#job_price = models.ForeignKey(JobBid, null=False, on_delete=models.CASCADE, related_name='bid')
-
-	#def __str__(self):
-		#return self.job_price
-
-
-
 #Form to handle the upload of files on the Active Job pages
-class JobActiveUpload(models.Model):
+class JobFileUpload(models.Model):
 	file_name = models.CharField(max_length=100)
-	uploaded_file = models.FileField(upload_to='active_job_files')
+	uploaded_file = models.FileField(upload_to='job_files')
+	author = models.ForeignKey(User, max_length=100, null=False, default=1, on_delete=models.CASCADE)
+	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.file_name
