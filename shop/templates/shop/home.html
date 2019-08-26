@@ -26,6 +26,7 @@
                         <!--Form that allows the user to specify an amount. The add button adds that quantity to the users cart-->
                         <form method="POST" action="{% url 'add_to_cart' product.id %}" >
                             {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}"/>
                             <div class="input-group">
                                 <input name="quantity" type="number" min="1" max="999" class="form-control product-input" placeholder="Quantity">
                                 <span class="input-group-btn">

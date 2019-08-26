@@ -8,27 +8,28 @@ def home(request):
 
 
 #Function to add the quantities of products
-def add_to_cart(request, id):
+def add_to_cart(request, pk):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
-    if id in cart:
-        cart[id] = int(cart[id]) + quantity
+    if pk in cart:
+        cart[pk] = int(cart[pk]) + quantity
     else:
-        cart[id] = cart.get(id, quantity)
+        cart[pk] = cart.get(pk, quantity)
     request.session['cart'] = cart
     return redirect(reverse('cart-home'))
 
 
 
 #Function in the cart to allow the user to be able to change the quantity in the cart.
-def adjust_cart(request, id):
+def adjust_cart(request, pk):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     #If statement to check the quantity of products. If they are 0 product to be removed from the cart page.
     if quantity > 0:
-        cart[id] = quantity
+        cart[pk] = quantity
     else:
-        cart.pop(id)
+        #cart.pop(pk)
+        cart[pk] = 0
 
     request.session['cart'] = cart
     return redirect(reverse('cart-home'))

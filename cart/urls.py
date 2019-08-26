@@ -7,5 +7,5 @@ urlpatterns = [
     #path('add/^(?P<id>\d+)/', add_to_cart, name='add_to_cart'),
     path('add/<int:pk>/', add_to_cart, name='add_to_cart'),
     #path('adjust/^(?P<id>\d+)/', adjust_cart, name='adjust_cart'),
-    path('adjust/<int:pk>/', adjust_cart, name='adjust_cart'),
+    path('adjust/<int:pk>/', adjust_cart, name='adjust_cart')
 ]
