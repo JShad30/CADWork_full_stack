@@ -44,37 +44,30 @@ class JobDetailView(DetailView):
 
 
 
-#Enable users to be able to upload files to a job
-class FileUploadView(CreateView):
-	odel = JobFileUpload
-	form_class = JobFileUploadForm
-	success_url = reverse_lazy('job-detail')
-	template_name = 'jobs/job_upload.html'
-
 #Function view to show the bids and assign a bid to that job
-#def job_upload_view(request, pk):
-    #if not request.user.is_authenticated:
-        #return redirect('login')
-    #else:
-        #try:
-            #if (request.user.is_authenticated):
-                #files = JobFileUpload.objects.all()
-                #job = get_object_or_404(Job, pk=pk)
-                #if request.method == "POST":
-                   #form = JobFileUploadForm(request.POST)
-                    #if form.is_valid():
-                        #file = form.save(commit=False)
-                        #file.author = request.user
-                        #file.job = job
-                        #file.save()
-                        #return redirect('job-detail', pk=job.pk)
-                #else:
-                    #form = JobFileUploadForm()
+def job_upload_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        try:
+            if (request.user.is_authenticated):
+                files = JobFileUpload.objects.all()
+                job = get_object_or_404(Job, pk=pk)
+                if request.method == "POST":
+                    form = JobFileUploadForm(request.POST, request.FILES)
+                    if form.is_valid():
+                        file = form.save(commit=False)
+                        file.author = request.user
+                        file.job = job
+                        file.save()
+                        return redirect('job-detail', pk=job.pk)
+                else:
+                    form = JobFileUploadForm()
 
-        #except User.DoesNotExist:
-            #return HttpResponseForbidden()
+        except User.DoesNotExist:
+            return HttpResponseForbidden()
 
-    #return render(request, 'jobs/job_upload.html', {'form': form, 'files': files, 'job': job})
+    return render(request, 'jobs/job_upload.html', {'form': form, 'files': files, 'job': job})
 
 
 
