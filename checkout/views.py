@@ -18,7 +18,7 @@ def home(request):
         o_form = OrderForm(request.POST)
         p_form = MakePaymentForm(request.POST)
 
-        #Check that both formas are valid
+        #Check that both forms are valid
         if o_form.is_valid() and p_form.is_valid():
             order = o_form.save(commit=False)
             order.date = timezone.now()
@@ -50,7 +50,7 @@ def home(request):
             if customer.paid:
                 messages.error(request, 'Your payment has been successfully processed')
                 request.session['cart'] = {}
-                return redirect(reverse('shop-home'))
+                return redirect('shop-home')
             else:
                 messages.error(request, 'We were unable to accept your payment')
 
