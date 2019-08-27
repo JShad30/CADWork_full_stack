@@ -28,7 +28,7 @@ class Post(models.Model):
 		blog_image = Image.open(self.image.path)
 
 		#Check to see whether the image is larger than the standard size, if so, resize
-		if blog_image.height > 700 or blog_image.width > 1200:
+		if blog_image.height != 700 or blog_image.width != 1200:
 			output_size = (1200, 700)
 			blog_image.thumbnail(output_size)
 			blog_image.save(self.image.path)

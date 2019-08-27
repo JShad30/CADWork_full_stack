@@ -21,7 +21,7 @@
                         <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
                     </div>                    
                     <h2 class="blog-home-title"><a class="mt-3" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                    <p class="article-card-intro">{{ post.intro }}</p>
+                    <p class="article-card-intro">{{ post.intro|truncatewords:20 }}</p>
                     <a class="mt-3" href="{% url 'post-detail' post.id %}">Read More...</a>
                 </div>
             </article>

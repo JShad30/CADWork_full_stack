@@ -30,7 +30,7 @@ class Job(models.Model):
 
 		job_image = Image.open(self.image.path)
 
-		if job_image.width > 1200 or job_image.height > 700:
+		if job_image.width != 1200 or job_image.height != 700:
 			output_size = (1200, 700)
 			job_image.resize(output_size)
 			job_image.save(self.image.path)
@@ -58,8 +58,8 @@ class JobBid(models.Model):
 class JobFileUpload(models.Model):
 	file_name = models.CharField(max_length=100)
 	uploaded_file = models.FileField(upload_to='job_files')
-	author = models.ForeignKey(User, max_length=100, null=False, default=1, on_delete=models.CASCADE)
-	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE)
+	author = models.ForeignKey(User, max_length=100, related_name='files', null=False, default=1, on_delete=models.CASCADE)
+	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='files')
 
 	def __str__(self):
 		return self.file_name

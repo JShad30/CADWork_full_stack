@@ -59,7 +59,7 @@
                                             <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
                                         </div>
                                         <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                                        <p class="article-card-intro">{{ post.intro }}</p>
+                                        <p class="article-card-intro">{{ post.intro|truncatewords:20 }}</p>
                                     </div>
                                 </article>  
                             {% endif %}      

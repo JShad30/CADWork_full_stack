@@ -355,7 +355,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0, 0, 0, 0.55);
 }
 
 .slide-content-text {
@@ -448,49 +448,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Home page blog section */
-.home-page-jobs-section {
-    width: 100%;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #ced4da;
-    margin-bottom: 50px;
-}
-
 .index-blog-aside {
     width: 90%;
-    max-width: 500px;
-    max-width: 750px;
     display: flex;
     flex-direction: column;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px 20px 20px 20px;
     margin-bottom: 50px;
     box-sizing: border-box;
     box-shadow: 5px 5px 10px #ced4da;
 }
 
-.home-page-job-section-container {
-    margin: 20px 0;
-}
-
 .index-blog-aside {
     width: 100%;
 }
 
-.home-page-job-intro {
 
-}
 
 .home-page-section-heading {
 
 }
 
 .home-page-section-paragraph {
-
-}
-
-.job-card-container {
 
 }
 
@@ -512,9 +492,56 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Home page jobs section */
+.home-page-job-section {
+    width: 100%;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #ced4da;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
 
 .home-page-job-section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 10px 20px 20px 20px;
+}
 
+.home-page-job-intro {
+    margin: 20px 0;
+}
+
+.job-article-home-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: none;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.job-article-home-page img {
+    width: 100%;
+    height: auto;
+}
+
+.job-author-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-page-section-heading {
+    color: #007bff;
+    font-size: 2.5rem;
+}
+
+.job-home-title {
+    margin-bottom: 10px;
 }
 
 .home-page-job-intro {
@@ -523,7 +550,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Home page shop*/
 .home-page-shop-section {
-    width: 90%;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     box-shadow: 5px 5px 10px #ced4da;
@@ -531,11 +557,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home-page-shop-container {
-    padding: 10px;
+    padding: 20px;
 }
 
 .home-page-shop-text {
-    padding: 10px;
+    padding: 0 10px;
 }
 
 .home-page-shop-text-header {
@@ -917,6 +943,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-aside-intro-text-heading {
     color: #007bff;
+    font-size: 2.5rem;
+}
+
+.blog-details-post-text {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
 }
 
 .blog-details-other {
@@ -963,7 +997,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .job-upload {
-    margin: 10px;
+    margin: 10px 0;
     border: 0.5px solid #ced4da;
     border-radius: 5px;
     width: 100%;
@@ -972,7 +1006,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .job-home-title {
     color: #007bff;
-    font-size: 2.3em;
+    font-size: 2em;
+}
+
+.job-card-container {
+    width: 100%;
 }
 
 .article-card-intro {
@@ -1018,7 +1056,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Jobs details page*/
-.job-bids-aside,
 .job-owner-info-aside {
     width: 90%;
     max-width: 500px;
@@ -1034,51 +1071,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Aside section for the job creators profile*/
-.job-bids-aside, .job-owner-info-aside {
+.job-owner-info-aside {
     max-width: 500px;
 }
 
-.profile-aside {
-
-}
-
-.profile-top-section {
-
-}
-
-.job-bids-text-header {
+.job-uploads-text-header {
     color: #007bff;
 }
 
-.job-bids-text-paragraph {
+.job-upload-text-paragraph {
     font-size: 0.8em;
 }
 
-.bid-table {
+.upload-table {
     margin: 20px 0;
 }
 
-.bid-table-head-row {
+.upload-table-head-row {
     margin-bottom: 20px;
     border-bottom: 0.8px solid #ced4da;
 }
 
-.bid-table-head {
+.upload-table-head {
     font-size: 0.9em;
 }
 
-.bid-table-header {
+.upload-table-header {
     margin-bottom: 20px;
 }
 
-.bid-table-row-value {
+.upload-table-row-value {
     font-size: 0.8em;
     margin-bottom: 10px;
     border-bottom: 0.5px solid #ced4da;
 
 }
 
-.bid-table-row-value-button {
+.upload-table-row-value-button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1402,7 +1431,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .article-card-intro-top {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .article-card-intro-top img {
@@ -1426,7 +1455,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-    /*----------Blog home page----------*/
+    /*----------Blog page----------*/
     .blog-article {
         display: flex;
         flex-direction: row;
@@ -1435,11 +1464,7 @@ h1, h2, h3, h4, h5, h6 {
     .blog-article img {
         width: 35%;
     }
-
-    .blog-aside{
-        max-width: 500px;
-    }
-    /*----------End of Blog home page styles----------*/
+    /*----------End of Blog page styles----------*/
 
 
 
@@ -1492,6 +1517,30 @@ h1, h2, h3, h4, h5, h6 {
     /*----------Home page----------*/
     .slide-content {
         min-height: 70vh;
+    }
+
+    /*Home page jobs section*/
+    .job-card-container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px 0;
+    }
+
+    .job-article-home-page {
+        display: flex;
+        width: 46%;
+    }
+
+    /*Blog section on home page*/
+    .blog-card-container-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .blog-details-other {
+        width: 48%;
     }
     /*----------End of home page styles----------*/
 
@@ -1661,6 +1710,34 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*End of social link bar display*/
     /*----------End of Navbar in laptop and desktop views-----------*/
+
+    /* Home page jobs section */
+    .blog-jobs-large-screen-display {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .blog-aside-intro-text {
+        margin: 20px 0;
+    }
+
+    .home-page-job-section {
+        width: 66%;
+    }
+
+    .index-blog-aside {
+        width: 31%;
+    }
+
+    .blog-card-container-cards {
+        flex-direction: column;
+    }
+
+    .blog-details-other {
+        width: 100%;
+    }
+    /*End of home page section*/
 
 
 

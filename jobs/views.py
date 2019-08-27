@@ -36,10 +36,10 @@ class JobListView(ListView):
 class JobDetailView(DetailView):
 	model = Job
 
-	#Get the context data to be able to display other blogs from within the detail view for the aside in 'post_detail.html'.
+	#Get the context data to be able to display other blogs from within the detail view for the uploaded files in 'job_detail.html'.
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['job.files'] = JobFileUpload.objects.all()
+		context['uploaded_files'] = JobFileUpload.objects.all()
 		return context
 
 
@@ -51,15 +51,15 @@ def job_upload_view(request, pk):
     else:
         try:
             if (request.user.is_authenticated):
-                files = JobFileUpload.objects.all()
+                uploaded_files = JobFileUpload.objects.all()
                 job = get_object_or_404(Job, pk=pk)
                 if request.method == "POST":
                     form = JobFileUploadForm(request.POST, request.FILES)
                     if form.is_valid():
-                        file = form.save(commit=False)
-                        file.author = request.user
-                        file.job = job
-                        file.save()
+                        uploaded_file = form.save(commit=False)
+                        uploaded_file.author = request.user
+                        uploaded_file.job = job
+                        uploaded_file.save()
                         return redirect('job-detail', pk=job.pk)
                 else:
                     form = JobFileUploadForm()
@@ -67,7 +67,7 @@ def job_upload_view(request, pk):
         except User.DoesNotExist:
             return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_upload.html', {'form': form, 'files': files, 'job': job})
+    return render(request, 'jobs/job_upload.html', {'form': form, 'uploaded_files': uploaded_files, 'job': job})
 
 
 
@@ -142,18 +142,3 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		else:
 			return False
-
-
-
-#class JobBidAcceptView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-	#model = JobBidAccept
-	#success_url = '/profile'
-	#fields = ['job_name']
-
-	#Stop a user from being able to access another users post
-	#def test_func(self):
-		#job = self.get_object()
-		#if self.request.user == job.author:
-			#return True
-		#else:
-			#return False

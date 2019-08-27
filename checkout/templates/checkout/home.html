@@ -28,7 +28,7 @@
     <!--Section that contains the payment form-->
 	<div class="payment-form-section">
         <!--Form where the user can pay for the products-->
-        <form role="form"method="post", id="payment-form", action="{% url 'shop-home' %}">
+        <form role="form" method="post", id="payment-form", action="{% url 'shop-home' %}">
         {% csrf_token %}
             <div id="credit-card-errors">
                 <div class="alert-message block-message-error" id="stripe-error-message"></div>

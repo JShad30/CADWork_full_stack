@@ -50,7 +50,7 @@ def home(request):
             if customer.paid:
                 messages.error(request, 'Your payment has been successfully processed')
                 request.session['cart'] = {}
-                return redirect('shop-home')
+                return redirect('profile')
             else:
                 messages.error(request, 'We were unable to accept your payment')
 
