@@ -38,25 +38,26 @@ class Job(models.Model):
 
 
 #Job bid model to be used when a user fills in a bid on the job form
-class JobBid(models.Model):
-	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='bids')
-	author = models.ForeignKey(User, related_name='bids', null=False, default=1, on_delete=models.CASCADE)
-	job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2, default=1)
+#class JobBid(models.Model):
+	#job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='bids')
+	#author = models.ForeignKey(User, related_name='bids', null=False, default=1, on_delete=models.CASCADE)
+	#job_bid_amount = models.DecimalField(max_digits=7, decimal_places=2, default=1)
 
-	def __int__(self):
-		return self.job_bid_amount
+	#def __int__(self):
+		#return self.job_bid_amount
 
-	def get_absolute_url(self):
-		return reverse('jobs-home')
+	#def get_absolute_url(self):
+		#return reverse('jobs-home')
 
-		def save(self, *args, **kwargs):
-			super().save(*args, **kwargs)
+		#def save(self, *args, **kwargs):
+			#super().save(*args, **kwargs)
 
 
 
 #Form to handle the upload of files on the Active Job pages
 class JobFileUpload(models.Model):
 	file_name = models.CharField(max_length=100)
+	file_price = models.DecimalField(max_digits=7, decimal_places=2, default=10)
 	uploaded_file = models.FileField(upload_to='job_files')
 	author = models.ForeignKey(User, max_length=100, related_name='files', null=False, default=1, on_delete=models.CASCADE)
 	job = models.ForeignKey('jobs.Job', on_delete=models.CASCADE, related_name='files')

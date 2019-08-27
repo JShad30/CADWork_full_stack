@@ -3,9 +3,10 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Job, JobBid, JobFileUpload
-from .forms import JobBidForm, JobFileUploadForm
+from .models import Job, JobFileUpload#JobBid, 
+from .forms import JobFileUploadForm#JobBidForm, 
 from django.http import HttpResponseForbidden, HttpResponse
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
@@ -45,6 +46,7 @@ class JobDetailView(DetailView):
 
 
 #Function view to show the bids and assign a bid to that job
+@login_required
 def job_upload_view(request, pk):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -83,37 +85,36 @@ class JobCreateView(LoginRequiredMixin, CreateView):
 
 
 #Function view to show the bids and assign a bid to that job
-def job_bid_view(request, pk):
-    if not request.user.is_authenticated:
-        return redirect('login')
-    else:
-        try:
-            if (request.user.is_authenticated):
-                bids = JobBid.objects.all()
-                job = get_object_or_404(Job, pk=pk)
-                if request.method == "POST":
-                    form = JobBidForm(request.POST)
-                    if form.is_valid():
-                        bid = form.save(commit=False)
-                        bid.author = request.user
-                        bid.job = job
-                        bid.save()
-                        return redirect('job-detail', pk=job.pk)
-                else:
-                    form = JobBidForm()
+#def job_bid_view(request, pk):
+    #if not request.user.is_authenticated:
+        #return redirect('login')
+    #else:
+        #try:
+            #if (request.user.is_authenticated):
+                #bids = JobBid.objects.all()
+                #job = get_object_or_404(Job, pk=pk)
+                #if request.method == "POST":
+                    #form = JobBidForm(request.POST)
+                    #if form.is_valid():
+                        #bid = form.save(commit=False)
+                        #bid.author = request.user
+                        #bid.job = job
+                        #bid.save()
+                        #return redirect('job-detail', pk=job.pk)
+                #else:
+                    #form = JobBidForm()
 
-        except User.DoesNotExist:
-            return HttpResponseForbidden()
+        #except User.DoesNotExist:
+            #return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_confirm_bid.html', {'form': form, 'bids': bids, 'job': job})
+    #return render(request, 'jobs/job_confirm_bid.html', {'form': form, 'bids': bids, 'job': job})
 
 
 
-#Job update form is the same as the create form. Existing information wil be already included in the form
+#Job update form is the same as the create form. Existing information will be already included in the form
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Job
-	#Only the name and image can be changed as it would be unfair for the user to be able to update the job, while they were already taking bids from other users.
-	fields = ['job_name', 'image']
+	fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
 		
 	def form_valid(self, form):
 		form.instance.author = self.request.user
@@ -142,3 +143,59 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		else:
 			return False
+
+
+#View for the uploaded files checkout in jobs"""
+@login_required
+def job_checkout(request):
+    if request.method == 'POST':
+        o_form = OrderForm(request.POST)
+        p_form = MakePaymentForm(request.POST)
+
+        #Check that both forms are valid
+        if o_form.is_valid() and p_form.is_valid():
+            order = o_form.save(commit=False)
+            order.date = timezone.now()
+            order.save()
+
+            uploaded_files = request.session.get('jobs', {})
+            total = uploaded_file.file_price
+
+            for id, quantity in uploaded_files.items():
+                uploade = get_object_or_404(JobFileUpload, pk=id)
+                total += quantity * product.product_price
+                order_line_item = OrderLineItem(
+                    order = order,
+                    product = product,
+                    quantity = 1
+                )
+                order_line_item.save()
+
+            try:
+                customer = stripe.Charge.create(
+                    amount = int(total * 100),
+                    currency = 'GBP',
+                    description = request.user.email,
+                    card = p_form.cleaned_data['stripe_id'],
+                )
+            except stripe.error.CardError:
+                messages.error(request, 'Your card has been declined')
+
+            #If statement to determine which message to print
+            if customer.paid:
+                messages.error(request, 'Your payment has been successfully processed')
+                request.session['cart'] = {}
+                return redirect('profile')
+            else:
+                messages.error(request, 'We were unable to accept your payment')
+
+        #Message to print of forms are not valid
+        else:
+            print(p_form.errors)
+            messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
+    
+    else:
+        p_form = MakePaymentForm()
+        o_form = OrderForm()
+
+    return render(request, 'checkout/job-checkout.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})

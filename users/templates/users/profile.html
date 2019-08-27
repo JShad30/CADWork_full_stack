@@ -105,44 +105,21 @@
                             <h2 class="account-heading">Current active bids</h2>
                             <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
                             <!--For loop to display the jobs the user has bid on-->
-                            {% for bid in bids %}
-                                {% if bid.author == user %}
+                            {% for uploaded_file in uploaded_files %}
+                                {% if uploaded_file.author == user %}
                                 <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ bid.job.image.url }}" height="80" width="80">
+                                    <img class="article-image" src="{{ uploaded_file.job.image.url }}" height="80" width="80">
                                     <div class="media-body">
                                         <div class="article-metadata">
-                                            <small class="text-muted">{{ bid.job.date_posted|date:"dS F, Y" }}</small>
+                                            <small class="text-muted">{{ uploaded_file.job.date_posted|date:"dS F, Y" }}</small>
                                         </div>
-                                        <h2 class="blog-home-title"><a href="#">{{ bid.job.job_name }}</a></h2>
-                                        <p class="article-card-intro">{{ bid.job.job_overview }}</p>
+                                        <h2 class="blog-home-title"><a href="#">{{ uploaded_file.job.job_name }}</a></h2>
+                                        <p class="article-card-intro">{{ uploaded_file.job.job_overview }}</p>
                                     </div>
                                 </article>
                                 {% endif %}
                             {% endfor %}
                             <a class="btn btn-primary" href="{% url 'jobs-home' %}">Search for jobs</a>
-                        </div>
-                    </div>
-                </section>
-
-                <!--The following section is to display any jobs that are live, i.e. The creator has chosen a winning bid and the job has officially begun-->
-                <section class="profile-page-box" id="profile-job-bid-box">
-                    <div class="profile-page-box-container">
-                        <div class="profile-blog-intro">
-                            <h2 class="account-heading">Live Jobs</h2>
-                            <p class="account-paragraph">See below the jobs you currently have active.</p>
-                            <!--For loop to use the following code to display active jobs-->
-                            {% for active_job in active_jobs %}
-                                <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                                    <div class="media-body">
-                                        <div class="article-metadata">
-                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
-                                        </div>
-                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                        <p class="article-card-intro">{{ job.job_overview }}</p>
-                                    </div>
-                                </article>
-                            {% endfor %}
                         </div>
                     </div>
                 </section>

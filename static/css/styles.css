@@ -996,14 +996,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.5em;
 }
 
-.job-upload {
-    margin: 10px 0;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    width: 100%;
-    box-shadow: 5px 5px 10px #ced4da;
-}
-
 .job-home-title {
     color: #007bff;
     font-size: 2em;
@@ -1075,8 +1067,24 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 500px;
 }
 
-.job-uploads-text-header {
+/*Job upload files aside*/
+
+.job-upload-files-aside {
+    margin: 10px 0 50px 0;
+    padding: 10px;
+    border: 0.5px solid #ced4da;
+    border-radius: 5px;
+    width: 90%;
+    box-shadow: 5px 5px 10px #ced4da;
+}
+
+.job-file-upload-aside-header {
     color: #007bff;
+    margin-bottom: 20px;
+}
+
+.job-file-upload-aside-paragraph {
+    font-size: 0.8em;
 }
 
 .job-upload-text-paragraph {
@@ -1085,6 +1093,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .upload-table {
     margin: 20px 0;
+}
+
+.upload-table-row {
+    height: 50px;
+}
+
+.job-uploaded-file-table-head {
+    border-bottom: 0.5px solid #ced4da;
+}
+
+.job-uploaded-file-table-header {
+    font-size: 0.9em;
+    padding-bottom: 20px;
+}
+
+.job-uploaded-file-table {
+    width: 100%;
 }
 
 .upload-table-head-row {
@@ -1114,11 +1139,18 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+.job-upload-button {
+    margin: 20px 0 0 0;
+}
+
+.file-pay-button {
+    font-size: 0.8em;
+    width: 100%;
+}
+
 .job-owner-info-overview {
     margin: 10px 0;
 }
-
-
 /*---------- End of Job pages styles----------*/
 
 
@@ -1774,7 +1806,7 @@ h1, h2, h3, h4, h5, h6 {
 
     /*----------Job details page----------*/
     .job-owner-info-aside,
-    .job-bids-aside {
+    .job-upload-files-aside {
         width: 29%;
         margin-bottom: 50px;
         margin-top: 130px;

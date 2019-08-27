@@ -10,7 +10,7 @@
     </div>
 
     <!--Container for the jobs cards-->
-    <div class="jobs-card-container">
+    <div class="job-card-container">
         <!--For loop to use following code for all the job cards-->
         {% for job in jobs %}
             <article class="job-upload">
@@ -18,15 +18,15 @@
                     <img class="job-image" src="{{ job.image.url }}">
                     <div class="media-body">
                         <div class="article-metadata">
-                            <h2 class="job-home-title">{{ job.job_name }}</h2>
+                            <h2 class="job-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
                             <p class="article-card-intro-author">Job uploaded by {{ job.author }}</a></p>
                             <p class="article-card-intro-date">{{ job.date_posted|date:"dS F, Y" }}<p>
                         </div>
                     </div>
                 </div>
                 <div class="article-card-intro-description">
-                    <p class="article-card-intro-paragraph ml-1">{{ job.job_description }}</p>
-                    <a class="btn btn-primary btn-block job-more-info" href="{% url 'job-detail' job.id %}">More Info</a>
+                    <p class="article-card-intro-paragraph ml-1">{{ job.job_description|truncatewords:20 }}</p>
+                    <a class="btn btn-primary job-more-info" href="{% url 'job-detail' job.id %}">Visit Job</a>
                 </div>
             </article>
         {% endfor %}

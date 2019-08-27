@@ -21,13 +21,13 @@
 				<!--If user is authenticated but not the creator of the job-->
 				{% else %}
 					<div class="mt-3 mb-3">
-						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-bid' object.id %}">Bid on this job</a>
+						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a file</a>
 					</div>
 				{% endif %}
 			<!--If the user is not authenticated the following will be displayed-->
 			{% else %}
 				<div class="mt-3 mb-3">
-						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-bid' object.id %}">Log in to bid</a>
+						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a File</a>
 					</div>
 			{% endif %}
       	</div>
@@ -42,40 +42,36 @@
 	<!--Check whether the user is authenticated-->
 	{% if user.is_authenticated %}
 
-		<!--If user is authenticated check whether the user created the current bid-->
 		{% if object.author == user %}
+		<aside class="job-upload-files-aside">
+			<h3 class="job-file-upload-aside-header">Uploaded Files</h3>
+			<p class="job-file-upload-aside-paragraph">The following files have been uploaded by users. Click on the price to purchase this file.</p>
+			<table class="job-uploaded-file-table">
+				<thead class="job-uploaded-file-table-head">
+					<tr class="job-uploaded-file-table-row">
+						<th class="job-uploaded-file-table-header">File Name</th>
+						<th class="job-uploaded-file-table-header">Uploaded By</th>
+						<th class="job-uploaded-file-table-header">Price</th>
+					</tr>
+				</thead>
+				<tbody class="job-uploaded-file-table-body">
+					{% for uploaded_file in uploaded_files %}
+					<tr class="upload-table-row">
+						<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
+						<td class="upload-table-row-value"><a href="{% url 'public_profile' job.author.profile.id %}">{{ uploaded_file.author }}</a></td>
+						<td class="upload-table-row-value">
+							<a class="btn btn-sm btn-primary file-pay-button" href="{% url 'job-file-checkout' %}">£{{ file_price }}</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</aside>
 
-			<aside class="job-bids-aside">
-				<!--If statement to check number of bids-->
-				<div class="job-bids-text">
-					<h3 class="job-bids-text-header">Current Bids</h3>
-					<p class="job-bids-text-paragraph">These are the bids you have currently received for you job. Press the accept button against a bid you are happy with to begin the job.</h3>
-				</div>
-				<table class="bid-table">
-					<thead class="bid-table-head">
-						<tr class="bid-table-head-row">
-							<th class="bid-table-header">Bid User</th>
-							<th class="bid-table-header">Bid Amount</th>
-							<th class="bid-table-header">Accept Bid</th>
-						</tr>
-					</thead>
-					<!--For loop to display the jobs bids-->
-					<tbody class="bid-table-body">
-						{% for bid in job.bids.all %}
-						<tr class="bid-table-row">
-							<td class="bid-table-row-value"><a href="{% url 'public_profile' bid.author.profile.id %}">{{ bid.author }}</td>
-							<td class="bid-table-row-value">£ {{ bid.job_bid_amount }}</td>
-							<td class="bid-table-row-value bid-table-row-value-button"><a class="btn btn-primary btn-sm mt-1 mb-1" href="">Accept</a></td>
-						</tr>
-						{% empty %}
-						<p class="alert alert-primary">You do not currently have any bids on this job</p>	
-						{% endfor %}
-					</tbody>
-				</table>						
-			</aside>
+		<!--href="{{ uploaded_file.uploaded_file.url }}"-->
 
-		<!--If current user is not the creator of the job show link to creators public profile page-->
-		{% else %}
+		<!--If user is authenticated check whether the user created the current bid-->
+		{% elif object.author != user %}
 		
 			<!--The aside in a jobs detail page will have an overall description about the user who posted it with a link to the public profile page-->
 			<aside class="job-owner-info-aside">
@@ -96,30 +92,6 @@
 			</aside>
 
 		{% endif %}
-
-		<div class="job-uploaded-file">
-			<a href="{% url 'job-upload-file' object.id %}" class="btn btn-sm btn-primary">Upload File</a>
-			<table class="job-uploaded-file-table">
-				<thead class="job-uploaded-file-table-head">
-					<tr class="job-uploaded-file-table-row">
-						<th class="job-uploaded-file-table-header">File Name</th>
-						<th class="job-uploaded-file-table-header">Uploaded By</th>
-						<th class="job-uploaded-file-table-header">Download</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for uploaded_file in job.uploaded_files.all %}
-					<tr class="job-uploaded-file-table-row">
-						<th class="job-uploaded-file-table-header">{{ uploaded_file.file_name }}</th>
-						<th class="job-uploaded-file-table-header">{{ uploaded_file.author }}</th>
-						<th class="job-uploaded-file-table-header">
-							<a class="btn btn-sm btn-primary" href="{{ uploaded_file.uploaded_file }}">Download File</a>
-						</th>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
 
 	{% endif %}
 	
