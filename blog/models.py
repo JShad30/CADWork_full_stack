@@ -32,3 +32,14 @@ class Post(models.Model):
 			output_size = (1200, 700)
 			blog_image.thumbnail(output_size)
 			blog_image.save(self.image.path)
+
+
+#Model to allow a user to comment on a blog post.
+class PostComment(models.Model):
+	comment = models.TextField()	
+	comment_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+	post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='blog_comments')
+	author = models.ForeignKey(User, null=False, default=1, on_delete=models.CASCADE, related_name='blog_comments')
+
+	def __str__(self):
+		return self.comment

@@ -1,9 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, PostComment
+from .forms import PostCommentForm
+from django.http import HttpResponseForbidden, HttpResponse
+from django.urls import reverse
 
 """Function view for the home page of the blog. The context """
 def home(request):
@@ -21,7 +25,7 @@ class PostListView(ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
-	order = ['-date_posted']
+	ordering = ['-date_posted']
 	paginate_by = 6
 
 
@@ -94,3 +98,70 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		else:
 			return False
+
+
+
+#Creating a comment for the posts
+@login_required
+def post_comment_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    else:
+        try:
+            if (request.user.is_authenticated):
+                comments = PostComment.objects.all()
+                post = get_object_or_404(Post, pk=pk)
+                blog = Post.objects.all()
+                if request.method == "POST":
+                    form = PostCommentForm(request.POST)
+                    if form.is_valid():
+                        comment = form.save(commit=False)
+                        comment.author = request.user
+                        comment.post = post
+                        comment.save()
+                        return redirect('post-detail', pk=post.pk)
+                else:
+                    form = PostCommentForm()
+
+        except User.DoesNotExist:
+            return HttpResponseForbidden()
+
+    return render(request, 'blog/post_comment.html', {'form': form, 'blog': blog, 'comments': comments,'post': post})
+
+
+
+#Allow the comment creator to update the comment
+@login_required
+def update_post_comment_view(request, pk):
+    comments = PostComment.objects.all()
+    blog = Post.objects.all()
+    comment = get_object_or_404(PostComment, pk=pk)
+    if (request.user.is_authenticated and request.user == comment.author or request.user.is_superuser):
+        if request.method == "POST":
+            form = PostCommentForm(request.POST, request.FILES, instance=comment)
+            if form.is_valid():
+                comment = form.save()
+                return redirect('post-detail', comment.post.id)
+        else:
+            form = PostCommentForm(instance=comment)
+    else:
+        return HttpResponseForbidden()
+
+    return render(request, 'blog/post_comment.html', {'form': form, 'blog': blog, 'comments': comments, 'post': comment.post})
+
+
+
+#Handle the logic to enable the user to be able to delete a comment
+class PostCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = PostComment
+    template_name = 'blog/post_comment_confirm_delete.html'
+    success_url = '/blog'
+    fields = ['comment']
+
+    #Stop a user from being able to access another users comment
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.author:
+            return True
+        else:
+            return False
