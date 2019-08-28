@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Job, JobFileUpload#JobBid, 
-from .forms import JobFileUploadForm#JobBidForm, 
+from .models import Job, JobFileUpload, JobComment
+from .forms import JobFileUploadForm, JobCommentForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
@@ -35,13 +35,13 @@ class JobListView(ListView):
 
 #Render the job details page
 class JobDetailView(DetailView):
-	model = Job
+    model = Job
 
-	#Get the context data to be able to display other blogs from within the detail view for the uploaded files in 'job_detail.html'.
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context['uploaded_files'] = JobFileUpload.objects.all()
-		return context
+    #Get the context data to be able to display other blogs from within the detail view for the uploaded files in 'job_detail.html'.
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uploaded_files'] = JobFileUpload.objects.all()
+        return context
 
 
 
@@ -84,33 +84,6 @@ class JobCreateView(LoginRequiredMixin, CreateView):
 
 
 
-#Function view to show the bids and assign a bid to that job
-#def job_bid_view(request, pk):
-    #if not request.user.is_authenticated:
-        #return redirect('login')
-    #else:
-        #try:
-            #if (request.user.is_authenticated):
-                #bids = JobBid.objects.all()
-                #job = get_object_or_404(Job, pk=pk)
-                #if request.method == "POST":
-                    #form = JobBidForm(request.POST)
-                    #if form.is_valid():
-                        #bid = form.save(commit=False)
-                        #bid.author = request.user
-                        #bid.job = job
-                        #bid.save()
-                        #return redirect('job-detail', pk=job.pk)
-                #else:
-                    #form = JobBidForm()
-
-        #except User.DoesNotExist:
-            #return HttpResponseForbidden()
-
-    #return render(request, 'jobs/job_confirm_bid.html', {'form': form, 'bids': bids, 'job': job})
-
-
-
 #Job update form is the same as the create form. Existing information will be already included in the form
 class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Job
@@ -145,57 +118,68 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return False
 
 
-#View for the uploaded files checkout in jobs"""
-@login_required
-def job_checkout(request):
-    if request.method == 'POST':
-        o_form = OrderForm(request.POST)
-        p_form = MakePaymentForm(request.POST)
 
-        #Check that both forms are valid
-        if o_form.is_valid() and p_form.is_valid():
-            order = o_form.save(commit=False)
-            order.date = timezone.now()
-            order.save()
-
-            uploaded_files = request.session.get('jobs', {})
-            total = uploaded_file.file_price
-
-            for id, quantity in uploaded_files.items():
-                uploade = get_object_or_404(JobFileUpload, pk=id)
-                total += quantity * product.product_price
-                order_line_item = OrderLineItem(
-                    order = order,
-                    product = product,
-                    quantity = 1
-                )
-                order_line_item.save()
-
-            try:
-                customer = stripe.Charge.create(
-                    amount = int(total * 100),
-                    currency = 'GBP',
-                    description = request.user.email,
-                    card = p_form.cleaned_data['stripe_id'],
-                )
-            except stripe.error.CardError:
-                messages.error(request, 'Your card has been declined')
-
-            #If statement to determine which message to print
-            if customer.paid:
-                messages.error(request, 'Your payment has been successfully processed')
-                request.session['cart'] = {}
-                return redirect('profile')
-            else:
-                messages.error(request, 'We were unable to accept your payment')
-
-        #Message to print of forms are not valid
-        else:
-            print(p_form.errors)
-            messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
-    
+#Creating a comment for the jobs
+def job_comment_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
     else:
-        p_form = MakePaymentForm()
-        o_form = OrderForm()
+        try:
+            if (request.user.is_authenticated):
+                comments = JobComment.objects.all()
+                job = get_object_or_404(Job, pk=pk)
+                jobs = Job.objects.all()
+                if request.method == "POST":
+                    form = JobCommentForm(request.POST)
+                    if form.is_valid():
+                        comment = form.save(commit=False)
+                        comment.owner = request.user
+                        comment.job = job
+                        comment.save()
+                        return redirect('job-detail', pk=job.pk)
+                else:
+                    form = JobCommentForm()
 
-    return render(request, 'checkout/job-checkout.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+        except User.DoesNotExist:
+            return HttpResponseForbidden()
+
+    return render(request, 'jobs/job_comment.html', {'form': form, 'comments': comments, 'job': job})
+
+
+
+#Allow the comment creator to update the comment
+def update_comment_view(request, pk):
+    comments = JobComment.objects.all()
+    blogs = Job.objects.all()
+    comment = get_object_or_404(JobComment, pk=pk)
+    if (request.user.is_authenticated and request.user == comment.author or
+            request.user.is_superuser):
+        if request.method == "POST":
+            form = JobCommentForm(request.POST, request.FILES, instance=comment)
+            if form.is_valid():
+                comment = form.save()
+                return redirect('job-detail', comment.job.id)
+        else:
+            form = JobCommentForm(instance=comment)
+    else:
+        return HttpResponseForbidden()
+
+    return render(request, 'jobs/job_comment.html', {'form': form, 'blogs': blogs, 'comments': comments, 'job': comment.job})
+
+
+
+#Handle the logic to enable the user to be able to delete a comment
+class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = JobComment
+    template_name = 'jobs/job_comment_confirm_delete.html'
+    success_url = '/jobs'
+    fields = ['comment']
+
+    #Stop a user from being able to access another users comment
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.author:
+            return True
+        else:
+            return False
+

@@ -27,8 +27,8 @@
 			<!--If the user is not authenticated the following will be displayed-->
 			{% else %}
 				<div class="mt-3 mb-3">
-						<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a File</a>
-					</div>
+					<a class="btn btn-primary btn-md mt-1 mb-1" href="{% url 'job-upload-file' object.id %}">Upload a File</a>
+				</div>
 			{% endif %}
       	</div>
 		<!--Large image that the user placed in the blog. If the user didn't select an image, the job-default.jpg will be displayed-->
@@ -40,7 +40,7 @@
   	</article>
 
 	<!--Check whether the user is authenticated-->
-	{% if user.is_authenticated %}
+	{% if user.is_authenticated or user.is_superuser %}
 
 		{% if object.author == user %}
 		<aside class="job-upload-files-aside">
@@ -60,15 +60,16 @@
 						<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
 						<td class="upload-table-row-value"><a href="{% url 'public_profile' job.author.profile.id %}">{{ uploaded_file.author }}</a></td>
 						<td class="upload-table-row-value">
-							<a class="btn btn-sm btn-primary file-pay-button" href="{% url 'job-file-checkout' %}">£{{ file_price }}</a>
+							<a class="btn btn-sm btn-primary file-pay-button" target="_blank" href="#">£{{ uploaded_file.file_price }}</a>
+						</td>
+						<td class="upload-table-row-value">
+							<a class="btn btn-sm btn-primary file-pay-button" href="{{ uploaded_file.uploaded_file.url }}" target="_blank">Download</a>
 						</td>
 					</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</aside>
-
-		<!--href="{{ uploaded_file.uploaded_file.url }}"-->
 
 		<!--If user is authenticated check whether the user created the current bid-->
 		{% elif object.author != user %}
@@ -94,6 +95,36 @@
 		{% endif %}
 
 	{% endif %}
+
+	<!--Comments section for the jobs-->
+	{% for comment in job.comments.all %}                     
+    <p class = 'comments'>{{ comment.author }}: {{ comment.comment }}</p>
+                            
+        {% if user.is_authenticated and object.author == user or user.is_superuser %}
+        <div class="btn-group">
+            <!--<ul class="dropdown-menu">
+                <li><a id='post_links' href="{% url 'job-comment-update' comment.id %}">Update</a></li>
+                <form action="{% url 'job-comment-delete' comment.id %}" method = "POST">
+                {% csrf_token %}
+                    <input type="hidden" name="comment_id" value="{{ comment.id }}"/>
+                    <input type="hidden" name="blogs_id" value="{{ job.id }}"/>
+                    <li><input type="submit" id ='delete' value="Delete Comment"/></li>
+                </form>
+            </ul>-->
+			<div class="mt-3 mb-3">
+				<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-comment-update' comment.id %}">Update</a>
+				<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'job-comment-delete' comment.id %}">Delete</a>
+			</div>
+        </div>
+        {% endif %}
+                        
+    {% empty %}                           
+        <p class="alert alert-primary">There have so far been no comments left on this job</p>         
+	{% endfor %}
+
+	<div class="leave-comment-button">
+		<a class="btn btn-primary" href="{% url 'job-comment-create' object.id %}">Leave a comment</a>
+	</div>
 	
 </div>
 {% endblock content %}
