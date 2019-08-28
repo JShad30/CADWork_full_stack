@@ -3,16 +3,22 @@
 {% load crispy_forms_tags %}
 
 <!--Javascript files to appear in head of the checkout page-->
-{% block head_js %}
+{% block index_page_js %}
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
         //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
-        //]]
+            Stripe.publishableKey = '{{ publishable }}';
+            console.log('**************')
+            console.log(Stripe.publishableKey)
+        //]]>
     </script>
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock index_page_js %}
+
+{% block stripe_script_js %}
     <!--Link to the standard Stripe javascript file-->
     <script type="text/javascript" src={% static 'js/stripe.js' %}></script>
-{% endblock head_js %}
+{% endblock stripe_script_js %}
 
 {% block content %}
 
@@ -25,10 +31,19 @@
         <p class="payment-form-total">Total <span class="payment-form-total-price">£{{ total }}</span></p>
     </div>
 
+    <!--If statement to check for messages-->
+    {% if messages %}
+        {% for message in messages %}
+            <p class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
     <!--Section that contains the payment form-->
 	<div class="payment-form-section">
         <!--Form where the user can pay for the products-->
-        <form role="form" method="post", id="payment-form", action="{% url 'shop-home' %}">
+        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         {% csrf_token %}
             <div id="credit-card-errors">
                 <div class="alert-message block-message-error" id="stripe-error-message"></div>
