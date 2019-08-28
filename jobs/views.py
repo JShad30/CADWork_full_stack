@@ -28,7 +28,7 @@ class JobListView(ListView):
 	model = Job
 	template_name = 'jobs/home.html'
 	context_object_name = 'jobs'
-	order = ['-date_posted']
+	ordering = ['-date_posted']
 	paginate_by = 9
 
 
@@ -120,6 +120,7 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 #Creating a comment for the jobs
+@login_required
 def job_comment_view(request, pk):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -133,7 +134,7 @@ def job_comment_view(request, pk):
                     form = JobCommentForm(request.POST)
                     if form.is_valid():
                         comment = form.save(commit=False)
-                        comment.owner = request.user
+                        comment.author = request.user
                         comment.job = job
                         comment.save()
                         return redirect('job-detail', pk=job.pk)
@@ -143,14 +144,15 @@ def job_comment_view(request, pk):
         except User.DoesNotExist:
             return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_comment.html', {'form': form, 'comments': comments, 'job': job})
+    return render(request, 'jobs/job_comment.html', {'form': form, 'jobs': jobs, 'comments': comments, 'job': job})
 
 
 
 #Allow the comment creator to update the comment
+@login_required
 def update_comment_view(request, pk):
     comments = JobComment.objects.all()
-    blogs = Job.objects.all()
+    jobs = Job.objects.all()
     comment = get_object_or_404(JobComment, pk=pk)
     if (request.user.is_authenticated and request.user == comment.author or
             request.user.is_superuser):
@@ -164,7 +166,7 @@ def update_comment_view(request, pk):
     else:
         return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_comment.html', {'form': form, 'blogs': blogs, 'comments': comments, 'job': comment.job})
+    return render(request, 'jobs/job_comment.html', {'form': form, 'jobs': jobs, 'comments': comments, 'job': comment.job})
 
 
 
@@ -182,4 +184,3 @@ class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             return False
-

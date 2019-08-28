@@ -6,7 +6,7 @@
 
     <!--Heading for the blog section-->
     <div class="user-blog-header">
-        <h1 class="user-post-title">Latest Blog Posts</h1>
+        <h1 class="user-post-title"><i class="fa fa-pencil mr-3"></i>Latest Blog Posts</h1>
     </div>
 
     <!--Container for the blog article cards-->
@@ -15,7 +15,7 @@
         {% for post in posts %}
             <article class="blog-article">
                 <img class="article-image" src="{{ post.image.url }}">
-                <div class="media-body">
+                <div class="blog-intro">
                     <div class="article-metadata">
                         <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
                         <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>

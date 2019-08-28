@@ -4,9 +4,10 @@
 /*
 blue colour - #007bff
 dark grey - #343a40
-White colour - #FAFAFA
+White - #FFFFFF
 
-Form outline (light grey) - #ced4da
+
+Background-color to pages - #ced4da
 */
 
 /*Importing the fonts */
@@ -237,6 +238,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #ced4da;
 }
 
 .container,
@@ -256,13 +258,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /*---------- Login and registration forms ----------*/
 .form-section {
+    background-color: #ffffff;
     width: 100%;
     max-width: 550px;
     margin: 20px 0 150px 0;
     padding: 20px 20px;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 /*Logout message page - also used for the message received template on the contact form*/
@@ -304,6 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------Home page----------*/
 .index-container {
+    background-color: #ced4da;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -449,15 +451,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Home page blog section */
 .index-blog-aside {
+    background-color: #ffffff;
     width: 90%;
     display: flex;
     flex-direction: column;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     padding: 10px 20px 20px 20px;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .index-blog-aside {
@@ -494,20 +495,25 @@ h1, h2, h3, h4, h5, h6 {
 /* Home page jobs section */
 .home-page-job-section {
     width: 100%;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
 }
 
 .home-page-job-section-container {
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: left;
     flex-wrap: wrap;
     padding: 10px 20px 20px 20px;
+}
+
+.home-page-job-card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .home-page-job-intro {
@@ -519,9 +525,8 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     width: 100%;
     box-shadow: none;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     margin-bottom: 20px;
+    border: 0.5px solid #ced4da;
 }
 
 .job-article-home-page img {
@@ -544,32 +549,32 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
 
+.home-page-job-button {
+    max-width: 100px;
+}
+
 .home-page-job-intro {
 
 }
 
 /*Home page shop*/
 .home-page-shop-section {
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
     margin-bottom: 50px;
+    background-color: #ffffff;
 }
 
 .home-page-shop-container {
-    padding: 20px;
+    border-top: 0.5px solid #ced4da;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .home-page-shop-text {
-    padding: 0 10px;
-}
-
-.home-page-shop-text-header {
     color: #007bff;
-}
-
-.home-page-shop-text-paragraph {
-
+    padding: 20px 0;
 }
 /*----------End of Home page styles ----------*/
 
@@ -651,6 +656,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #007bff;
     margin-bottom: 20px;
 }
+
+.about-registration {
+    background-color: #ffffff;
+    box-shadow: 5px 5px 10px #343a40;
+    padding: 20px;
+}
 /*----------End of the About Page styles----------*/
 
 
@@ -711,8 +722,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .message-contact {
@@ -731,12 +741,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------Profile Page----------*/
 .user-blog-header {
+    background-color: #ffffff;
     font-size: 1.2em;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     padding: 10px 20px;
     margin: 20px 0 0 0;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .profile-job-blog {
@@ -754,11 +763,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .profile-page-box {
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
+    background-color: #ffffff;
     margin: 20px 0;
     padding: 10px;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
     max-width: 100%;
 }
 
@@ -790,8 +798,11 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     padding: 0;
     border: 0.5px solid #ced4da;
-    border-radius: 5px;
     margin: 20px 0;
+}
+
+.profile-job-blog-text {
+    padding: 10px;
 }
 
 .profile-blog-article img {
@@ -806,6 +817,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------Blog Pages and Job Pages----------*/
 /*Blog and Job home page and blog user page*/
+.blog-job-container {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
 .user-blogs-container {
     width: 100%;
     display: flex;
@@ -825,9 +843,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blog-card-container,
-.jobs-card-container,
+.job-card-container,
 .cart-card-container {
-    margin-top: 20px;
+    margin: 20px 0;
     display: flex;
     flex-wrap: wrap;
 }
@@ -838,20 +856,26 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
 }
 
-.blog-article {
+.blog-article,
+.job-article {
+    background-color: #ffffff;
     margin: 10px 0 20px 0;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
+    padding: 10px;
     width: 100%;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
-.blog-article img {
+.blog-article img,
+.job-article img {
     width: 100%;
     height: auto;
 }
 
-.media-body {
+.blog-intro {
+    padding: 10px;
+}
+
+.job-intro {
     padding: 10px;
 }
 
@@ -885,6 +909,7 @@ h1, h2, h3, h4, h5, h6 {
 /*Blog details page*/
 .blog-detail-container,
 .job-detail-container {
+    background-color: #ffffff;
     width: 100%;
     max-width: 1100px;
     margin-top: 70px;
@@ -958,7 +983,6 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: row;
     margin: 5px 0;
     border: 0.5px solid #ced4da;
-    border-radius: 5px;
 }
 
 .blog-details-other img {
@@ -975,12 +999,10 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 750px;
     display: flex;
     flex-direction: column;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     padding: 10px;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .blog-details-post-author {
@@ -999,10 +1021,6 @@ h1, h2, h3, h4, h5, h6 {
 .job-home-title {
     color: #007bff;
     font-size: 2em;
-}
-
-.job-card-container {
-    width: 100%;
 }
 
 .article-card-intro {
@@ -1054,12 +1072,10 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 750px;
     display: flex;
     flex-direction: column;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     padding: 10px 10px 0 10px ;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 /*Aside section for the job creators profile*/
@@ -1068,14 +1084,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*Job upload files aside*/
-
 .job-upload-files-aside {
     margin: 10px 0 50px 0;
     padding: 10px;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     width: 90%;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .job-file-upload-aside-header {
@@ -1153,6 +1166,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*---------- End of Job pages styles----------*/
 
+/*----------Comments section to be used in blog and job pages ----------*/
+.job-blog-comments {
+    width: 90%;
+    max-width: 750px;
+    padding: 20px;
+}
+
+.comments {
+    margin: 40px 0;
+}
+
+.single-comment {
+    padding: 30px 10px;
+    border-top: 0.5px solid #ced4da;
+}
+
+.comment-author-date {
+    font-size: 0.7em;
+    margin-bottom: 6px;
+}
+
+.comment-author {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.comment {
+    margin-bottom: 0;
+}
+/*----------End of comments section ----------*/
 
 
 
@@ -1182,12 +1225,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .shop-page-header {
+    background-color: #ffffff;
     font-size: 1.2em;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
     padding: 10px 20px;
     margin: 20px 0;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .shop-page-title {
@@ -1204,11 +1246,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product {
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
+    background-color: #ffffff;
     padding: 20px;
     margin: 20px 0;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
     width: 100%;
 }
 
@@ -1239,10 +1280,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Cart page styles*/
 .cart-total-row {
+    background-color: #ffffff;
     padding: 20px;
-    box-shadow: 5px 5px 10px #ced4da;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
+    box-shadow: 5px 5px 10px #343a40;
     margin-bottom: 40px;
 }
 
@@ -1258,12 +1298,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /*Checkout form page styles*/
 .payment-form-section {
+    background-color: #ffffff;
     width: 100%;
     margin: 20px 0 50px 0;
     padding: 20px 20px;
-    border: 0.5px solid #ced4da;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px #ced4da;
+    box-shadow: 5px 5px 10px #343a40;
 }
 
 .payment-form-legend {
@@ -1561,7 +1600,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .job-article-home-page {
         display: flex;
-        width: 46%;
+        width: 48%;
     }
 
     /*Blog section on home page*/
@@ -1574,6 +1613,26 @@ h1, h2, h3, h4, h5, h6 {
     .blog-details-other {
         width: 48%;
     }
+
+    /*Home page shop section*/
+    .home-page-shop-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .home-page-shop-section img {
+        width: 68%;
+        padding: 10px;
+    }
+
+    .home-page-shop-container {
+        border-top: none;
+        justify-content: flex-start;
+        padding: 10px;
+        width: 31%;
+    }
+
     /*----------End of home page styles----------*/
 
 
@@ -1637,6 +1696,7 @@ h1, h2, h3, h4, h5, h6 {
     .blog-article,
     .job-upload {
         width: 47%;
+
     }
 
     .blog-article {
@@ -1658,12 +1718,10 @@ h1, h2, h3, h4, h5, h6 {
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
-        border: 0.5px solid #ced4da;
-        border-radius: 5px;
         padding: 10px;
         margin-bottom: 50px;
         box-sizing: border-box;
-        box-shadow: 5px 5px 10px #ced4da;
+        box-shadow: 5px 5px 10px #343a40;
     }
     /*----------End of blog page styles----------*/
 
@@ -1779,7 +1837,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     /* Blog details page */
-    .blog-detail-container { 
+    .blog-detail-container,
+    .job-detail-container { 
         display: flex;
         flex-direction: row;
         justify-content: space-between;

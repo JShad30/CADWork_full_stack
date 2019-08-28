@@ -14,8 +14,8 @@ from jobs.models import Job
 #Home page rendered here. The context is imported into the render containing posts and jobs, limiting the amount of the blogs and jobs.
 def home(request):
     context = {
-		'posts': Post.objects.all()[:5],
-		'jobs': Job.objects.all()[:3]
+		'posts': Post.objects.all()[:6],
+		'jobs': Job.objects.all()[:6]
 	}
     return render(request, 'home/index.html', context)
 

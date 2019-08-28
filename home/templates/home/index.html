@@ -73,73 +73,88 @@
 	</header>
 
 	<div class="index-content-container">
-	<!--Introduction to the jobs section of the site with a quick overview, and links to the most recently uploaded jobs-->
-	<section class="home-page-jobs-section">
-		<div class="home-page-job-section-container">
-			<div class="home-page-job-intro">
-				<h2 class="home-page-section-heading">Latest Jobs</h2>
-				<p class="home-page-section-paragraph">These are the latest jobs that have been uploaded by our members. Start bidding and earning!</p>
-			</div>
-			<div class="job-card-container">
-				<!--For loop to use this code for the three most recently uploaded jobs to the site-->
-				{% for job in jobs %}
-				<article class="blog-article blog-article-home-page">
-					<img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-					<div class="media-body">
-						<div class="article-metadata">
-							<p class="mr-2" >{{ job.author }}</p>
-							<small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
-						</div>
-						<h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-						<p class="article-card-intro">{{ job.job_overview }}</p>
+		<!--The following div will be used to display the jobs and blogs in a row format on larger screen sizes-->
+		<div class="blog-jobs-large-screen-display">
+			<!--Introduction to the jobs section of the site with a quick overview, and links to the most recently uploaded jobs-->
+			<section class="home-page-job-section">
+				<div class="home-page-job-section-container">
+					<div class="home-page-job-intro">
+						<h2 class="home-page-section-heading"><i class="fa fa-laptop mr-3"></i>Latest Jobs</h2>
+						<p class="home-page-section-paragraph">These are the latest jobs that have been uploaded by our members. Start bidding and earning!</p>
 					</div>
-				</article>
-				{% endfor %}
-			</div>
-		</div>
-	</section>
-
-	<!--The aside will have a list of the current blog-->
-	<section class="index-blog-aside">
-		<div class="blog-aside-blogs">
-			<div class="blog-aside-intro-text">
-				<h2 class="blog-aside-intro-text-heading">View the CADWork Blog!</h2>
-				<p class="blog-aside-intro-text-paragraph">Welcome to our blog, where you learn from others if you are looking for work as a freelance CAD professional. You'll find articles about CAD packages, careers and small construction projects here.</p>
-			</div>
-			<div class="blog-card-container">
-				<h3 class="recent-post-heading">Most recent posts</h3>
-				<!--For loop to use the following code of reach of the blogs in the list-->
-				{% for post in posts %}
-				<article class="blog-details-other">
-					<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-					<div class="media-body">
-						<div class="blog-details-post-text">
-							<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-							<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
-						</div>
-						<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+					<div class="home-page-job-card-container">
+						<!--For loop to use this code for the three most recently uploaded jobs to the site-->
+						{% for job in jobs %}
+						<article class="job-article-home-page">
+							<img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+							<div class="job-intro">
+								<div class="job-author-date">
+									<p class="mr-2" >{{ job.author }}</p>
+									<small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+								</div>
+								<h2 class="job-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+								<p class="article-card-intro">{{ job.job_overview|truncatewords:20 }}</p>
+							</div>
+						</article>
+						{% endfor %}
 					</div>
-				</article>
-			{% endfor %}
-			</div>
-			<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
-			<div class="end-home-page-blog-text">
-				<h4 class="end-home-page-blog-text-heading">Upload your own blog</h4>
-				<p class="end-home-page-blog-text-paragraph">Share your knowledge with others by uploading your own blog. <a href="{% url 'register' %}">Register</a> for an account to get started.</p>
-			</div>
-		</div>
-	</section>	
+					<a href="{% url 'jobs-home' %}" class="btn btn-primary btn-sm home-page-job-button">See more...</a>
+					<div class="end-home-page-blog-text">
+						<h4 class="end-home-page-blog-text-heading">Upload a job</h4>
+						<p class="end-home-page-blog-text-paragraph">If you have a project that requires professional CAD drawings or presentations, create it now.</p>
+						<a class="btn btn-primary" href="{% url 'job-create' %}">Create New Job</a>
+					</div>
+				</div>
+			</section>
 
-	<!--Introduction and link to the shop-->
-	<section class="home-page-shop-section">
-		<div class="home-page-shop-container">
-			<div class="home-page-shop-text">
-				<h3 class="home-page-shop-text-header">CADWork Shop</h3>
-				<p class="home-page-shop-text-paragraph">See our products and get started as a CAD professional today</p>
-				<a class="btn btn-primary" href="{% url 'shop-home' %}">Visit shop</a>
-			</div>
+			<!--The aside will have a list of the current blog-->
+			<section class="index-blog-aside">
+				<div class="blog-aside-blogs">
+					<div class="blog-aside-intro-text">
+						<h2 class="blog-aside-intro-text-heading"><i class="fa fa-pencil mr-3"></i>CADWork Blog</h2>
+						<p class="blog-aside-intro-text-paragraph">Welcome to our blog, where you learn from others if you are looking for work as a freelance CAD professional. You'll find articles about CAD packages, careers and small construction projects here.</p>
+					</div>
+					<div class="blog-card-container">
+						<div class="blog-card-container-heading">
+							<h3 class="recent-post-heading">Most recent posts</h3>
+						</div>
+						<div class="blog-card-container-cards">
+							<!--For loop to use the following code of reach of the blogs in the list-->
+							{% for post in posts %}
+							<article class="blog-details-other">
+								<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+								<div class="blog-intro">
+									<div class="blog-details-post-text">
+										<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+										<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+									</div>
+									<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+								</div>
+							</article>
+							{% endfor %}
+						</div>
+					</div>
+					<a href="{% url 'blog-home' %}" class="btn btn-primary btn-sm">See more...</a>
+					<div class="end-home-page-blog-text">
+						<h4 class="end-home-page-blog-text-heading">Upload your own post</h4>
+						<p class="end-home-page-blog-text-paragraph">Share your knowledge with others by uploading your own blog post. Create a new post today.</p>
+						<a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>
+					</div>
+				</div>
+			</section>	
 		</div>
-	</section>
+
+		<!--Introduction and link to the shop-->
+		<section class="home-page-shop-section">
+			<img src="../static/images/products.png" width="100%" height="auto">
+			<div class="home-page-shop-container">
+				<div class="home-page-shop-text">
+					<h3 class="home-page-shop-text-header"><i class="fa fa-shopping-cart mr-3"></i>CADWork Shop</h3>
+					<p class="home-page-shop-text-paragraph">See our products and get started as a CAD professional today</p>
+					<a class="btn btn-primary" href="{% url 'shop-home' %}">Visit shop</a>
+				</div>
+			</div>
+		</section>
 	</div>
 
 </div>

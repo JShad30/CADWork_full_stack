@@ -53,7 +53,7 @@
                             {% if post.author == user %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                                    <div class="media-body">
+                                    <div class="profile-job-blog-text">
                                         <div class="article-metadata">
                                             <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
                                             <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
@@ -84,7 +84,7 @@
                             {% if job.author == user %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                                    <div class="media-body">
+                                    <div class="profile-job-blog-text">
                                         <div class="article-metadata">
                                             <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
                                         </div>
@@ -109,7 +109,7 @@
                                 {% if uploaded_file.author == user %}
                                 <article class="profile-blog-article">
                                     <img class="article-image" src="{{ uploaded_file.job.image.url }}" height="80" width="80">
-                                    <div class="media-body">
+                                    <div class="profile-job-blog-text">
                                         <div class="article-metadata">
                                             <small class="text-muted">{{ uploaded_file.job.date_posted|date:"dS F, Y" }}</small>
                                         </div>

@@ -44,7 +44,7 @@
             {% else %}
                 <p class="cart-total-row-paragraph">Current Total: <span class="ml-3 currency-total">£{{ item.product.price }}{{ total }}</span></p>
                 <p class="cart-paragraph">Need to add more products to your cart? Return to the <a href="{% url 'shop-home' %}">shop</a>.</p>
-                <a href="{% url 'checkout-home' %}" class="btn btn-primary" role="button">Checkout</a>
+                <a href="{% url 'checkout' %}" class="btn btn-primary" role="button">Checkout</a>
             {% endif %}
         </div>
 

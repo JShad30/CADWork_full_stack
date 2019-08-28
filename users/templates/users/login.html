@@ -8,6 +8,15 @@
 	<!--Form section to present the form-->
 	<div class="form-section">
 
+		<!--If statement to check for messages-->
+		{% if messages %}
+			{% for message in messages %}
+				<p class="alert alert-{{ message.tags }}">
+					{{ message }}
+				</p>
+			{% endfor %}
+		{% endif %}
+
 		<!--Form for user login-->
 		<form method="POST">
 			{% csrf_token %}

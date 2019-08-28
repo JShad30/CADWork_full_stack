@@ -126,7 +126,7 @@ def post_comment_view(request, pk):
         except User.DoesNotExist:
             return HttpResponseForbidden()
 
-    return render(request, 'blog/post_comment.html', {'form': form, 'blog': blog, 'comments': comments,'post': post})
+    return render(request, 'blog/post_comment.html', {'form': form, 'blog': blog, 'comments': comments, 'post': post})
 
 
 

@@ -8,11 +8,13 @@ $(function() {
             expYear: $('#id_expiry_year').val(),
             cvc: $('#id_cvv').val()
         };
+        console.log(card)
 
     Stripe.createToken(card, function(status, response) {
         if (status === 200) {
             $('#credit-card-errors').hide();
             $('#id_stripe_is').val(response.id);
+            console.log(response)
 
             // Prevent the credit card details from being submittd to our server
             $('#id_credit_card_number').removeAttr('name');
