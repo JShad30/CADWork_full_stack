@@ -29,23 +29,21 @@
         <p class="payment-form-total">Total <span class="payment-form-total-price">£{{ total }}</span></p>
     </div>
 
-    <!--If statement to check for messages-->
-    {% if messages %}
-        {% for message in messages %}
-            <p class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </p>
-        {% endfor %}
-    {% endif %}
-
     <!--Section that contains the payment form-->
 	<div class="payment-form-section">
+        <!--If statement to check for messages-->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="credit-card-errors">
+                    <div class="alert-message block-message-error" id="stripe-error-message">
+                        <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+                    </div>
+                </div>   
+            {% endfor %}
+        {% endif %}
         <!--Form where the user can pay for the products-->
         <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         {% csrf_token %}
-            <div id="credit-card-errors">
-                <div class="alert-message block-message-error" id="stripe-error-message"></div>
-            </div>
             <div class="payment-form-groups">
                 <!--Form sections divided into two sections-->
                 <!--Personal details. Form set up in the home function of 'views.py'-->
