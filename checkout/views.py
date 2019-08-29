@@ -11,18 +11,20 @@ import logging
 
 stripe.api_key = settings.STRIPE_SECRET
 
+
+logger = logging.getLogger(__name__)
 """Home view for the shop checkout"""
 @login_required()
 def checkout(request):
-    logging.info('1. Entering Checkout')
+    logging.error('1. Entering Checkout')
     #Two different forms created for the user information and payment form
     if request.method == 'POST':
-        logging.info('2. Entering Post')
+        logging.error('2. Entering Post')
         o_form = OrderForm(request.POST)
         p_form = MakePaymentForm(request.POST)
         #Check that both forms are valid
         if o_form.is_valid() and p_form.is_valid():
-            logging.info('3. Entering Valid')
+            logging.error('3. Entering Valid')
             order = o_form.save(commit=False)
             order.date = timezone.now()
             order.save()
@@ -40,7 +42,7 @@ def checkout(request):
                 order_line_item.save()
 
             try:
-                logging.info('4. Entering Stripe')
+                logging.error('4. Entering Stripe')
                 logging.info(str(int(total * 100)))
                 customer = stripe.Charge.create(
                     amount = int(total * 100), 
@@ -49,17 +51,17 @@ def checkout(request):
                     card = p_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                logging.info('4b. Stripe Failed')
+                logging.error('4b. Stripe Failed')
                 messages.error(request, 'Your card has been declined')
 
             #If statement to determine which message to print
             if customer.paid:
-                logging.info('5. Success (paid)')
+                logging.error('5. Success (paid)')
                 messages.error(request, 'Thanks for your payment, it has been successfully processed')
                 request.session['cart'] = {}
                 return redirect('shop-home')
             else:
-                logging.info('5b. Failed')
+                logging.error('5b. Failed')
                 messages.error(request, 'We were unable to accept your payment')
 
         #Message to print of forms are not valid
