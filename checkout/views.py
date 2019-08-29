@@ -7,6 +7,7 @@ from django.conf import settings
 from django.utils import timezone
 from shop.models import Product
 import stripe
+import logging
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -36,6 +37,7 @@ def checkout(request):
                 order_line_item.save()
 
             try:
+                logging.info(str(int(total * 100)))
                 customer = stripe.Charge.create(
                     amount = int(total * 100), 
                     currency = 'GBP', 
@@ -59,7 +61,7 @@ def checkout(request):
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
     
     else:
-        p_form = MakePaymentForm({'publishable': settings.STRIPE_PUBLISHABLE})
+        p_form = MakePaymentForm()
         o_form = OrderForm()
 
     return render(request, 'checkout/home.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})
