@@ -20,7 +20,7 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         #Fields from the models.py file
-        fields = ['customer_name', 'customer_address_line_one', 'customer_address_town', 'customer_address_county', 'customer_address_post_code']
+        fields = ('customer_name', 'customer_address_line_one', 'customer_address_town', 'customer_address_county', 'customer_address_post_code')
 
 
 
