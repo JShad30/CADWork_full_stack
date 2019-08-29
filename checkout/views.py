@@ -16,16 +16,16 @@ logger = logging.getLogger(__name__)
 """Home view for the shop checkout"""
 @login_required()
 def checkout(request):
-    logging.error('1. Entering Checkout')
+    logger.error('1. Entering Checkout')
     #Two different forms created for the user information and payment form
     if request.method == 'POST':
-        logging.error('2. Entering Post')
-        o_form = OrderForm(request.POST)
-        p_form = MakePaymentForm(request.POST)
+        logger.error('2. Entering Post')
+        order_form = OrderForm(request.POST)
+        payment_form = MakePaymentForm(request.POST)
         #Check that both forms are valid
-        if o_form.is_valid() and p_form.is_valid():
-            logging.error('3. Entering Valid')
-            order = o_form.save(commit=False)
+        if order_form.is_valid() and payment_form.is_valid():
+            logger.error('3. Entering Valid')
+            order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
 
@@ -42,35 +42,35 @@ def checkout(request):
                 order_line_item.save()
 
             try:
-                logging.error('4. Entering Stripe')
+                logger.error('4. Entering Stripe')
                 logging.info(str(int(total * 100)))
                 customer = stripe.Charge.create(
                     amount = int(total * 100), 
-                    currency = 'GBP', 
+                    currency = "GBP", 
                     description = request.user.email, 
-                    card = p_form.cleaned_data['stripe_id']
+                    card = payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                logging.error('4b. Stripe Failed')
+                logger.error('4b. Stripe Failed')
                 messages.error(request, 'Your card has been declined')
 
             #If statement to determine which message to print
             if customer.paid:
-                logging.error('5. Success (paid)')
+                logger.error('5. Success (paid)')
                 messages.error(request, 'Thanks for your payment, it has been successfully processed')
                 request.session['cart'] = {}
-                return redirect('shop-home')
+                return redirect(reverse('shop-home'))
             else:
-                logging.error('5b. Failed')
+                logger.error('5b. Failed')
                 messages.error(request, 'We were unable to accept your payment')
 
         #Message to print of forms are not valid
         else:
-            print(p_form.errors)
+            print(payment_form.errors)
             messages.error(request, 'We were unable to accept a payment with the credit or debit card you provided.')
     
     else:
-        p_form = MakePaymentForm()
-        o_form = OrderForm()
+        payment_form = MakePaymentForm()
+        order_form = OrderForm()
 
-    return render(request, 'checkout/home.html', {'o_form': o_form, 'p_form': p_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, 'checkout/home.html', {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
