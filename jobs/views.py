@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Job, JobFileUpload, JobComment
@@ -40,7 +41,7 @@ class JobDetailView(DetailView):
     #Get the context data to be able to display other blogs from within the detail view for the uploaded files in 'job_detail.html'.
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['uploaded_files'] = JobFileUpload.objects.all()
+        context['uploaded_files'] = JobFileUpload.objects.get_queryset()
         return context
 
 
@@ -55,6 +56,7 @@ def job_upload_view(request, pk):
             if (request.user.is_authenticated):
                 uploaded_files = JobFileUpload.objects.all()
                 job = get_object_or_404(Job, pk=pk)
+                jobs = Job.objects.all()
                 if request.method == "POST":
                     form = JobFileUploadForm(request.POST, request.FILES)
                     if form.is_valid():
@@ -69,53 +71,89 @@ def job_upload_view(request, pk):
         except User.DoesNotExist:
             return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_upload.html', {'form': form, 'uploaded_files': uploaded_files, 'job': job})
+    return render(request, 'jobs/job_upload.html', {'form': form, 'jobs': jobs, 'uploaded_files': uploaded_files, 'job': job})
+
+
+
+#Allow the comment creator to update the comment
+@login_required
+def update_comment_view(request, pk):
+    comments = JobComment.objects.all()
+    jobs = Job.objects.all()
+    comment = get_object_or_404(JobComment, pk=pk)
+    if (request.user.is_authenticated and request.user == comment.author or request.user.is_superuser):
+        if request.method == "POST":
+            form = JobCommentForm(request.POST, request.FILES, instance=comment)
+            if form.is_valid():
+                comment = form.save()
+                return redirect('job-detail', comment.job.id)
+        else:
+            form = JobCommentForm(instance=comment)
+    else:
+        return HttpResponseForbidden()
+
+    return render(request, 'jobs/job_comment.html', {'form': form, 'jobs': jobs, 'comments': comments, 'job': comment.job})
 
 
 
 #Rendering the job create form. Fields uses the fields created in the 'models.py' file
-class JobCreateView(LoginRequiredMixin, CreateView):
-	model = Job
-	fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
+class JobCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Job
+    fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
+    success_message = 'Your job has been successfully created.'
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    #Function to display the message when the job is created
+    def get_success_message(self, cleaned_data):
+        return self.success_message
 
 
 
 #Job update form is the same as the create form. Existing information will be already included in the form
-class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-	model = Job
-	fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
-		
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
-		
-	#Stop the user from being able to access another users post
-	def test_func(self):
-		job = self.get_object()
-		if self.request.user == job.author:
-			return True
-		else:
-			return False
+class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    model = Job
+    fields = ['job_name', 'job_overview', 'job_description', 'job_location_town', 'job_location_county', 'image']
+    success_message = ' Your job has been updated'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    #Function to display the message when the job is updated
+    def get_success_message(self, cleaned_data):
+        return self.success_message
+
+    #Stop the user from being able to access another users post
+    def test_func(self):
+        job = self.get_object()
+        if self.request.user == job.author:
+            return True
+        else:
+            return False
 		
 
 
 #Handle the logic to enable the user to be able to delete a blog
-class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	model = Job
-	success_url = '/profile'
-	fields = ['job_name']
-	
-	#Stop a user from being able to access another users post
-	def test_func(self):
-		job = self.get_object()
-		if self.request.user == job.author:
-			return True
-		else:
-			return False
+class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+    model = Job
+    success_url = '/jobs/'
+    success_message = 'Your job has been deleted'
+    fields = ['job_name']
+
+    #Function to display the message when the job is updated
+    def get_success_message(self, cleaned_data):
+        return self.success_message
+
+    #Stop a user from being able to access another users post
+    def test_func(self):
+        job = self.get_object()
+        if self.request.user == job.author:
+            return True
+        else:
+            return False
 
 
 
@@ -154,8 +192,7 @@ def update_comment_view(request, pk):
     comments = JobComment.objects.all()
     jobs = Job.objects.all()
     comment = get_object_or_404(JobComment, pk=pk)
-    if (request.user.is_authenticated and request.user == comment.author or
-            request.user.is_superuser):
+    if (request.user.is_authenticated and request.user == comment.author or request.user.is_superuser):
         if request.method == "POST":
             form = JobCommentForm(request.POST, request.FILES, instance=comment)
             if form.is_valid():
@@ -171,11 +208,16 @@ def update_comment_view(request, pk):
 
 
 #Handle the logic to enable the user to be able to delete a comment
-class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = JobComment
     template_name = 'jobs/job_comment_confirm_delete.html'
-    success_url = '/jobs'
+    success_url = '/jobs/'
+    success_message = 'Your comment has been deleted.'
     fields = ['comment']
+
+    #Function to display the message when the comment is removed
+    def get_success_message(self, cleaned_data):
+        return self.success_message
 
     #Stop a user from being able to access another users comment
     def test_func(self):

@@ -28,12 +28,15 @@ class Job(models.Model):
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
 
-		job_image = Image.open(self.image.path)
+		image = Image.open(self.image.path)
 
-		if job_image.width != 1200 or job_image.height != 700:
+		if image.width != 1200 or image.height != 700:
 			output_size = (1200, 700)
-			job_image.resize(output_size)
-			job_image.save(self.image.path)
+			image.resize(output_size)
+			image.save(self.image.path)
+
+	class Meta:
+		ordering = ['-date_posted']
 
 
 
@@ -59,3 +62,6 @@ class JobComment(models.Model):
 
 	def __str__(self):
 		return self.comment
+
+	class Meta:
+		ordering = ['-comment_date']

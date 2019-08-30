@@ -9,6 +9,14 @@
 
 		<!--Job article content-->
 		<article class="blog-article-content">
+			<!--If statement to check for messages-->
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-primary">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
 			<h2 class="job-page-title">{{ object.job_name }}<span class="ml-3 job-location">{{ object.job_location_town }}, {{ object.job_location_county }}</span></h2>
 			<p class="ml-1">This job was created on {{ object.date_posted|date:"dS F, Y" }}</p>
 			<p class="article-intro">{{ object.job_overview }}</p>
@@ -43,6 +51,7 @@
 					
 			<!--Comments section for the jobs-->
 			<section class="job-blog-comments">
+				<h3 class="comments-header">Comment or ask questions about project</h3>	
 				<div class="leave-comment-button">
 					<a class="btn btn-primary" href="{% url 'job-comment-create' object.id %}">Leave a comment</a>
 				</div>
@@ -50,7 +59,7 @@
 					{% for comment in job.comments.all %}  
 						<div class="single-comment">                    
 							<p class="comment-author-date"><span class="comment-author">{{ comment.author }}</span> - {{ comment.comment_date|date:"dS F, Y" }}</p>
-							<p class="comment">{{ comment.comment }}</p>
+							<p class="comment">{{ comment.comment|linebreaksbr }}</p>
 													
 							{% if user.is_authenticated and object.author == user or user.is_superuser %}
 							<div class="btn-group">
@@ -71,9 +80,7 @@
 
 		<!--Check whether the user is authenticated-->
 		{% if user.is_authenticated or user.is_superuser %}
-
 			{% if object.author == user %}
-
 				<aside class="job-upload-files-aside">
 					<h3 class="job-file-upload-aside-header">Uploaded Files</h3>
 					<p class="job-file-upload-aside-paragraph">The following files have been uploaded by users. Click on the price to purchase this file.</p>
@@ -89,7 +96,7 @@
 							{% for uploaded_file in uploaded_files %}
 							<tr class="upload-table-row">
 								<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
-								<td class="upload-table-row-value"><a href="{% url 'public_profile' job.author.profile.id %}">{{ uploaded_file.author }}</a></td>
+								<td class="upload-table-row-value"><a href="{% url 'public_profile' uploaded_file.author.profile.id %}">{{ uploaded_file.author }}</a></td>
 								<td class="upload-table-row-value">
 									<a class="btn btn-sm btn-primary file-pay-button" target="_blank" href="#">£{{ uploaded_file.file_price }}</a>
 								</td>
@@ -112,12 +119,10 @@
 							<img class="account-image" src="{{ job.author.profile.image.url }}">
 							<div class="profile-details">
 								<h2 class="account-heading">{{ job.author.username }}</h2>
-								<p class="account-email">Email job owner for more information: 
-								<a href="mailto:{{ job.author.email }}">{{ job.author.email }}</a></p>
 							</div>
 						</div>
 						<div class="job-owner-info-overview">
-							<p class="account-email">{{ job.author.profile.profile_intro }}</p>
+							<p class="account-email">{{ job.author.profile.profile_intro|linebreaksbr }}</p>
 							<a href="{% url 'public_profile' job.author.profile.id %}" class="btn btn-primary btn-sm">See users full profile</a>
 						</div>
 					</div>
