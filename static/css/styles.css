@@ -263,10 +263,14 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 550px;
     margin: 20px 0 150px 0;
     padding: 20px 20px;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 /*Logout message page - also used for the message received template on the contact form*/
+.logout-message-section {
+    padding: 40px;
+    background-color: #ffffff;
+}
+
 .short-message {
     min-height: 90vh;
     margin-top: 40px;
@@ -452,27 +456,13 @@ h1, h2, h3, h4, h5, h6 {
 /* Home page blog section */
 .index-blog-aside {
     background-color: #ffffff;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 10px 20px 20px 20px;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #343a40;
-}
-
-.index-blog-aside {
-    width: 100%;
-}
-
-
-
-.home-page-section-heading {
-
-}
-
-.home-page-section-paragraph {
-
 }
 
 .recent-post-heading {
@@ -495,7 +485,6 @@ h1, h2, h3, h4, h5, h6 {
 /* Home page jobs section */
 .home-page-job-section {
     width: 100%;
-    box-shadow: 5px 5px 10px #343a40;
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
@@ -505,7 +494,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding: 10px 20px 20px 20px;
 }
@@ -514,10 +503,6 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.home-page-job-intro {
-    margin: 20px 0;
 }
 
 .job-article-home-page {
@@ -543,6 +528,7 @@ h1, h2, h3, h4, h5, h6 {
 .home-page-section-heading {
     color: #007bff;
     font-size: 2.5rem;
+    margin: 30px 0;
 }
 
 .job-home-title {
@@ -553,13 +539,8 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100px;
 }
 
-.home-page-job-intro {
-
-}
-
 /*Home page shop*/
 .home-page-shop-section {
-    box-shadow: 5px 5px 10px #343a40;
     margin-bottom: 50px;
     background-color: #ffffff;
 }
@@ -573,8 +554,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home-page-shop-text {
-    color: #007bff;
     padding: 20px 0;
+}
+
+.home-page-shop-text-header {
+    color: #007bff;
 }
 /*----------End of Home page styles ----------*/
 
@@ -659,7 +643,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-registration {
     background-color: #ffffff;
-    box-shadow: 5px 5px 10px #343a40;
     padding: 20px;
 }
 /*----------End of the About Page styles----------*/
@@ -668,6 +651,11 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*----------Terms and conditions and privacy policy page----------*/
+.terms-privacy-container {
+    width: 100%;
+    background-color: #ffffff;
+}
+
 .terms-content {
     width: 100%;
 }
@@ -745,7 +733,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2em;
     padding: 10px 20px;
     margin: 20px 0 0 0;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 .profile-job-blog {
@@ -765,8 +752,7 @@ h1, h2, h3, h4, h5, h6 {
 .profile-page-box {
     background-color: #ffffff;
     margin: 20px 0;
-    padding: 10px;
-    box-shadow: 5px 5px 10px #343a40;
+    padding: 20px;
     max-width: 100%;
 }
 
@@ -793,21 +779,28 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 0;
 }
 
-.profile-blog-article {
+.blog-cards-profile {
+    margin-bottom: 40px;
+}
+
+.job-cards-profile {
+    margin-bottom: 40px;
+}
+
+.profile-job-article {
     display: flex;
     flex-direction: column;
     padding: 0;
     border: 0.5px solid #ced4da;
     margin: 20px 0;
 }
+.profile-job-article img {
+    height: 100%;
+    width: 100%;
+}
 
 .profile-job-blog-text {
     padding: 10px;
-}
-
-.profile-blog-article img {
-    height: 100%;
-    width: 100%;
 }
 /*----------End of profile page styles----------*/
 
@@ -817,7 +810,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------Blog Pages and Job Pages----------*/
 /*Blog and Job home page and blog user page*/
-.blog-job-container {
+.job-blog-container {
     width: 100%;
     background-color: #ffffff;
     display: flex;
@@ -847,6 +840,7 @@ h1, h2, h3, h4, h5, h6 {
 .cart-card-container {
     margin: 20px 0;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -862,7 +856,9 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 0 20px 0;
     padding: 10px;
     width: 100%;
-    box-shadow: 5px 5px 10px #343a40;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .blog-article img,
@@ -890,6 +886,13 @@ h1, h2, h3, h4, h5, h6 {
     margin: 20px 0 40px 20px;
     width: 100%;
     max-width: 1100px;
+}
+
+.new-job-post-button {
+    width: 100%;
+    margin: 20px 0 40px 0;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /*User post specific*/
@@ -969,6 +972,7 @@ h1, h2, h3, h4, h5, h6 {
 .blog-aside-intro-text-heading {
     color: #007bff;
     font-size: 2.5rem;
+    margin: 20px 0 30px 0;
 }
 
 .blog-details-post-text {
@@ -981,12 +985,13 @@ h1, h2, h3, h4, h5, h6 {
 .blog-details-other {
     display: flex;
     flex-direction: row;
-    margin: 5px 0;
+    margin: 10px 0;
     border: 0.5px solid #ced4da;
 }
 
 .blog-details-other img {
     width: 30%;
+    height: auto;
 }
 
 .blog-details-other-title {
@@ -995,14 +1000,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .blog-aside {
     width: 90%;
-    max-width: 500px;
     max-width: 750px;
     display: flex;
     flex-direction: column;
     padding: 10px;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 .blog-details-post-author {
@@ -1075,7 +1078,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px 10px 0 10px ;
     margin-bottom: 50px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 /*Aside section for the job creators profile*/
@@ -1088,7 +1090,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 0 50px 0;
     padding: 10px;
     width: 90%;
-    box-shadow: 5px 5px 10px #343a40;
+    max-width: 500px;
 }
 
 .job-file-upload-aside-header {
@@ -1166,11 +1168,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 /*---------- End of Job pages styles----------*/
 
+
+
+
+
 /*----------Comments section to be used in blog and job pages ----------*/
 .job-blog-comments {
-    width: 90%;
     max-width: 750px;
     padding: 20px;
+}
+
+.comments-header {
+    color: #007bff;
+    margin-bottom: 50px;
 }
 
 .comments {
@@ -1206,6 +1216,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 40px;
 }
 
+.delete-form {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
 .delete-post-job-header {
     font-size: 2em;
 }
@@ -1229,7 +1244,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.2em;
     padding: 10px 20px;
     margin: 20px 0;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 .shop-page-title {
@@ -1249,7 +1263,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ffffff;
     padding: 20px;
     margin: 20px 0;
-    box-shadow: 5px 5px 10px #343a40;
     width: 100%;
 }
 
@@ -1282,8 +1295,7 @@ h1, h2, h3, h4, h5, h6 {
 .cart-total-row {
     background-color: #ffffff;
     padding: 20px;
-    box-shadow: 5px 5px 10px #343a40;
-    margin-bottom: 40px;
+    margin: 20px 0 40px 0 ;
 }
 
 .cart-total-row-paragraph {
@@ -1302,7 +1314,6 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     margin: 20px 0 50px 0;
     padding: 20px 20px;
-    box-shadow: 5px 5px 10px #343a40;
 }
 
 .payment-form-legend {
@@ -1524,8 +1535,6 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*----------End of Profile page styles----------*/
 
-
-
     /*----------Blog page----------*/
     .blog-article {
         display: flex;
@@ -1536,8 +1545,6 @@ h1, h2, h3, h4, h5, h6 {
         width: 35%;
     }
     /*----------End of Blog page styles----------*/
-
-
 
     /*----------Shop styles----------*/
     .product {
@@ -1582,6 +1589,10 @@ h1, h2, h3, h4, h5, h6 {
     /*----------End of shop views----------*/
 }
     
+
+
+
+
 /*tablet screens*/
 @media(min-width: 768px) {
 
@@ -1604,6 +1615,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     /*Blog section on home page*/
+
     .blog-card-container-cards {
         display: flex;
         flex-wrap: wrap;
@@ -1632,10 +1644,7 @@ h1, h2, h3, h4, h5, h6 {
         padding: 10px;
         width: 31%;
     }
-
     /*----------End of home page styles----------*/
-
-
     
     /*----------About page----------*/
     .about-intro {
@@ -1650,8 +1659,6 @@ h1, h2, h3, h4, h5, h6 {
         width: 28%;
     }
     /*----------End of About page styles----------*/
-
-
 
     /*----------Profile page----------*/
     .user-blog-header {
@@ -1690,13 +1697,10 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*----------End of Profile page styles----------*/
 
-
-
     /*----------Blog pages----------*/
     .blog-article,
     .job-upload {
         width: 47%;
-
     }
 
     .blog-article {
@@ -1712,21 +1716,29 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
 
+    .job-article {
+        width: 48%;
+    }
+
     /* Other blog links in the aside of the posts detail page */
     .blog-aside {
-        width: 90%;
-        display: flex;
         justify-content: flex-start;
         flex-direction: column;
         padding: 10px;
         margin-bottom: 50px;
         box-sizing: border-box;
-        box-shadow: 5px 5px 10px #343a40;
+    }
+
+    
+    .article-card-intro-top {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .article-card-intro-top img {
+        width: 100%;
     }
     /*----------End of blog page styles----------*/
-
-
-
     
     /*----------Shop styles----------*/
     .product {
@@ -1742,8 +1754,6 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
     /*----------End of shop views----------*/
-
-
 
     /*---------- Footer sections ----------*/
     .footer-top-areas {
@@ -1762,6 +1772,10 @@ h1, h2, h3, h4, h5, h6 {
     /*---------- End of Footer sections ----------*/
     
 }
+
+
+
+
 
 /*Large tablet and small laptop screens*/
 @media(min-width: 992px) {
@@ -1821,6 +1835,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .blog-card-container-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .blog-card-container-cards {
         flex-direction: column;
     }
 
@@ -1829,20 +1849,19 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*End of home page section*/
 
-
-
     /*----------Blog pages----------*/
-    .blog-article {
+    .blog-article,
+    .job-article {
         width: 31%;
     }
 
     /* Blog details page */
     .blog-detail-container,
     .job-detail-container { 
+        width: 90%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 90%;
         max-width: 1100px;
         align-items: flex-start;
     }
@@ -1878,8 +1897,4 @@ h1, h2, h3, h4, h5, h6 {
     }
     /*----------End of shop views----------*/
     
-}
-
-/*Larger laptop and desktop screens*/
-@media(min-width: 1224px) {
 }
