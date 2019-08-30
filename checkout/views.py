@@ -50,6 +50,7 @@ def checkout(request):
                     description = request.user.email, 
                     card = payment_form.cleaned_data['stripe_id']
                 )
+                
             except stripe.error.CardError:
                 logger.error('4b. Stripe Failed')
                 messages.error(request, 'Your card has been declined')
