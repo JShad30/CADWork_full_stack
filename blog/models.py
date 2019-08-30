@@ -25,13 +25,16 @@ class Post(models.Model):
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
 
-		blog_image = Image.open(self.image.path)
+		image = Image.open(self.image.path)
 
 		#Check to see whether the image is larger than the standard size, if so, resize
-		if blog_image.height != 700 or blog_image.width != 1200:
+		if image.height != 700 or image.width != 1200:
 			output_size = (1200, 700)
-			blog_image.thumbnail(output_size)
-			blog_image.save(self.image.path)
+			image.thumbnail(output_size)
+			image.save(self.image.path)
+
+	class Meta:
+		ordering = ['-date_posted']
 
 
 #Model to allow a user to comment on a blog post.
@@ -43,3 +46,6 @@ class PostComment(models.Model):
 
 	def __str__(self):
 		return self.comment
+
+	class Meta:
+		ordering = ['-comment_date']

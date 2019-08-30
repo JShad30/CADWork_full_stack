@@ -9,31 +9,41 @@
 
 		<!--Container for the article content-->
 		<article class="blog-article-content">
+			<!--If statement to check for messages-->
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-primary">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
 			<h1 class="article-title">{{ object.title }}</h1>
-			<p class="ml-1">Blog uploaded by <a href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a> on {{ object.date_posted|date:"dS F, Y" }}</p>
+			<p class="ml-1">Blog uploaded by <a href="{% url 'public_profile' post.author.profile.id %}">{{ object.author }}</a> on {{ object.date_posted|date:"dS F, Y" }}</p>
+			<div class="article-metadata">
+				<!--If statement to display different buttons depending on which user is logged in-->
+				<!--If user on the page is the user who created the blog, the following buttons will be displayed allowing the user to update or delete the post-->
+				{% if object.author == user %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+						<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+					</div>
+				<!--If the user logged in is not the creator of the current blog then a button will appear allowing the user to click on the profile page of the user who created the blog.-->
+				{% else %}
+					<div class="mt-3 mb-3">
+						<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'public_profile' object.author.username %}">View User Profile</a>
+					</div>
+				{% endif %}
+			</div>
 			<img class="blog-image" src="{{ object.image.url }}">
 			<div class="main-blog-content">
 				<p class="article-intro">{{ object.intro }}</p>
 				<!--'linebreaksbr' will divide the plain text inputted by the user into separate files in the content on this page-->
 				<p class="article-content">{{ object.content|linebreaksbr }}</p>
-				<div class="article-metadata">
-					<!--If statement to display different buttons depending on which user is logged in-->
-					<!--If user on the page is the user who created the blog, the following buttons will be displayed allowing the user to update or delete the post-->
-					{% if object.author == user %}
-						<div class="mt-3 mb-3">
-							<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-							<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-						</div>
-					<!--If the user logged in is not the creator of the current blog then a button will appear allowing the user to click on the profile page of the user who created the blog.-->
-					{% else %}
-						<div class="mt-3 mb-3">
-							<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'public_profile' object.author.username %}">View User Profile</a>
-						</div>
-					{% endif %}
-				</div>
 			</div>
+
 			<!--Comments section for the jobs-->
 			<section class="job-blog-comments">
+				<h3 class="comments-header">Comments</h3>		
 				<div class="leave-comment-button">
 					<a class="btn btn-primary" href="{% url 'post-comment-create' object.id %}">Leave a comment</a>
 				</div>
@@ -42,7 +52,7 @@
 					{% for comment in post.blog_comments.all %}  
 						<div class="single-comment">                
 							<p class="comment-author-date"><span class="comment-author">{{ comment.author }}</span> - {{ comment.comment_date|date:"dS F, Y" }}</p>
-							<p class="comment">{{ comment.comment }}</p>
+							<p class="comment">{{ comment.comment|linebreaksbr }}</p>
 												
 							{% if user.is_authenticated and object.author == user or user.is_superuser %}
 							<div class="btn-group">
@@ -75,7 +85,7 @@
 							<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
 							<div class="blog-intro">
 								<div class="blog-details-post-text">
-									<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+									<a class="blog-details-post-author mr-2" href="{% url 'public_profile' post.author.profile.id %}">{{ post.author }}</a>
 									<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
 								</div>
 								<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>

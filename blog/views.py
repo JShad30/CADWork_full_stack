@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, PostComment
 from .forms import PostCommentForm
@@ -25,21 +26,7 @@ class PostListView(ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
-	ordering = ['-date_posted']
 	paginate_by = 6
-
-
-
-#Same as the views on the home page but specifically for the user who created the blog 
-class UserPostListView(ListView):
-	model = Post
-	template_name = 'blog/user_posts.html'
-	context_object_name = 'posts'
-	paginate_by = 6
-
-	def get_queryset(self):
-		user = get_object_or_404(User, username=self.kwargs.get('username'))
-		return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 
@@ -50,54 +37,60 @@ class PostDetailView(DetailView):
 	#Get the context data to be able to display other blogs from within the detail view for the aside in 'post_detail.html'.
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['posts'] = Post.objects.all()[:5]
+		context['posts'] = Post.objects.all()[:6]
 		return context
+
 		
 
-
 #Post create class to be used in the form within the 'post_form.html'.
-class PostCreateView(LoginRequiredMixin, CreateView):
-	model = Post
-	#Fields taken from the model created in 'models.py' file 
-	fields = ['title', 'intro', 'content', 'image']
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Post
+    fields = ['title', 'intro', 'content', 'image']
+    success_message = 'Your post has been successfully created.'
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 
 #Same as the post create view above. As this view is an update view it will start with information in the create form. The 'LoginRequiredMixin' and 'UserPassesTestMixin' ensures only the user who created the post can access this page.
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-	model = Post
-	#Fields same as the PostCreateView
-	fields = ['title', 'intro', 'content', 'image']
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    model = Post
+    fields = ['title', 'intro', 'content', 'image']
+    success_message = 'Your post has been updated'
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
-	#Stop the user from being able to access another users post
-	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.author:
-			return True
-		else:
-			return False
+    #Stop the user from being able to access another users post
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
 
 
 
 #View to enable the user who created the post to be able to delete it.
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	model = Post
-	success_url = '/blog'
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+    model = Post
+    success_url = '/blog/'
+    success_message = 'Your post has been deleted'
 
-	def test_func(self):
-		post = self.get_object()
-		if self.request.user == post.author:
-			return True
-		else:
-			return False
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    #Stop a user from being able to delete another users post
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
 
 
 
@@ -152,11 +145,16 @@ def update_post_comment_view(request, pk):
 
 
 #Handle the logic to enable the user to be able to delete a comment
-class PostCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = PostComment
     template_name = 'blog/post_comment_confirm_delete.html'
     success_url = '/blog'
+    success_message = 'Your comment has been deleted'
     fields = ['comment']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
     #Stop a user from being able to access another users comment
     def test_func(self):
