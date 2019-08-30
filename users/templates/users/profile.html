@@ -12,7 +12,7 @@
         <!--If statement to check for messages-->
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
+                <div class="alert alert-primary">
                     {{ message }}
                 </div>
             {% endfor %}
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="user-profile-overview">
-                            <p class="account-paragraph">{{ user.profile.profile_intro }}</p>
+                            <p class="account-paragraph">{{ user.profile.profile_intro|linebreaksbr }}</p>
                         </div>
                         <!--Button to link to a page where the user can update their profile-->
                         <a class="btn btn-primary profile-page-button" href="{% url 'update_profile' %}">Update Profile</a>
@@ -46,24 +46,20 @@
                             <h2 class="account-heading">Your Blogs</h2>
                             <p class="account-paragraph">See the three blogs you have most recently created below. Feel free to update, delete and create new blogs.</p>
                         </div>
-                        
-                        <!--For loop to use following code for all of the blogs-->
-                        {% for post in posts %}
-                            <!--If statement to check whether the current user is the cretor of posts-->
-                            {% if post.author == user %}
-                                <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-                                    <div class="profile-job-blog-text">
-                                        <div class="article-metadata">
-                                            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                                            <small class="text-muted">{{ post.date_posted|date:"dS F, Y" }}</small>
-                                        </div>
-                                        <h2 class="blog-home-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                                        <p class="article-card-intro">{{ post.intro|truncatewords:20 }}</p>
-                                    </div>
-                                </article>  
-                            {% endif %}      
-                        {% endfor %} 
+                        <div class="blog-card-container-cards blog-cards-profile">
+							<!--For loop to use the following code of reach of the blogs in the list-->
+							{% for post in posts %}
+							<article class="blog-details-other">
+								<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+								<div class="blog-intro">
+									<div class="blog-details-post-text">
+										<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+									</div>
+									<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+								</div>
+							</article>
+							{% endfor %}
+						</div>
                         <!--Create blog page accessed if the following button is clicked-->
                         <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>    
                     </div>
@@ -78,51 +74,27 @@
                             <h2 class="account-heading">Jobs you have Uploaded</h2>
                             <p class="account-paragraph">Below are the jobs you have currently uploaded and are receiving bids from other users.</p>
                         </div>
-
-                        <!--For loop to use following code for any jobs the user has uploaded-->
-                        {% for job in jobs %}
-                            {% if job.author == user %}
-                                <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
-                                    <div class="profile-job-blog-text">
-                                        <div class="article-metadata">
-                                            <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                        <div class="job-card-container-cards job-cards-profile">
+                            <!--For loop to use following code for any jobs the user has uploaded-->
+                            {% for job in jobs %}
+                                {% if job.author == user %}
+                                    <article class="profile-job-article">
+                                        <img class="article-image" src="{{ job.image.url }}" height="80" width="80">
+                                        <div class="profile-job-blog-text">
+                                            <div class="article-metadata">
+                                                <small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
+                                            </div>
+                                            <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
+                                            <p class="article-card-intro">{{ job.job_overview }}</p>
                                         </div>
-                                        <h2 class="blog-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
-                                        <p class="article-card-intro">{{ job.job_overview }}</p>
-                                    </div>
-                                </article>
-                            {% endif %}
-                        {% endfor %}                          
+                                    </article>
+                                {% endif %}
+                            {% endfor %}                          
+                        </div>
                         <a class="btn btn-primary" href="{% url 'job-create' %}">Upload New Job</a>
                     </div>
                 </section>
 
-                <!--List of the bids the user has made-->
-                <section class="profile-page-box" id="profile-job-bid-box">
-                    <div class="profile-page-box-container">
-                        <div class="profile-blog-intro">
-                            <h2 class="account-heading">Current active bids</h2>
-                            <p class="account-paragraph">See below a list of the jobs that you currently have bids on.</p>
-                            <!--For loop to display the jobs the user has bid on-->
-                            {% for uploaded_file in uploaded_files %}
-                                {% if uploaded_file.author == user %}
-                                <article class="profile-blog-article">
-                                    <img class="article-image" src="{{ uploaded_file.job.image.url }}" height="80" width="80">
-                                    <div class="profile-job-blog-text">
-                                        <div class="article-metadata">
-                                            <small class="text-muted">{{ uploaded_file.job.date_posted|date:"dS F, Y" }}</small>
-                                        </div>
-                                        <h2 class="blog-home-title"><a href="#">{{ uploaded_file.job.job_name }}</a></h2>
-                                        <p class="article-card-intro">{{ uploaded_file.job.job_overview }}</p>
-                                    </div>
-                                </article>
-                                {% endif %}
-                            {% endfor %}
-                            <a class="btn btn-primary" href="{% url 'jobs-home' %}">Search for jobs</a>
-                        </div>
-                    </div>
-                </section>
             </div> 
         </div>    
     </div>

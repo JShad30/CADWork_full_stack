@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
 from blog.models import Post
-from jobs.models import Job#, JobBid
+from jobs.models import Job
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 
@@ -59,7 +59,7 @@ def profile(request):
 	context = {
 		'users': Profile,
 		'posts': Post.objects.all(),
-		'jobs': Job.objects.all(),
+		'jobs': Job.objects.all()
 	}	
 
 	return render(request, 'users/profile.html', context)
