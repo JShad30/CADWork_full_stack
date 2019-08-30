@@ -15,13 +15,39 @@
 	<!--Top section of the site with the scrolling image. There are four different scrolling header sections-->
 	<header class="image-header-container">
 		<div class="slider">
+			<div class="slide" id="interior">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Welcome to CADWork</h1>
+						<p class="slide-content-paragraph">If you have a building project that requires plans, working drawings, or creative designs and illustration, upload your project and find professionals.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'job-create' %}">Upload Project</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-interior"></div>
+							<div class="arrow arrow-right" id="arrow-right-interior"></div>
+						</div>
+					</div>						
+				</div>
+			</div>
+			<div class="slide" id="extension">
+				<div class="slide-content">
+					<div class="slide-content-text">
+						<h1 class="slide-content-title">Find Information</h1>
+						<p class="slide-content-paragraph">Get the latest news and information about CAD products and architecture and construction industry news here.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'blog-home' %}">See the Blog</a></button>
+						<div class="arrows">
+							<div class="arrow arrow-left" id="arrow-left-extension"></div>
+							<div class="arrow arrow-right" id="arrow-right-extension"></div>
+						</div>
+					</div>						
+				</div>
+			</div>
 			<div class="slide" id="plan">
 				<div class="slide-content">
 					<!--Text to be used in the scrolling images-->
 					<div class="slide-content-text">
-						<h1 class="slide-content-title">Welcome to CADWork!</h1>
-						<p class="slide-content-paragraph">If you require a planning application, construction drawings, for your project, whether you are a private individual or business.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'register' %}">Register</a></button>
+						<h1 class="slide-content-title">Get Started!</h1>
+						<p class="slide-content-paragraph">If you are looking to make a start in your career as a CAD Professional and start work today, take a look round our shop and find products to get you on your way.</p>
+						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'shop-home' %}">Shop</a></button>
 						<!--Arrows to allow the user to scroll through the headers. Scroll controlled in the 'frontimage.js' file-->
 						<div class="arrows">
 							<div class="arrow arrow-left" id="arrow-left-plan"></div>
@@ -34,39 +60,13 @@
 				<div class="slide-content">
 					<div class="slide-content-text">
 						<h1 class="slide-content-title">Are you a CAD Professional?</h1>
-						<p class="slide-content-paragraph">If you are a construction CAD professional looking for freelance work, CADWork allows you to find and bid for jobs.</p>
+						<p class="slide-content-paragraph">If you are a construction CAD professional, connect with those looking for designs and get to work and upload your designs!</p>
 						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'jobs-home' %}">View Jobs</a></button>
 						<div class="arrows">
 							<div class="arrow arrow-left" id="arrow-left-architect"></div>
 							<div class="arrow arrow-right" id="arrow-right-architect"></div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="slide" id="interior">
-				<div class="slide-content">
-					<div class="slide-content-text">
-						<h1 class="slide-content-title">Creative designs</h1>
-						<p class="slide-content-paragraph">Do you need to create photo realistic drawings or views for a client for presentation? Find an architect or CAD developer here.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'job-create' %}">Upload Project</a></button>
-						<div class="arrows">
-							<div class="arrow arrow-left" id="arrow-left-interior"></div>
-							<div class="arrow arrow-right" id="arrow-right-interior"></div>
-						</div>
-					</div>						
-				</div>
-			</div>
-			<div class="slide" id="extension">
-				<div class="slide-content">
-					<div class="slide-content-text">
-						<h1 class="slide-content-title">Get Information</h1>
-						<p class="slide-content-paragraph">Get the latest news and information about CAD products and small level construction industry news here.</p>
-						<button class="btn btn-primary home-page-image-buttons"><a href="{% url 'blog-home' %}">See the Blog</a></button>
-						<div class="arrows">
-							<div class="arrow arrow-left" id="arrow-left-extension"></div>
-							<div class="arrow arrow-right" id="arrow-right-extension"></div>
-						</div>
-					</div>						
 				</div>
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 				<div class="home-page-job-section-container">
 					<div class="home-page-job-intro">
 						<h2 class="home-page-section-heading"><i class="fa fa-laptop mr-3"></i>Latest Jobs</h2>
-						<p class="home-page-section-paragraph">These are the latest jobs that have been uploaded by our members. Start bidding and earning!</p>
+						<p class="home-page-section-paragraph">These are the latest jobs that have been uploaded by our members. Speak to the job owners, and start uploading your work.</p>
 					</div>
 					<div class="home-page-job-card-container">
 						<!--For loop to use this code for the three most recently uploaded jobs to the site-->
@@ -89,7 +89,7 @@
 							<img class="article-image" src="{{ job.image.url }}" height="80" width="80">
 							<div class="job-intro">
 								<div class="job-author-date">
-									<p class="mr-2" >{{ job.author }}</p>
+									<a class="mr-2" href="{% url 'public_profile' job.author.profile.id %}">{{ job.author }}</a>
 									<small class="text-muted">{{ job.date_posted|date:"dS F, Y" }}</small>
 								</div>
 								<h2 class="job-home-title"><a href="{% url 'job-detail' job.id %}">{{ job.job_name }}</a></h2>
@@ -125,7 +125,7 @@
 								<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
 								<div class="blog-intro">
 									<div class="blog-details-post-text">
-										<a class="blog-details-post-author mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+										<a class="blog-details-post-author mr-2" href="{% url 'public_profile' post.author.profile.id %}">{{ post.author }}</a>
 										<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
 									</div>
 									<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>

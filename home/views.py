@@ -15,7 +15,7 @@ from jobs.models import Job
 def home(request):
     context = {
 		'posts': Post.objects.all()[:6],
-		'jobs': Job.objects.all()[:6]
+		'jobs': Job.objects.all()[:4]
 	}
     return render(request, 'home/index.html', context)
 
