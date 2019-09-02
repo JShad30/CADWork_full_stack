@@ -6,6 +6,8 @@ CADWork is a fictional website that allows individuals or businesses looking to 
 
 Users of the site can look through the blog to find out more about the industry, or if you're looking to make a start in CAD design, buy items in the shop!
 
+![CADWork Layout Large](https://user-images.githubusercontent.com/23212520/64134770-86857000-cdd9-11e9-8e7a-dc26d98bafc5.png)
+
 ## User Experience/ User Stories
 
 The site has been given a consistent look and feel throughout to give the best user experience possible. Professional fonts and colours have been used in keeping with the professional nature of the site.
