@@ -71,6 +71,7 @@ def job_upload_view(request, pk):
                         uploaded_file.author = request.user
                         uploaded_file.job = job
                         uploaded_file.save()
+                        messages.success(request, f'Your file has been uploaded and is available for view by the project owner.')
                         return redirect('job-detail', pk=job.pk)
                 else:
                     form = JobFileUploadForm()
