@@ -9,7 +9,7 @@
 
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
-			<legend class="border-bottom mb-4">Upload Files to {{ job.title }}</legend>
+			<legend class="border-bottom mb-4">Upload Files</legend>
 			<!--Crispy form to give the form a professional appearance-->
 			{{ form|crispy }}
 			<button class="btn btn-primary btn-block" type="submit">Submit</button>

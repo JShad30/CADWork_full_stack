@@ -1577,18 +1577,18 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: space-between;
     }
 
-    #order-form,
-    #payment-form {
+    #o-form,
+    #p-form {
         border-bottom: 0;
         width: 100%;
     }
 
-    #order-form {
+    #o-form {
         border-right: 0.5px solid #ced4da;
         padding-right: 20px;
     }
 
-    #payment-form {
+    #p-form {
         padding-left: 20px;
     }
     /*----------End of shop views----------*/
