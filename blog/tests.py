@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.apps import apps
+from django.contrib.auth.models import User
 
 #Imports for app testing
 from .apps import BlogConfig
@@ -19,16 +20,30 @@ class TestBlogConfig(TestCase):
 class TestBlogModels(TestCase):
 
     def test_create_post(self):
+        User.objects.create_user(
+            user='username',
+            email='username@email.com',
+            password='passwordtest')
+        self.client.login(user='username', password='passwordtest')
         post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield', image='image.jpg')
         post.save()
+        self.assertEqual(post.author.user, 'username')
         self.assertEqual(post.title, 'Blog post')
         self.assertEqual(post.intro, 'Basic blog post content intro')
         self.assertEqual(post.content, 'Content to go into the textfield')
         self.assertEqual(post.image, 'image.jpg')
 
     def test_post_comment(self):
-        post_comment = PostComment(comment='Test comment')
+        User.objects.create_user(
+            user='username',
+            email='username@email.com',
+            password='passwordtest')
+        self.client.login(user='username', password='passwordtest')
+        post_comment = PostComment(comment='Test comment', post_id='1')
+        post_comment.save() 
+        self.assertEqual(post_comment.post_id, '1')
         self.assertEqual(post_comment.comment, 'Test comment')
+        self.assertEqual(post_comment.author.user, 'username')
 
 #Testing the views
 class TestBlogViews(TestCase):
