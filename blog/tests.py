@@ -21,13 +21,13 @@ class TestBlogModels(TestCase):
 
     def test_create_post(self):
         User.objects.create_user(
-            user='username',
-            email='username@email.com',
+            user='testuser',
+            email='testuser@email.com',
             password='passwordtest')
-        self.client.login(user='username', password='passwordtest')
+        self.client.login(user='testuser', password='passwordtest')
         post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield', image='image.jpg')
         post.save()
-        self.assertEqual(post.author.user, 'username')
+        self.assertEqual(post.author.user, 'testuser')
         self.assertEqual(post.title, 'Blog post')
         self.assertEqual(post.intro, 'Basic blog post content intro')
         self.assertEqual(post.content, 'Content to go into the textfield')
@@ -35,15 +35,15 @@ class TestBlogModels(TestCase):
 
     def test_post_comment(self):
         User.objects.create_user(
-            user='username',
-            email='username@email.com',
+            user='testuser',
+            email='testuser@email.com',
             password='passwordtest')
-        self.client.login(user='username', password='passwordtest')
+        self.client.login(user='testuser', password='passwordtest')
         post_comment = PostComment(comment='Test comment', post_id='1')
         post_comment.save() 
         self.assertEqual(post_comment.post_id, '1')
         self.assertEqual(post_comment.comment, 'Test comment')
-        self.assertEqual(post_comment.author.user, 'username')
+        self.assertEqual(post_comment.author.user, 'testuser')
 
 #Testing the views
 class TestBlogViews(TestCase):
