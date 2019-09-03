@@ -31,7 +31,7 @@ class TestBlogModels(TestCase):
         self.assertEqual(post.title, 'Blog post')
         self.assertEqual(post.intro, 'Basic blog post content intro')
         self.assertEqual(post.content, 'Content to go into the textfield')
-        self.assertEqual(post.image, 'image.jpg')
+        self.assertEqual(post.image, '/blog_images/image.jpg')
 
     def test_post_comment(self):
         User.objects.create_user(

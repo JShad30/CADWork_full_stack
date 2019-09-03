@@ -24,7 +24,7 @@ class TestShopModels(TestCase):
         self.assertEqual(product.title, 'Product')
         self.assertEqual(product.product_description, 'Product description test')
         self.assertEqual(product.product_price, 2.00)
-        self.assertEqual(product.image, 'image.jpg')
+        self.assertEqual(product.image, '/product_images/image.jpg')
 
 #Testing the shop views
 class TestShopViews(TestCase):
