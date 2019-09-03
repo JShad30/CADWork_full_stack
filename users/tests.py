@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.apps import apps
+from django.contrib.auth.models import User
 
 # Imports for app testing
 from .apps import UsersConfig
@@ -19,9 +20,14 @@ class TestUsersConfig(TestCase):
 class TestUsersModels(TestCase):
 
     def test_create_post(self):
-        profile = Profile(username='username', firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test', image='image.jpg')
+        User.objects.create_user(
+            username='testuser',
+            email='testuser@email.com',
+            password='passwordtest')
+        self.client.login(username='testuser', password='passwordtest')
+        profile = Profile(firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test', image='image.jpg')
         profile.save()
-        self.assertEqual(profile.user, 'username')
+        self.assertEqual(profile.user.username, 'username')
         self.assertEqual(profile.firstname, 'Firstname')
         self.assertEqual(profile.lastname, 'Lastname')
         self.assertEqual(profile.profile_intro, 'Profile intro test')
