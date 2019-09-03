@@ -9,6 +9,15 @@
             <h1 class="shop-page-title"><i class="fa fa-shopping-cart mr-3"></i> CADWork Shop</h1>
         </div>
 
+        <!--If statement to check for messages-->
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-primary">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+
         <!--Container div for the products-->
         <div class="products-container">
 
