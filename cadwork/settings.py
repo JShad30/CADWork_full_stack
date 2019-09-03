@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+# Import the env file from the main folder. Test keys imported so that the file can be tested in Travis.
 try:
     import env
 except:
