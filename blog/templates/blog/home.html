@@ -8,16 +8,7 @@
     <div class="user-blog-header">
         <h1 class="user-post-title"><i class="fa fa-pencil mr-3"></i>Latest Blog Posts</h1>
     </div>
-
-    <!--If statement to check for messages-->
-	{% if messages %}
-		{% for message in messages %}
-			<div class="alert alert-primary">
-				{{ message }}
-			</div>
-		{% endfor %}
-	{% endif %}
-
+    
     <!--Container for the blog article cards-->
     <div class="blog-card-container">
         <!--For loop to display the following code for each of the blog cards-->

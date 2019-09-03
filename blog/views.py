@@ -77,12 +77,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 #View to enable the user who created the post to be able to delete it.
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Post
+    success_message = 'Your post has been deleted.'
     success_url = '/blog/'
-    success_message = 'Your post has been deleted'
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+    #Function to display the message when the post is deleted
+    def get_success_message(self, cleaned_data):
+        return self.success_message
 
     #Stop a user from being able to delete another users post
     def test_func(self):
@@ -148,13 +148,8 @@ def update_post_comment_view(request, pk):
 class PostCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = PostComment
     template_name = 'blog/post_comment_confirm_delete.html'
-    success_url = '/blog'
-    success_message = 'Your comment has been deleted'
+    success_url = '/blog/'
     fields = ['comment']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
 
     #Stop a user from being able to access another users comment
     def test_func(self):
