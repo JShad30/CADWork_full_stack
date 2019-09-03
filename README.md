@@ -1,5 +1,7 @@
 # CADWork - Full Stack Django Milestone Project
 
+[![Build Status](https://travis-ci.org/JShad30/CADWork_full_stack.svg?branch=master)](https://travis-ci.org/JShad30/CADWork_full_stack)
+
 ## Project Overview
 
 CADWork is a fictional website that allows individuals or businesses looking to have professional CAD designs, measured surveys, or creative designs for their project, pair up with CAD professionals who are willing to carry out their project on a freelance basis.
@@ -142,5 +144,3 @@ The default user face image has been taken from nepad.org.
 Throughout the project I received support from the mentor and the tutors. The site functionality, ideas and database structure were discussed with the mentor.
 
 I used the following series to help with the registration and login functionality for the 'users' app, and creating the blog app: https://www.youtube.com/watch?v=UmljXZIypDc&list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p&index=1
-
-[![Build Status](https://travis-ci.org/JShad30/CADWork_full_stack.svg?branch=master)](https://travis-ci.org/JShad30/CADWork_full_stack)
