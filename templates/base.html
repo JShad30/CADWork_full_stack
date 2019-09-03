@@ -63,7 +63,7 @@
 	                {% if user.is_authenticated %}
 	                <!--Account link which only appears if user is logged in-->
 	                <div class="nav-item nav-buttons">
-	                	<a class="btn btn-success mr-2" href="{% url 'profile' %}">Profile</a>
+	                	<a class="btn btn-primary mr-2" href="{% url 'profile' %}">Profile</a>
 	                	<a class="btn btn-danger mr-2" href="{% url 'logout' %}">Logout</a>
 	                </div>		            
 		            {% else %}
