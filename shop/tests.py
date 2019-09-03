@@ -19,7 +19,7 @@ class TestShopConfig(TestCase):
 class TestShopModels(TestCase):
 
     def test_product(self):
-        product = Product(product_name='Product', product_description='Product description test', product_price=2.00, image='image.jpg')
+        product = Product(product_name='Product', product_description='Product description test', product_price=2.00, image='/product_images/image.jpg')
         product.save()
         self.assertEqual(product.title, 'Product')
         self.assertEqual(product.product_description, 'Product description test')

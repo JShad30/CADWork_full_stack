@@ -19,7 +19,7 @@ class TestJobConfig(TestCase):
 class TestJobsModels(TestCase):
 
     def test_create_job(self):
-        job = Job(job_name='New Job', job_overview='Basic job content intro', job_description='Content to go into the textfield', job_location_town='Town', job_location_county='County', image='image.jpg')
+        job = Job(job_name='New Job', job_overview='Basic job content intro', job_description='Content to go into the textfield', job_location_town='Town', job_location_county='County', image='/job_images/image.jpg')
         job.save()
         self.assertEqual(job.job_name, 'New Job')
         self.assertEqual(job.job_overview, 'Basic job content intro')

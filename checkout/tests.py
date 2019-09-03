@@ -27,8 +27,8 @@ class TestCheckout(TestCase):
         self.assertEqual(order.customer_address_post_code, 'TE57 1ZE')
 
     def test_order_line_item(self):
-        order_line_item = OrderLineItem(quantity='3')
-        self.assertEqual(order_line_item.quantity, '3')
+        order_line_item = OrderLineItem(quantity=3)
+        self.assertEqual(order_line_item.quantity, 3)
 
 #Testing the view for the checkout home page works
 class TestCheckoutViews(TestCase):
