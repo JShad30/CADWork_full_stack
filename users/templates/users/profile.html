@@ -49,16 +49,18 @@
                         <div class="blog-card-container-cards blog-cards-profile">
 							<!--For loop to use the following code of reach of the blogs in the list-->
 							{% for post in posts %}
-							<article class="blog-details-other">
-								<img class="article-image" src="{{ post.image.url }}" height="80" width="80">
-								<div class="blog-intro">
-									<div class="blog-details-post-text">
-										<small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
-									</div>
-									<h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-								</div>
-							</article>
-							{% endfor %}
+                                {% if post.author == user %}
+                                <article class="blog-details-other">
+                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                    <div class="blog-intro">
+                                        <div class="blog-details-post-text">
+                                            <small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
+                                        </div>
+                                        <h3 class="blog-details-other-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                                    </div>
+                                </article>
+                                {% endif %}
+                            {% endfor %}  
 						</div>
                         <!--Create blog page accessed if the following button is clicked-->
                         <a class="btn btn-primary" href="{% url 'post-create' %}">Create New Blog</a>    
