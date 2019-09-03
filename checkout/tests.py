@@ -35,5 +35,5 @@ class TestCheckoutViews(TestCase):
 
     def test_checkout_home_page(self):
         checkout_home = self.client.get("/checkout/")
-        self.assertEqual(checkout_home.status_code, 200)
+        self.assertEqual(checkout_home.status_code, 302)
         self.assertTemplateUsed(checkout_home, "checkout/home.html")
