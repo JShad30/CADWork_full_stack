@@ -13,7 +13,7 @@ class Post(models.Model):
 	image = models.ImageField(default='blog-default.jpg', upload_to='blog_images')
 	date_posted = models.DateTimeField(default=timezone.now)
 	#Foreign key links the user to their blog posts
-	author = models.ForeignKey(User, on_delete=models.CASCADE)
+	author = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
 
 	def __str__(self):
 		return self.title
