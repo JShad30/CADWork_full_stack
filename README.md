@@ -129,7 +129,7 @@ This project has been deployed to both Github and Heroku by using the push comma
 
 If you would like to contribute to the project can be cloned or downloaded from the Github link provided below. 
 
-The individual files on Github can be found via https://github.com/JShad30/CADWork_full_stack, and the website can be viewed via ...............https://solar-system-quiz.herokuapp.com/...............
+The individual files on Github can be found via https://github.com/JShad30/CADWork_full_stack, and the website can be viewed via https://cadwork-full-stack-milestone.herokuapp.com/
 
 ## Credits
 
