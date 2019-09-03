@@ -11,24 +11,24 @@ import logging
 
 stripe.api_key = settings.STRIPE_SECRET
 
-
+#Loggin used to find errors as I was 
 logger = logging.getLogger(__name__)
 """Home view for the shop checkout"""
+
 @login_required()
 def checkout(request):
     logger.error('1. Entering Checkout')
     #Two different forms created for the user information and payment form
-    if request.method == 'POST':
+    if request.method == "POST":
         logger.error('2. Entering Post')
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
         #Check that both forms are valid
-        if order_form.is_valid() and payment_form.is_valid():
+        if payment_form.is_valid() and order_form.is_valid():
             logger.error('3. Entering Valid')
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
-
             cart = request.session.get('cart', {})
             total = 0
             for id, quantity in cart.items():
@@ -38,12 +38,12 @@ def checkout(request):
                     order = order, 
                     product = product, 
                     quantity = quantity
-                )
+                    )
                 order_line_item.save()
 
             try:
                 logger.error('4. Entering Stripe')
-                logging.info(str(int(total * 100)))
+                #logging.info(str(int(total * 100)))
                 customer = stripe.Charge.create(
                     amount = int(total * 100), 
                     currency = "GBP", 
@@ -53,17 +53,17 @@ def checkout(request):
                 
             except stripe.error.CardError:
                 logger.error('4b. Stripe Failed')
-                messages.error(request, 'Your card has been declined')
+                messages.error(request, 'Your card has been declined.')
 
             #If statement to determine which message to print
             if customer.paid:
                 logger.error('5. Success (paid)')
-                messages.error(request, 'Thanks for your payment, it has been successfully processed')
+                messages.error(request, 'Thanks for your payment, it has been successfully processed.')
                 request.session['cart'] = {}
                 return redirect(reverse('shop-home'))
             else:
                 logger.error('5b. Failed')
-                messages.error(request, 'We were unable to accept your payment')
+                messages.error(request, 'We were unable to accept your payment.')
 
         #Message to print of forms are not valid
         else:

@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
-<!--{% load bootstrap_tags %}-->
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -40,13 +39,7 @@
                 <fieldset class="form-group" id="p-form">
                     <legend class="payment-form-legend">Payment Details</legend>
                     {{ payment_form|crispy }}
-                </fieldset>
-                <!--<div class="form-group col-md-6">
-                    {{ order_form|as_bootstrap }}
-                </div>   
-                <div class="form-group col-md-6">
-                    {{ payment_form|as_bootstrap }}
-                </div>-->      
+                </fieldset>   
             </div>
             <input class="btn btn-primary" id="submit_payment_btn " name="commit" type="submit" value="Submit Payment Details">
         </form>

@@ -21,7 +21,3 @@ class OrderForm(forms.ModelForm):
         model = Order
         #Fields from the models.py file
         fields = ('customer_name', 'customer_address_line_one', 'customer_address_town', 'customer_address_county', 'customer_address_post_code')
-
-
-
-"""Payment forms to allow users to pay each other after a job has been completed"""
