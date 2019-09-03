@@ -19,7 +19,7 @@ class TestUsersConfig(TestCase):
 class TestUsersModels(TestCase):
 
     def test_create_post(self):
-        profile = Profile(user='username', firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test', image='image.jpg')
+        profile = Profile(username='username', firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test', image='image.jpg')
         profile.save()
         self.assertEqual(profile.user, 'username')
         self.assertEqual(profile.firstname, 'Firstname')
