@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import JobListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView, job_upload_view, job_comment_view, update_comment_view, JobCommentDeleteView #delete_comment_view, JobCommentCreateView, JobCommentUpdateView, JobCommentDeleteView 
+from .views import JobListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView, job_upload_view, job_comment_view, update_comment_view, JobCommentDeleteView #delete_comment_view, JobCommentCreateView, JobCommentUpdateView, JobCommentDeleteView, 
 from . import views
 
 """Urls for the jobs section of the site. These urls will be added to the '/jobs' extension set up within the main site urls file in the 'cadwork' folder"""

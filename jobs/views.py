@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Job, JobFileUpload, JobComment
 from .forms import JobFileUploadForm, JobCommentForm
+from checkout.forms import MakePaymentForm, OrderForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
@@ -38,11 +39,18 @@ class JobListView(ListView):
 class JobDetailView(DetailView):
     model = Job
 
-    #Get the context data to be able to display other blogs from within the detail view for the uploaded files in 'job_detail.html'.
+    #Get the context data to be able to display the uploaded job files from within the detail view for the uploaded files in 'job_detail.html'.
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['uploaded_files'] = JobFileUpload.objects.get_queryset()
+        context['uploaded_files'] = JobFileUpload.objects.filter().order_by('file_price')
         return context
+
+
+
+# Logic to allow the page to show all of the files uploaded to a particular job
+class JobFileDisplay(LoginRequiredMixin, ListView):
+	model = JobFileUpload
+	context = {'uploaded_files': JobFileUpload.objects.all()}
 
 
 
@@ -56,7 +64,6 @@ def job_upload_view(request, pk):
             if (request.user.is_authenticated):
                 uploaded_files = JobFileUpload.objects.all()
                 job = get_object_or_404(Job, pk=pk)
-                jobs = Job.objects.all()
                 if request.method == "POST":
                     form = JobFileUploadForm(request.POST, request.FILES)
                     if form.is_valid():
@@ -71,7 +78,7 @@ def job_upload_view(request, pk):
         except User.DoesNotExist:
             return HttpResponseForbidden()
 
-    return render(request, 'jobs/job_upload.html', {'form': form, 'jobs': jobs, 'uploaded_files': uploaded_files, 'job': job})
+    return render(request, 'jobs/job_upload.html', {'form': form, 'uploaded_files': uploaded_files, 'job': job})
 
 
 
@@ -212,13 +219,8 @@ class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessa
     model = JobComment
     template_name = 'jobs/job_comment_confirm_delete.html'
     success_url = '/jobs/'
-    success_message = 'Your comment has been deleted.'
     fields = ['comment']
-
-    #Function to display the message when the comment is removed
-    def get_success_message(self, cleaned_data):
-        return self.success_message
-
+    
     #Stop a user from being able to access another users comment
     def test_func(self):
         comment = self.get_object()
@@ -226,3 +228,21 @@ class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessa
             return True
         else:
             return False
+
+
+
+#Checkout to pay for the files
+@login_required
+def file_checkout(request):
+    if request.method == "POST":
+        file_order_form = OrderForm(request.POST)
+        file_payment_form = MakePaymentForm(request.POST)
+        if file_order_form.is_valid() and file_payment_form.is_valid():
+            file_order = file_order_form.save(commit=False)
+            file_order.date = timezone.now()
+            file_order.save()
+            file_order_price = request.session.get()
+            for id in file_order_price():
+                file_order = get_object_or_404(JobFileUpload, pk=id)
+
+

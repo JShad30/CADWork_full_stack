@@ -93,17 +93,19 @@
 							</tr>
 						</thead>
 						<tbody class="job-uploaded-file-table-body">
-							{% for uploaded_file in uploaded_files %}
+							{% for uploaded_file in job.uploaded_files.all %}
 							<tr class="upload-table-row">
 								<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
 								<td class="upload-table-row-value"><a href="{% url 'public_profile' uploaded_file.author.profile.id %}">{{ uploaded_file.author }}</a></td>
 								<td class="upload-table-row-value">
-									<a class="btn btn-sm btn-primary file-pay-button" target="_blank" href="#">£{{ uploaded_file.file_price }}</a>
+									<a class="btn btn-sm btn-primary file-pay-button" href="#">£{{ uploaded_file.file_price }}</a>
 								</td>
 								<td class="upload-table-row-value">
 									<a class="btn btn-sm btn-primary file-pay-button" href="{{ uploaded_file.uploaded_file.url }}" target="_blank">Download</a>
 								</td>
 							</tr>
+							{% empty %}
+							<p class="alert alert-primary">There are currently no files to download.</p>
 							{% endfor %}
 						</tbody>
 					</table>

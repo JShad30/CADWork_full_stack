@@ -9,15 +9,6 @@
         <h1 class="user-post-title"><i class="fa fa-laptop mr-3"></i>Latest Jobs Uploaded</h1>
     </div>
 
-    <!--If statement to check for messages-->
-	{% if messages %}
-		{% for message in messages %}
-			<div class="alert alert-primary">
-				{{ message }}
-			</div>
-		{% endfor %}
-	{% endif %}
-
     <!--Container for the jobs cards-->
     <div class="job-card-container">
         <!--For loop to use following code for all the job cards-->
