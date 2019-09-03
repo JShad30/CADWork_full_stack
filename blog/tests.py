@@ -20,11 +20,11 @@ class TestBlogConfig(TestCase):
 class TestBlogModels(TestCase):
 
     def test_create_post(self):
-        #User.objects.create_user(
-            #user='testuser',
-            #email='testuser@email.com',
-            #password='passwordtest')
-        #self.client.login(user='testuser', password='passwordtest')
+        User.objects.create_user(
+            user='testuser',
+            email='testuser@email.com',
+            password='passwordtest')
+        self.client.login(user='testuser', password='passwordtest')
         post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield', image='image.jpg')
         post.save()
         self.assertEqual(post.author.user, 'testuser')
