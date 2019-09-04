@@ -40,6 +40,10 @@ A user can go to the shop/products page of the website if they are starting out 
 
 The items in the shop can only be added by superusers of the site through the admin panel, as CADWork is not a site for users to sell their own products.
 
+#### Note
+
+I have created a basic terms and privacy page. These are for display only.
+
 ## Features
 
 #### Blog
@@ -135,7 +139,7 @@ The project has been created in Heroku, which is also where the database is stor
 
 As the site was deployed I needed to make sure all the necessary requirements were placed in the requirements.txt file. 
 
-If you would like to contribute to the project can be cloned or downloaded from the Github link provided below. 
+If you would like to contribute to the project it can be cloned or downloaded from the Github link provided below. 
 
 The individual files on Github can be found via https://github.com/JShad30/CADWork_full_stack, and the website can be viewed via https://cadwork-full-stack-milestone.herokuapp.com/
 
