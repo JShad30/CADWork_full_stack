@@ -23,5 +23,6 @@ class Profile(models.Model):
         if profile_image.height > 250 or profile_image.width > 250:
             output_size = (250, 250)
             profile_image.thumbnail(output_size)
-            profile_image.save(self.image.path)
+            profile_image.save(self.image.name)
+
 
