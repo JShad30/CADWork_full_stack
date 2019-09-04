@@ -1,1 +1,1 @@
-web: gunicorn cadWork.wsgi:application
+web: gunicorn cadwork.wsgi:application
