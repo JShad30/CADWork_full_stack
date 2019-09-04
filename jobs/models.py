@@ -28,12 +28,12 @@ class Job(models.Model):
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
 
-		image = Image.open(self.image.path)
+		image = Image.open(self.image.name)
 
 		if image.width != 1200 or image.height != 700:
 			output_size = (1200, 700)
 			image.resize(output_size)
-			image.save(self.image.path)
+			image.save(self.image.name)
 
 	class Meta:
 		ordering = ['-date_posted']

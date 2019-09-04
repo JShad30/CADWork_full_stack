@@ -25,13 +25,13 @@ class Post(models.Model):
 	def save(self, *args, **kwargs):
 		super().save(*args, **kwargs)
 
-		image = Image.open(self.image.path)
+		image = Image.open(self.image.name)
 
 		#Check to see whether the image is larger than the standard size, if so, resize
 		if image.height != 700 or image.width != 1200:
 			output_size = (1200, 700)
 			image.thumbnail(output_size)
-			image.save(self.image.path)
+			image.save(self.image.name)
 
 	class Meta:
 		ordering = ['-date_posted']

@@ -19,9 +19,9 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        product_image = Image.open(self.image.path)
+        product_image = Image.open(self.image.name)
 
         if product_image.height > 500 or product_image.width > 500:
             output_size = (500, 500)
             product_image.thumbnail(output_size)
-            product_image.save(self.image.path)
+            product_image.save(self.image.name)
