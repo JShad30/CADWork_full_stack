@@ -26,7 +26,6 @@ class TestJobsModels(TestCase):
         self.assertEqual(job.job_description, 'Content to go into the textfield')
         self.assertEqual(job.job_location_town, 'Town')
         self.assertEqual(job.job_location_county, 'County')
-        self.assertEqual(job.image, '/job_images/image.jpg')
 
     def test_job_file(self):
         job_file = JobFileUpload(file_name='Test file', file_price=2.00, uploaded_file='test.pdf')
