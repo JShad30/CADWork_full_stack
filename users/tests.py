@@ -25,10 +25,9 @@ class TestUsersModels(TestCase):
             email='testuser@email.com',
             password='passwordtest')
         self.client.login(username='testuser', password='passwordtest')
-        profile = Profile(firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test', image='/user_images/image.jpg')
+        profile = Profile(firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
         profile.save()
         self.assertEqual(profile.user.username, 'testuser')
         self.assertEqual(profile.firstname, 'Firstname')
         self.assertEqual(profile.lastname, 'Lastname')
         self.assertEqual(profile.profile_intro, 'Profile intro test')
-        self.assertEqual(profile.image, '/user_images/image.jpg')

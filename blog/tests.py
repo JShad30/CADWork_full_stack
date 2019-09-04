@@ -25,13 +25,12 @@ class TestBlogModels(TestCase):
             email='testuser@email.com',
             password='passwordtest')
         self.client.login(username='testuser', password='passwordtest')
-        post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield', image='/blog_images/image.jpg')
+        post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield')
         post.save()
         self.assertEqual(post.author.username, 'testuser')
         self.assertEqual(post.title, 'Blog post')
         self.assertEqual(post.intro, 'Basic blog post content intro')
         self.assertEqual(post.content, 'Content to go into the textfield')
-        self.assertEqual(post.image, '/blog_images/image.jpg')
 
     def test_post_comment(self):
         User.objects.create_user(
