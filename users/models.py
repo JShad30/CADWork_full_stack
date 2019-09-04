@@ -18,7 +18,7 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        profile_image = Image.open(self.image.path)
+        profile_image = Image.open(self.image.name)
 
         if profile_image.height > 250 or profile_image.width > 250:
             output_size = (250, 250)
