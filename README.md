@@ -99,7 +99,9 @@ The products from the shop, if added to the users cart can be paid for through t
 
 #### Data Storage
 
-Database tables were created in the 'models.py' files of the apps. During the development phase of the project a db.sqlite3 database was used. 
+Database tables were created in the 'models.py' files of the apps. During the development phase of the project a 'db.sqlite3' database was used. This contained the data while the project was used in my local environment. When the site was deployed a 'Postgres' database was attached to the project in Heroku, and this is what is being used on the live site currently.
+
+The static files and media files are stored within an S3 bucket in AWS environment. 
 
 #### Version Control
 
@@ -125,7 +127,13 @@ I have connected the project files in Github to Travis via the '.travis.yml' fil
 
 ## Deployment
 
-This project has been deployed to both Github and Heroku by using the push command in the terminal.
+This project has been deployed to Github in my local environment using the 'git push' command in the terminal.
+
+To deploy this project into a live environment an AWS S3 bucket was created. This isused to store the media and static files that need to be served within the site. This allows for space, as considering users are uploading images, within the profiles, blogs, and jobs sections, there is the potential for there to be a very large number of files that need to be stored. The bucket has been linked to the project with AWS variables set in the 'settings.py' file.
+
+The project has been created in Heroku, which is also where the database is stored, and within the settings in Heroku the configuration variables have been set. In the 'deploy tab' the deployment method has been set to link to Github, thus using the files pushed to Github to display the live site.
+
+As the site was deployed I needed to make sure all the necessary requirements were placed in the requirements.txt file. 
 
 If you would like to contribute to the project can be cloned or downloaded from the Github link provided below. 
 
