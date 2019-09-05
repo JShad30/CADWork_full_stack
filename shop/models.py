@@ -14,16 +14,15 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images')
     
     def __str__(self):
-        return f'{self.product_name}'
+        return f'{self.product_name}'    
 
     #Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
-	def save(self):
-
-		super(Product, self).save()
-		if self.image:
-			size = 500, 500
-			product_image = Image.open(self.image)
-			product_image.thumbnail(size, Image.ANTIALIAS)
-			fh = storage.open(self.image.name, "w")
-			product_image.save(fh)
-			fh.close()
+    def save(self):
+        super(Product, self).save()
+        if self.image:
+            size = 500, 500
+            product_image = Image.open(self.image)
+            product_image.thumbnail(size, Image.ANTIALIAS)
+            fh = storage.open(self.image.name, "w")
+            product_image.save(fh)
+            fh.close()
