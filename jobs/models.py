@@ -26,7 +26,7 @@ class Job(models.Model):
 		return reverse('job-detail', kwargs={'pk': self.pk})
 
 	#Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
-	def save(self):
+	def save(self, **kwargs):
 
 		super(Job, self).save()
 		if self.image:
