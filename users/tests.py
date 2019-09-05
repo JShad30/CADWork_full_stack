@@ -25,9 +25,7 @@ class TestUsersModels(TestCase):
             email='testuser@email.com',
             password='passwordtest')
         user.save()
-        self.client.login(username='testuser', password='passwordtest')
         profile = Profile(user=user, firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
-        profile.save()
         self.assertEqual(profile.user.username, 'testuser')
         self.assertEqual(profile.firstname, 'Firstname')
         self.assertEqual(profile.lastname, 'Lastname')
