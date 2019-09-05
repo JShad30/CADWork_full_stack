@@ -372,6 +372,7 @@ h1, h2, h3, h4, h5, h6 {
 .slide-content-text {
     width: 85%;
     max-width: 800px;
+    margin: 20px 0;
 }
 
 .slide-content-title {
