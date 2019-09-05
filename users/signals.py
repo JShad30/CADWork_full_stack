@@ -10,7 +10,6 @@ from .models import Profile
 def create_profile(sender, instance, created, *args, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-post_save.connect(create_profile, sender=User)
 
 #**Kwargs takes any extra keywork arguments
 @receiver(post_save, sender=User)
