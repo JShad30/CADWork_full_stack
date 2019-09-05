@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 from PIL import Image
 
@@ -22,16 +23,16 @@ class Post(models.Model):
 		return reverse('post-detail', kwargs={'pk': self.pk})
 
 	#The following save function resizes the images saved by the user to ensure the images do not take up more space than is needed
-	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
+	def save(self):
 
-		image = Image.open(self.image.name)
-
-		#Check to see whether the image is larger than the standard size, if so, resize
-		if image.height != 700 or image.width != 1200:
-			output_size = (1200, 700)
-			image.thumbnail(output_size)
-			image.save(self.image.name)
+		super(Post, self).save()
+        if self.image:
+            size = 1200, 700
+            post_image = Image.open(self.image)
+            post_image.thumbnail(size, Image.ANTIALIAS)
+            fh = storage.open(self.image.name, "w")
+            post_image.save(fh)
+            fh.close()
 
 	class Meta:
 		ordering = ['-date_posted']
