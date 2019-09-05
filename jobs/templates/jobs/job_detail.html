@@ -61,7 +61,7 @@
 							<p class="comment-author-date"><span class="comment-author">{{ comment.author }}</span> - {{ comment.comment_date|date:"dS F, Y" }}</p>
 							<p class="comment">{{ comment.comment|linebreaksbr }}</p>
 													
-							{% if user.is_authenticated and object.author == user or user.is_superuser %}
+							{% if user.is_authenticated and comment.author == user or user.is_superuser %}
 							<div class="btn-group">
 								<div class="mt-3 mb-3">
 									<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'job-comment-update' comment.id %}">Update</a>
@@ -90,6 +90,7 @@
 								<th class="job-uploaded-file-table-header">File Name</th>
 								<th class="job-uploaded-file-table-header">Uploaded By</th>
 								<th class="job-uploaded-file-table-header">Price</th>
+								<th class="job-uploaded-file-table-header">File</p>
 							</tr>
 						</thead>
 						<tbody class="job-uploaded-file-table-body">
@@ -98,7 +99,7 @@
 								<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
 								<td class="upload-table-row-value"><a href="{% url 'public_profile' uploaded_file.author.profile.id %}">{{ uploaded_file.author }}</a></td>
 								<td class="upload-table-row-value">
-									<a class="btn btn-sm btn-primary file-pay-button" href="#">£{{ uploaded_file.file_price }}</a>
+									<a class="btn btn-sm btn-primary file-pay-button" href="{% url 'checkout' %}">£{{ uploaded_file.file_price }}</a>
 								</td>
 								<td class="upload-table-row-value">
 									<a class="btn btn-sm btn-primary file-pay-button" href="{{ uploaded_file.uploaded_file.url }}" target="_blank">Download</a>
