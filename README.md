@@ -123,11 +123,19 @@ The site has been tested manually by clicking all anchor links to the pages (bot
 
 Prior to submitting the project but after it was live I created test users, each to create blogs, jobs, comment and upload comments to them. All features and functionality of the site were tested.
 
-Test payments were made using the default test credit card number with Stripe. I was having issues with the order and payment forms, as they were not validating at first. It turned out that the files for Stripe were being loaded in the wrong place. There was also a small typing error in one of the pages 
+Test payments were made using the default test credit card number with Stripe. I was having issues with the order and payment forms, as they were not validating at first. It turned out that the files for Stripe were being loaded in the wrong place. There was also a small typing error in one of the pages which oce corrected work. Payments were made using Stripes test card. 
+
+![payment](https://user-images.githubusercontent.com/23212520/64378624-018e9680-d025-11e9-94a6-f89de5c400b4.JPG)
+
+The image above shows the errors I was getting before the files were corrected. The files recenlty have resulted in successful payments.
+
+After the project was deployed I created three users. One of these users was a superuser, and the others were regular users who had just signed up for an account. Each of these have created blogs and jobs, commented on each others projects/blogs, and uploaded files. The superuser uploaded the products that are now in the shop.
 
 #### Unit Testing
 
-I have connected the project files in Github to Travis via the '.travis.yml' file in the main folder. At the top of this README file the current results of the tests can be seen. 21 tests have been created across the apps, testing a number of the different aspects, from creating a job or blog to testing the home views of each of the apps. The tests have been created in the tests.py file of each of the apps.
+I have connected the project files in Github to Travis via the '.travis.yml' file in the main folder. At the top of this README file the current results of the tests can be seen. 20 tests have been created across the apps, testing a number of the different aspects, from creating a job or blog to testing the home views of each of the apps. The tests have been created in the tests.py file of each of the apps.
+
+There were some tests that were failing when they were first written, which were updated until they passed. The result of this, as can be seen above, is that the build of this project is now passing.
 
 ## Deployment
 
@@ -135,9 +143,11 @@ This project has been deployed to Github in my local environment using the 'git 
 
 To deploy this project into a live environment an AWS S3 bucket was created. This isused to store the media and static files that need to be served within the site. This allows for space, as considering users are uploading images, within the profiles, blogs, and jobs sections, there is the potential for there to be a very large number of files that need to be stored. The bucket has been linked to the project with AWS variables set in the 'settings.py' file.
 
-The project has been created in Heroku, which is also where the database is stored, and within the settings in Heroku the configuration variables have been set. In the 'deploy tab' the deployment method has been set to link to Github, thus using the files pushed to Github to display the live site.
+The project has been created in Heroku, which is also where the Postgres database is stored, and within the settings in Heroku the configuration variables have been set. In the 'deploy tab' the deployment method has been set to link to Github, thus using the files pushed to Github to display the live site.
 
 As the site was deployed I needed to make sure all the necessary requirements were placed in the requirements.txt file. 
+
+When the project was deployed I had some issues from the development version which I needed to fix. I updated the way the images are saved within the models files in the users, jobs and blog app.
 
 If you would like to contribute to the project it can be cloned or downloaded from the Github link provided below. 
 
