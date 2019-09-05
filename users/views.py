@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 #The register page allows a user to create a new account
 def register(request):
 	if request.method == 'POST':
-		form = UserRegistrationForm(request.POST)
+		form = UserRegistrationForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			username = form.cleaned_data.get('username')
