@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 from PIL import Image
 
@@ -24,16 +25,17 @@ class Job(models.Model):
 	def get_absolute_url(self):
 		return reverse('job-detail', kwargs={'pk': self.pk})
 
-	#Save function to resize the image to save space.
-	def save(self, *args, **kwargs):
-		super().save(*args, **kwargs)
+	#Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
+	def save(self):
 
-		image = Image.open(self.image.name)
-
-		if image.width != 1200 or image.height != 700:
-			output_size = (1200, 700)
-			image.resize(output_size)
-			image.save(self.image.name)
+		super(Job, self).save()
+		if self.image:
+			size = 1200, 700
+			job_image = Image.open(self.image)
+			job_image.thumbnail(size, Image.ANTIALIAS)
+			fh = storage.open(self.image.name, "w")
+			job_image.save(fh)
+			fh.close()
 
 	class Meta:
 		ordering = ['-date_posted']
