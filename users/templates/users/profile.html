@@ -51,7 +51,7 @@
 							{% for post in posts %}
                                 {% if post.author == user %}
                                 <article class="blog-details-other">
-                                    <img class="article-image" src="{{ post.image.url }}" height="80" width="80">
+                                    <img class="article-image" src="{{ MEDIA_URL }}{{ post.image.url }}" height="80" width="80">
                                     <div class="blog-intro">
                                         <div class="blog-details-post-text">
                                             <small class="blog-details-post-author">{{ post.date_posted|date:"dS F, Y" }}</small>
