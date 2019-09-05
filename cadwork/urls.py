@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from .settings import MEDIA_ROOT
 from users import views as user_views
 from home import views as home_views
 from jobs import views as jobs_views
