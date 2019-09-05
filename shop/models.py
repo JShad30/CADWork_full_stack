@@ -21,7 +21,7 @@ class Product(models.Model):
 
 		super(Product, self).save()
 		if self.image:
-			size = 1200, 700
+			size = 500, 500
 			product_image = Image.open(self.image)
 			product_image.thumbnail(size, Image.ANTIALIAS)
 			fh = storage.open(self.image.name, "w")
