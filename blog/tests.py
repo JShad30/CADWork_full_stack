@@ -20,12 +20,12 @@ class TestBlogConfig(TestCase):
 class TestBlogModels(TestCase):
 
     def test_create_post(self):
-        User.objects.create_user(
+        user = User.objects.create_user(
             username='testuser',
             email='testuser@email.com',
             password='passwordtest')
         self.client.login(username='testuser', password='passwordtest')
-        post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield')
+        post = Post(title='Blog post', intro='Basic blog post content intro', content='Content to go into the textfield', author_id=user.id)
         post.save()
         self.assertEqual(post.author.username, 'testuser')
         self.assertEqual(post.title, 'Blog post')

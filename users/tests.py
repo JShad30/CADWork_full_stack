@@ -20,12 +20,12 @@ class TestUsersConfig(TestCase):
 class TestUsersModels(TestCase):
 
     def test_create_post(self):
-        User.objects.create_user(
+        user = User.objects.create_user(
             username='testuser',
             email='testuser@email.com',
             password='passwordtest')
         self.client.login(username='testuser', password='passwordtest')
-        profile = Profile(firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
+        profile = Profile(user_profile=user.id, firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
         profile.save()
         self.assertEqual(profile.user.username, 'testuser')
         self.assertEqual(profile.firstname, 'Firstname')
