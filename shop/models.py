@@ -16,14 +16,14 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.product_name}'
 
+    #Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
+	def save(self):
 
-    #Saving the image for the product. To save space the following logic will cut the size of the image when saved.
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        product_image = Image.open(self.image.name)
-
-        if product_image.height > 500 or product_image.width > 500:
-            output_size = (500, 500)
-            product_image.thumbnail(output_size)
-            product_image.save(self.image.name)
+		super(Product, self).save()
+		if self.image:
+			size = 500, 500
+			product_image = Image.open(self.image)
+			product_image.thumbnail(size, Image.ANTIALIAS)
+			fh = storage.open(self.image.name, "w")
+			product_image.save(fh)
+			fh.close()
