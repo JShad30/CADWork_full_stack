@@ -27,7 +27,6 @@ class TestUsersModels(TestCase):
         user.save()
         profile = Profile(user=user, firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
         profile.save()
-        self.assertEqual(Profile.objects.count(), 999)
         self.assertEqual(profile.user.username, 'testuser')
         self.assertEqual(profile.firstname, 'Firstname')
         self.assertEqual(profile.lastname, 'Lastname')
