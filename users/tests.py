@@ -26,6 +26,7 @@ class TestUsersModels(TestCase):
             password='passwordtest')
         user.save()
         profile = Profile(user=user, firstname='Firstname', lastname='Lastname', profile_intro='Profile intro test')
+        profile.save()
         self.assertEqual(Profile.objects.count(), 1)
         self.assertEqual(profile.user.username, 'testuser')
         self.assertEqual(profile.firstname, 'Firstname')
