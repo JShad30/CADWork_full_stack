@@ -16,7 +16,7 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     #Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
-    def save(self):
+    def save(self, *args, **kwargs):
 
         super(Profile, self).save()
         if self.image:
