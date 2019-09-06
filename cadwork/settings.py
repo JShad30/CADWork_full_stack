@@ -178,7 +178,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USER = os.environ.get('EMAIL_USER')
 EMAIL_PASS = os.environ.get('EMAIL_PASS')
-EMAIL_USE_TLS = True
 
 LOGGING = {
     'version': 1,
