@@ -7,7 +7,7 @@ from .models import Profile
 """The receiver receives inputs of a sender, which in this case is the user and a signal of post_save which is triggered when a user is saved"""
 #The receiver here is the create_profile function, which takes the four parameters
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, *args, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 

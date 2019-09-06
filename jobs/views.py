@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Job, JobFileUpload, JobComment
 from .forms import JobFileUploadForm, JobCommentForm
-from checkout.forms import MakePaymentForm, OrderForm
 from django.http import HttpResponseForbidden, HttpResponse
+from django.conf import settings
 from django.urls import reverse
 from django.core.files.storage import FileSystemStorage
 
@@ -229,21 +229,5 @@ class JobCommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessa
             return True
         else:
             return False
-
-
-
-#Checkout to pay for the files
-@login_required
-def file_checkout(request):
-    if request.method == "POST":
-        file_order_form = OrderForm(request.POST)
-        file_payment_form = MakePaymentForm(request.POST)
-        if file_order_form.is_valid() and file_payment_form.is_valid():
-            file_order = file_order_form.save(commit=False)
-            file_order.date = timezone.now()
-            file_order.save()
-            file_order_price = request.session.get()
-            for id in file_order_price():
-                file_order = get_object_or_404(JobFileUpload, pk=id)
 
 

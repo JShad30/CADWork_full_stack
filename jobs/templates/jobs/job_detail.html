@@ -99,9 +99,6 @@
 								<td class="upload-table-row-value">{{ uploaded_file.file_name }}</td>
 								<td class="upload-table-row-value"><a href="{% url 'public_profile' uploaded_file.author.profile.id %}">{{ uploaded_file.author }}</a></td>
 								<td class="upload-table-row-value">
-									<a class="btn btn-sm btn-primary file-pay-button" href="{% url 'checkout' %}">£{{ uploaded_file.file_price }}</a>
-								</td>
-								<td class="upload-table-row-value">
 									<a class="btn btn-sm btn-primary file-pay-button" href="{{ uploaded_file.uploaded_file.url }}" target="_blank">Download</a>
 								</td>
 							</tr>

@@ -6,7 +6,7 @@
 
 CADWork is a fictional website that allows individuals or businesses looking to have professional CAD designs, measured surveys, or creative designs for their project, pair up with CAD professionals who are willing to carry out their project on a freelance basis.
 
-Users of the site can look through the blog to find out more about the industry, or if you're looking to make a start in CAD design, buy items in the shop.
+Users of the site can look through the blog to find out more about the industry, or if you're looking to make a start in CAD design, buy items in the shop. The site can be viewd here at https://cadwork-full-stack-milestone.herokuapp.com/.
 
 ![CADWork Layout Large](https://user-images.githubusercontent.com/23212520/64134770-86857000-cdd9-11e9-8e7a-dc26d98bafc5.png)
 
@@ -28,11 +28,11 @@ The blog section is created to allow users to understand more about the industry
 
 #### Uploading a job
 
-A user wants to upload a job and find a CAD professional to undertake their work for a new house extension. The user would need to register and sign in as described above. From here they would select the 'Create New Job' button. This takes them to the 'create a new job' form from where they can upload details and images. When a job is created it is placed on the job board from where CAD professionals are able to view it, ask questions and once the work is completed, submit files. The job creator will be able to pay for the file.
+A user wants to upload a job and find a CAD professional to undertake their work for a new house extension. The user would need to register and sign in as described above. From here they would select the 'Create New Job' button. This takes them to the 'create a new job' form from where they can upload details and images. When a job is created it is placed on the job board from where CAD professionals are able to view it, ask questions and once the work is completed, submit files.
 
 #### Uploading files to a job
 
-Users are able to upload files to a job by clicking the 'Upload a File' button. They are then redirected to the upload files form. The form requires the user to input a file name, file price and contains a button for them to be able to input. The user who uploads the file is flashed a message to tell them that the job creator is able to see their file.
+Users are able to upload files to a job by clicking the 'Upload a File' button. They are then redirected to the upload files form. The form requires the user to input a file name, and contains a button for them to be able to input a file. The user who uploads the file is flashed a message to tell them that the job creator is able to see their file.
 
 #### Shop/Products
 
@@ -60,13 +60,13 @@ As with most products/shops online, the products section gives the users the abi
 
 #### Payment systems
 
-There are payment features on the site for the shop and the file payments.
+There are payment features on the site for the shop payments.
 
 ## Further Considerations
 
 #### Jobs Files
 
-With further development I would stop the job creator being able to access the uploaded file before they had paid for it. Currently the payment goes to the Stripe account of CADWork. For this payment system I would create the ability for two users being able to make payments to each other, or the payment being paid into an escrow account stored by CADWork. When the job owner informs CADWork that they have received the files, the money would then be released to the file creator.
+With further development I would stop the job creator being able to access the uploaded file before they had paid for it. For this payment system I would create the ability for two users being able to make payments to each other, or the payment being paid into an escrow account stored by CADWork. When the job owner informs CADWork that they have received the files, the money would then be released to the file creator.
 
 ## Technology Used
 
@@ -127,13 +127,13 @@ Test payments were made using the default test credit card number with Stripe. I
 
 ![payment](https://user-images.githubusercontent.com/23212520/64378624-018e9680-d025-11e9-94a6-f89de5c400b4.JPG)
 
-The image above shows the errors I was getting before the files were corrected. The files recenlty have resulted in successful payments.
+The image above shows the errors I was getting before the issues were corrected. The files recently have resulted in successful payments as expected.
 
 After the project was deployed I created three users. One of these users was a superuser, and the others were regular users who had just signed up for an account. Each of these have created blogs and jobs, commented on each others projects/blogs, and uploaded files. The superuser uploaded the products that are now in the shop.
 
 #### Unit Testing
 
-I have connected the project files in Github to Travis via the '.travis.yml' file in the main folder. At the top of this README file the current results of the tests can be seen. 20 tests have been created across the apps, testing a number of the different aspects, from creating a job or blog to testing the home views of each of the apps. The tests have been created in the tests.py file of each of the apps.
+I have connected the project files in Github to Travis via the '.travis.yml' file in the main folder. At the top of this README file the current results of the tests can be seen. 19 tests have been created across the apps, testing a number of the different aspects, from creating a job or blog to testing the home views of each of the apps. The tests have been created in the tests.py file of each of the apps.
 
 There were some tests that were failing when they were first written, which were updated until they passed. The result of this, as can be seen above, is that the build of this project is now passing.
 
@@ -147,7 +147,7 @@ The project has been created in Heroku, which is also where the Postgres databas
 
 As the site was deployed I needed to make sure all the necessary requirements were placed in the requirements.txt file. 
 
-When the project was deployed I had some issues from the development version which I needed to fix. I updated the way the images are saved within the models files in the users, jobs and blog app.
+When the project was deployed I had some issues from the development version which I needed to fix. I updated the way the images are saved within the models files in the users, jobs and blog app. Before the project was submitted, debug was changed from 'True' to 'False' in the settings file.
 
 If you would like to contribute to the project it can be cloned or downloaded from the Github link provided below. 
 
