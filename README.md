@@ -6,7 +6,7 @@
 
 CADWork is a fictional website that allows individuals or businesses looking to have professional CAD designs, measured surveys, or creative designs for their project, pair up with CAD professionals who are willing to carry out their project on a freelance basis.
 
-Users of the site can look through the blog to find out more about the industry, or if you're looking to make a start in CAD design, buy items in the shop. The site can be viewd here at https://cadwork-full-stack-milestone.herokuapp.com/.
+Users of the site can look through the blog to find out more about the industry, or if you're looking to make a start in CAD design, buy items in the shop. The site can be viewed here at https://cadwork-full-stack-milestone.herokuapp.com/.
 
 ![CADWork Layout Large](https://user-images.githubusercontent.com/23212520/64134770-86857000-cdd9-11e9-8e7a-dc26d98bafc5.png)
 
@@ -67,6 +67,12 @@ There are payment features on the site for the shop payments.
 #### Jobs Files
 
 With further development I would stop the job creator being able to access the uploaded file before they had paid for it. For this payment system I would create the ability for two users being able to make payments to each other, or the payment being paid into an escrow account stored by CADWork. When the job owner informs CADWork that they have received the files, the money would then be released to the file creator.
+
+## Issues to Fix
+
+#### Contact
+
+I currently have errors with the contact and reset password functionality. When the user tries to send a message they are directed to a 500 error. This functionality however worked in the local environment, as the site was being developed. The error came as the site was deployed on Heroku. The error given in the Heroku logs was an SMTPAuthenticationError. To fix this I would need to allow gmail access to the app to allow messages to be sent. 
 
 ## Technology Used
 
