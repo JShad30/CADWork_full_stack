@@ -18,7 +18,7 @@ class Profile(models.Model):
     #Resize the image as it's saved so it doesn't take too much space. If no image given then the 'user-default.jpg' image will be used for that user.
     def save(self, *args, **kwargs):
 
-        super(Profile, self).save(*args, **kwargs)
+        super.save(*args, **kwargs)
         if self.image:
             size = 250, 250
             profile_image = Image.open(self.image)
